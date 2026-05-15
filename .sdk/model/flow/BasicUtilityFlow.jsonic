@@ -1,0 +1,18 @@
+# BasicUtilityFlow
+
+main: kit: flow: BasicUtilityFlow:
+{
+  entity: "utility",
+  kind: "basic",
+  name: "BasicUtilityFlow",
+  step: [
+    {
+      input: {
+        ref: "utility_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicUtilityFlow"
+}

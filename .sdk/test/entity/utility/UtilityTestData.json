@@ -1,0 +1,94 @@
+{
+  "existing": {
+    "utility": {
+      "UTILITY00": {
+        "algorithm": "sbe",
+        "decoded": "sbf",
+        "encoded": "sc0",
+        "error": "sc1",
+        "flag": "sc2",
+        "formatted": "sc3",
+        "hash": "sc4",
+        "header": {},
+        "indent": "sc6",
+        "is_match": false,
+        "json": "sc8",
+        "match": [],
+        "parsed": {},
+        "pattern": "scb",
+        "payload": {},
+        "signature": "scd",
+        "text": "sce",
+        "token": "scf",
+        "valid": true
+      },
+      "UTILITY01": {
+        "algorithm": "s17c",
+        "decoded": "s17d",
+        "encoded": "s17e",
+        "error": "s17f",
+        "flag": "s180",
+        "formatted": "s181",
+        "hash": "s182",
+        "header": {},
+        "indent": "s184",
+        "is_match": false,
+        "json": "s186",
+        "match": [],
+        "parsed": {},
+        "pattern": "s189",
+        "payload": {},
+        "signature": "s18b",
+        "text": "s18c",
+        "token": "s18d",
+        "valid": true
+      },
+      "UTILITY02": {
+        "algorithm": "s23a",
+        "decoded": "s23b",
+        "encoded": "s23c",
+        "error": "s23d",
+        "flag": "s23e",
+        "formatted": "s23f",
+        "hash": "s240",
+        "header": {},
+        "indent": "s242",
+        "is_match": false,
+        "json": "s244",
+        "match": [],
+        "parsed": {},
+        "pattern": "s247",
+        "payload": {},
+        "signature": "s249",
+        "text": "s24a",
+        "token": "s24b",
+        "valid": true
+      }
+    }
+  },
+  "new": {
+    "utility": {
+      "utility_ref01": {
+        "algorithm": "s2f8",
+        "decoded": "s2f9",
+        "encoded": "s2fa",
+        "error": "s2fb",
+        "flag": "s2fc",
+        "formatted": "s2fd",
+        "hash": "s2fe",
+        "header": {},
+        "indent": "s300",
+        "is_match": false,
+        "json": "s302",
+        "match": [],
+        "parsed": {},
+        "pattern": "s305",
+        "payload": {},
+        "signature": "s307",
+        "text": "s308",
+        "token": "s309",
+        "valid": true
+      }
+    }
+  }
+}

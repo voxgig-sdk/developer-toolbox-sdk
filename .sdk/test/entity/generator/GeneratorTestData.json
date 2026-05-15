@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "generator": {
+      "GENERATOR00": {
+        "data": "s28",
+        "password": "s29",
+        "size": "s2a",
+        "uuid": []
+      },
+      "GENERATOR01": {
+        "data": "s50",
+        "password": "s51",
+        "size": "s52",
+        "uuid": []
+      },
+      "GENERATOR02": {
+        "data": "s78",
+        "password": "s79",
+        "size": "s7a",
+        "uuid": []
+      }
+    }
+  },
+  "new": {
+    "generator": {
+      "generator_ref01": {
+        "data": "sa0",
+        "password": "sa1",
+        "size": "sa2",
+        "uuid": []
+      }
+    }
+  }
+}

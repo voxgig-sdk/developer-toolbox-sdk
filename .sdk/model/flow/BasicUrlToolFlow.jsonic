@@ -1,0 +1,18 @@
+# BasicUrlToolFlow
+
+main: kit: flow: BasicUrlToolFlow:
+{
+  entity: "url_tool",
+  kind: "basic",
+  name: "BasicUrlToolFlow",
+  step: [
+    {
+      input: {
+        ref: "url_tool_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicUrlToolFlow"
+}

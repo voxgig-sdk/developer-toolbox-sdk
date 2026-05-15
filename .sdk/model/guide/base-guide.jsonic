@@ -1,0 +1,53 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 12
+  metrics: count: method: 12
+
+  entity: generator: {
+    path: "/api/fake-data": {
+      op: list: method: *GET
+    }
+    path: "/api/password": {
+      op: load: method: *GET
+    }
+    path: "/api/qrcode": {
+      op: create: method: *POST
+    }
+    path: "/api/uuid": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: url_tool: {
+    path: "/api/url/shorten": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: utility: {
+    path: "/api/base64/decode": {
+      op: create: method: *POST
+    }
+    path: "/api/base64/encode": {
+      op: create: method: *POST
+    }
+    path: "/api/hash": {
+      op: create: method: *POST
+    }
+    path: "/api/json/format": {
+      op: create: method: *POST
+    }
+    path: "/api/json/validate": {
+      op: create: method: *POST
+    }
+    path: "/api/jwt/decode": {
+      op: create: method: *POST
+    }
+    path: "/api/regex/test": {
+      op: create: method: *POST
+    }
+  }
+
+}

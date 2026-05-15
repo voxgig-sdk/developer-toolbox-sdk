@@ -1,0 +1,728 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Developer Toolbox API",
+    "description": "Free REST API with 40+ utilities for developers: UUID generation, QR codes, fake data, URL shortener, JSON tools, hashing, base64, regex tester, JWT decoder, password generator and more. No signup required. 120 req/min free tier.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://conway-toolbox-production.up.railway.app"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://conway-toolbox-production.up.railway.app",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/uuid": {
+      "get": {
+        "summary": "Generate UUID",
+        "description": "Generate one or more UUIDs (v4)",
+        "operationId": "generateUUID",
+        "tags": [
+          "Generators"
+        ],
+        "parameters": [
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Number of UUIDs to generate",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully generated UUID(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uuids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/qrcode": {
+      "post": {
+        "summary": "Generate QR Code",
+        "description": "Generate a QR code image from text or URL",
+        "operationId": "generateQRCode",
+        "tags": [
+          "Generators"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "data"
+                ],
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "description": "Text or URL to encode in QR code"
+                  },
+                  "size": {
+                    "type": "integer",
+                    "description": "Size of QR code in pixels",
+                    "default": 200,
+                    "minimum": 100,
+                    "maximum": 1000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully generated QR code",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters"
+          }
+        }
+      }
+    },
+    "/api/fake-data": {
+      "get": {
+        "summary": "Generate Fake Data",
+        "description": "Generate fake data for testing purposes (names, emails, addresses, etc.)",
+        "operationId": "generateFakeData",
+        "tags": [
+          "Generators"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Type of fake data to generate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "name",
+                "email",
+                "address",
+                "phone",
+                "company",
+                "user"
+              ],
+              "default": "user"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Number of records to generate",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully generated fake data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hash": {
+      "post": {
+        "summary": "Hash Text",
+        "description": "Generate hash of text using various algorithms (MD5, SHA-1, SHA-256, SHA-512)",
+        "operationId": "hashText",
+        "tags": [
+          "Utilities"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "text"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Text to hash"
+                  },
+                  "algorithm": {
+                    "type": "string",
+                    "description": "Hashing algorithm to use",
+                    "enum": [
+                      "md5",
+                      "sha1",
+                      "sha256",
+                      "sha512"
+                    ],
+                    "default": "sha256"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully generated hash",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hash": {
+                      "type": "string"
+                    },
+                    "algorithm": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters"
+          }
+        }
+      }
+    },
+    "/api/base64/encode": {
+      "post": {
+        "summary": "Base64 Encode",
+        "description": "Encode text to Base64",
+        "operationId": "base64Encode",
+        "tags": [
+          "Utilities"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "text"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Text to encode"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully encoded to Base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "encoded": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters"
+          }
+        }
+      }
+    },
+    "/api/base64/decode": {
+      "post": {
+        "summary": "Base64 Decode",
+        "description": "Decode Base64 encoded text",
+        "operationId": "base64Decode",
+        "tags": [
+          "Utilities"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "encoded"
+                ],
+                "properties": {
+                  "encoded": {
+                    "type": "string",
+                    "description": "Base64 encoded text to decode"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully decoded from Base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "decoded": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Base64 string"
+          }
+        }
+      }
+    },
+    "/api/password": {
+      "get": {
+        "summary": "Generate Password",
+        "description": "Generate a random secure password",
+        "operationId": "generatePassword",
+        "tags": [
+          "Generators"
+        ],
+        "parameters": [
+          {
+            "name": "length",
+            "in": "query",
+            "description": "Length of password",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 16,
+              "minimum": 8,
+              "maximum": 128
+            }
+          },
+          {
+            "name": "uppercase",
+            "in": "query",
+            "description": "Include uppercase letters",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "lowercase",
+            "in": "query",
+            "description": "Include lowercase letters",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "numbers",
+            "in": "query",
+            "description": "Include numbers",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "symbols",
+            "in": "query",
+            "description": "Include special symbols",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully generated password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jwt/decode": {
+      "post": {
+        "summary": "Decode JWT",
+        "description": "Decode and parse a JSON Web Token (JWT)",
+        "operationId": "decodeJWT",
+        "tags": [
+          "Utilities"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "token"
+                ],
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "JWT token to decode"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully decoded JWT",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "header": {
+                      "type": "object"
+                    },
+                    "payload": {
+                      "type": "object"
+                    },
+                    "signature": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid JWT token"
+          }
+        }
+      }
+    },
+    "/api/regex/test": {
+      "post": {
+        "summary": "Test Regular Expression",
+        "description": "Test a regular expression pattern against text",
+        "operationId": "testRegex",
+        "tags": [
+          "Utilities"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "pattern",
+                  "text"
+                ],
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "Regular expression pattern"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Text to test against pattern"
+                  },
+                  "flags": {
+                    "type": "string",
+                    "description": "Regex flags (g, i, m, s, u, y)",
+                    "default": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully tested regex",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "matches": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "isMatch": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid regex pattern"
+          }
+        }
+      }
+    },
+    "/api/json/validate": {
+      "post": {
+        "summary": "Validate JSON",
+        "description": "Validate JSON syntax and structure",
+        "operationId": "validateJSON",
+        "tags": [
+          "Utilities"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "json"
+                ],
+                "properties": {
+                  "json": {
+                    "type": "string",
+                    "description": "JSON string to validate"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON validation result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "valid": {
+                      "type": "boolean"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "parsed": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/json/format": {
+      "post": {
+        "summary": "Format JSON",
+        "description": "Format and beautify JSON with proper indentation",
+        "operationId": "formatJSON",
+        "tags": [
+          "Utilities"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "json"
+                ],
+                "properties": {
+                  "json": {
+                    "type": "string",
+                    "description": "JSON string to format"
+                  },
+                  "indent": {
+                    "type": "integer",
+                    "description": "Number of spaces for indentation",
+                    "default": 2,
+                    "minimum": 1,
+                    "maximum": 8
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully formatted JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "formatted": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid JSON string"
+          }
+        }
+      }
+    },
+    "/api/url/shorten": {
+      "post": {
+        "summary": "Shorten URL",
+        "description": "Create a shortened URL",
+        "operationId": "shortenURL",
+        "tags": [
+          "URL Tools"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "url"
+                ],
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL to shorten"
+                  },
+                  "customAlias": {
+                    "type": "string",
+                    "description": "Custom alias for shortened URL"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully shortened URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "shortUrl": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "originalUrl": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid URL or alias already taken"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Generators",
+      "description": "Generate UUIDs, passwords, QR codes, and fake data"
+    },
+    {
+      "name": "Utilities",
+      "description": "Hashing, encoding, JWT, JSON, and regex utilities"
+    },
+    {
+      "name": "URL Tools",
+      "description": "URL shortening and related tools"
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "securitySchemes": {}
+  },
+  "x-rate-limit": {
+    "free-tier": "120 requests per minute"
+  }
+}

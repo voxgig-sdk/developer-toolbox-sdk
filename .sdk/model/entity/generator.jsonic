@@ -1,0 +1,201 @@
+# Entity: generator
+
+main: kit: entity: generator: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      op: {
+        list: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "password"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "size"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "uuid"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "generator"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/qrcode"
+          parts: [
+            "api"
+            "qrcode"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "count"
+                orig: "count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "user"
+                kind: "query"
+                name: "type"
+                orig: "type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/fake-data"
+          parts: [
+            "api"
+            "fake-data"
+          ]
+          select: {
+            exist: [
+              "count"
+              "type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "count"
+                orig: "count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/uuid"
+          parts: [
+            "api"
+            "uuid"
+          ]
+          select: {
+            exist: [
+              "count"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 16
+                kind: "query"
+                name: "length"
+                orig: "length"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "lowercase"
+                orig: "lowercase"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "number"
+                orig: "number"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "symbol"
+                orig: "symbol"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: true
+                kind: "query"
+                name: "uppercase"
+                orig: "uppercase"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/password"
+          parts: [
+            "api"
+            "password"
+          ]
+          select: {
+            exist: [
+              "length"
+              "lowercase"
+              "number"
+              "symbol"
+              "uppercase"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

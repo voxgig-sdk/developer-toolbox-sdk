@@ -1,0 +1,54 @@
+# Entity: url_tool
+
+main: kit: entity: url_tool: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "custom_alia"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "original_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "short_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "url_tool"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/url/shorten"
+          parts: [
+            "api"
+            "url"
+            "shorten"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

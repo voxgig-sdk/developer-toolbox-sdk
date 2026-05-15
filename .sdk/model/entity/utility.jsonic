@@ -1,0 +1,212 @@
+# Entity: utility
+
+main: kit: entity: utility: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "algorithm"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "decoded"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "encoded"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "error"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "flag"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "formatted"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "hash"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "header"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "indent"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "is_match"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "json"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "match"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "parsed"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "pattern"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "payload"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "signature"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "text"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "token"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "valid"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "utility"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/base64/decode"
+          parts: [
+            "api"
+            "base64"
+            "decode"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/base64/encode"
+          parts: [
+            "api"
+            "base64"
+            "encode"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/hash"
+          parts: [
+            "api"
+            "hash"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/json/format"
+          parts: [
+            "api"
+            "json"
+            "format"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/json/validate"
+          parts: [
+            "api"
+            "json"
+            "validate"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/jwt/decode"
+          parts: [
+            "api"
+            "jwt"
+            "decode"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/regex/test"
+          parts: [
+            "api"
+            "regex"
+            "test"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "url_tool": {
+      "URL_TOOL00": {
+        "custom_alia": "s28",
+        "original_url": "s29",
+        "short_url": "s2a",
+        "url": "s2b"
+      },
+      "URL_TOOL01": {
+        "custom_alia": "s50",
+        "original_url": "s51",
+        "short_url": "s52",
+        "url": "s53"
+      },
+      "URL_TOOL02": {
+        "custom_alia": "s78",
+        "original_url": "s79",
+        "short_url": "s7a",
+        "url": "s7b"
+      }
+    }
+  },
+  "new": {
+    "url_tool": {
+      "url_tool_ref01": {
+        "custom_alia": "sa0",
+        "original_url": "sa1",
+        "short_url": "sa2",
+        "url": "sa3"
+      }
+    }
+  }
+}
