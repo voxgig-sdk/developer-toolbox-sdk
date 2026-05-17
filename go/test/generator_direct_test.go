@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/developer-toolbox-sdk"
-	"github.com/voxgig-sdk/developer-toolbox-sdk/core"
+	sdk "github.com/voxgig-sdk/developer-toolbox-sdk/go"
+	"github.com/voxgig-sdk/developer-toolbox-sdk/go/core"
 )
 
 func TestGeneratorDirect(t *testing.T) {

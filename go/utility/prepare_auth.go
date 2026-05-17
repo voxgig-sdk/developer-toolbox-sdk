@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/developer-toolbox-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/developer-toolbox-sdk/core"
+	"github.com/voxgig-sdk/developer-toolbox-sdk/go/core"
 )
 
 const headerAuth = "authorization"

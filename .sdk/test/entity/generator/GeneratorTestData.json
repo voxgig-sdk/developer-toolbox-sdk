@@ -5,19 +5,22 @@
         "data": "s28",
         "password": "s29",
         "size": "s2a",
-        "uuid": []
+        "uuid": [],
+        "id": "GENERATOR00"
       },
       "GENERATOR01": {
         "data": "s50",
         "password": "s51",
         "size": "s52",
-        "uuid": []
+        "uuid": [],
+        "id": "GENERATOR01"
       },
       "GENERATOR02": {
         "data": "s78",
         "password": "s79",
         "size": "s7a",
-        "uuid": []
+        "uuid": [],
+        "id": "GENERATOR02"
       }
     }
   },

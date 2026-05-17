@@ -1,10 +1,10 @@
 package voxgigdevelopertoolboxsdk
 
 import (
-	"github.com/voxgig-sdk/developer-toolbox-sdk/core"
-	"github.com/voxgig-sdk/developer-toolbox-sdk/entity"
-	"github.com/voxgig-sdk/developer-toolbox-sdk/feature"
-	_ "github.com/voxgig-sdk/developer-toolbox-sdk/utility"
+	"github.com/voxgig-sdk/developer-toolbox-sdk/go/core"
+	"github.com/voxgig-sdk/developer-toolbox-sdk/go/entity"
+	"github.com/voxgig-sdk/developer-toolbox-sdk/go/feature"
+	_ "github.com/voxgig-sdk/developer-toolbox-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

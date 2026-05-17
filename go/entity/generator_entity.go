@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/developer-toolbox-sdk/core"
+	"github.com/voxgig-sdk/developer-toolbox-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/developer-toolbox-sdk/go/utility/struct"
 )
 
 type GeneratorEntity struct {

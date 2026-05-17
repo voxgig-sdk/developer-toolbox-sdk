@@ -20,7 +20,8 @@
         "signature": "scd",
         "text": "sce",
         "token": "scf",
-        "valid": true
+        "valid": true,
+        "id": "UTILITY00"
       },
       "UTILITY01": {
         "algorithm": "s17c",
@@ -41,7 +42,8 @@
         "signature": "s18b",
         "text": "s18c",
         "token": "s18d",
-        "valid": true
+        "valid": true,
+        "id": "UTILITY01"
       },
       "UTILITY02": {
         "algorithm": "s23a",
@@ -62,7 +64,8 @@
         "signature": "s249",
         "text": "s24a",
         "token": "s24b",
-        "valid": true
+        "valid": true,
+        "id": "UTILITY02"
       }
     }
   },

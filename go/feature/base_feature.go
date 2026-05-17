@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/developer-toolbox-sdk/core"
+	"github.com/voxgig-sdk/developer-toolbox-sdk/go/core"
 )
 
 type BaseFeature struct {

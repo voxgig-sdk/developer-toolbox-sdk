@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/developer-toolbox-sdk"
-	"github.com/voxgig-sdk/developer-toolbox-sdk/core"
+	sdk "github.com/voxgig-sdk/developer-toolbox-sdk/go"
+	"github.com/voxgig-sdk/developer-toolbox-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/developer-toolbox-sdk/go/utility/struct"
 )
 
 func TestGeneratorEntity(t *testing.T) {
