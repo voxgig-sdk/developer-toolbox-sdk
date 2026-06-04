@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { DeveloperToolboxSDK } from 'developer-toolbox'
 
-const client = new DeveloperToolboxSDK({
-  apikey: process.env.DEVELOPER-TOOLBOX_APIKEY,
-})
+const client = new DeveloperToolboxSDK({})
 ```
 
 ### 2. List generators
@@ -104,7 +102,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new DeveloperToolboxSDK({ apikey: '...' })
+const client = new DeveloperToolboxSDK()
 const testClient = client.tester()
 ```
 
@@ -140,7 +138,6 @@ const logger = {
 }
 
 const client = new DeveloperToolboxSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -151,7 +148,6 @@ Create a `.env.local` file at the project root:
 
 ```
 DEVELOPER-TOOLBOX_TEST_LIVE=TRUE
-DEVELOPER-TOOLBOX_APIKEY=<your-key>
 ```
 
 Then run:
@@ -169,7 +165,6 @@ cd ts && npm test
 
 ```ts
 new DeveloperToolboxSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -180,7 +175,6 @@ new DeveloperToolboxSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

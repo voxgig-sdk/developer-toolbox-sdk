@@ -16,8 +16,32 @@ main: {
       ]
       title: "Developer Toolbox API"
       version: "1.0.0"
+      tagline: "Free REST utilities for developers: UUIDs, passwords, fake data, time, IP lookup and more, with no signup"
+      homepage: "https://conway-toolbox-production.up.railway.app"
+      docs_url: "https://freepublicapis.com/developer-toolbox-api"
+      license_short: "No license specified; free public tier with 120 req/min"
+      license_md: `- No explicit license is published for the Developer Toolbox API.
+- The service is offered as a free public API with no signup required.
+- Free tier is rate-limited to 120 requests per minute.
+- Endpoints are documented as having CORS disabled, so browser-side calls may need a proxy.`
+      about_md: `Developer Toolbox is a free REST API that bundles small developer utilities behind a single host. It is documented on the community catalogue [freepublicapis.com](https://freepublicapis.com/developer-toolbox-api) and served from \`https://conway-toolbox-production.up.railway.app\`.
+
+What you get from the API:
+
+- \`/uuid\` — generate a random UUID v4
+- \`/uuid/5\` — batch UUID generation (five at a time)
+- \`/pw\` — create a secure random password
+- \`/fake/person\` — synthetic person record (name, email, address, company)
+- \`/time\` — current time in ISO and Unix form, with ten major timezones
+- \`/ip\` — caller's public IP address with details
+
+Operational notes: no authentication is required and the free tier allows up to 120 requests per minute. CORS is disabled on the documented endpoints, so server-side or proxied calls are the supported path. Catalogue checks at the time of writing reported the upstream host as unreachable, so the SDK shape here may outlast the live service.`
+      entity_desc: {
+        generator: "Generator endpoints that produce fresh values on demand, such as UUIDs (`/uuid`, `/uuid/5`), random passwords (`/pw`) and fake person records (`/fake/person`)."
+        url_tool: "URL-oriented helpers; the catalogue advertises a URL shortener alongside the other utilities, though no specific path is documented in the public summary."
+        utility: "Miscellaneous developer utilities including current time across timezones (`/time`) and caller IP lookup (`/ip`)."
+      }
+      auth: false
     }
   }
-}
-
 }
