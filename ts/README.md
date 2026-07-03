@@ -10,7 +10,7 @@ The TypeScript SDK for the DeveloperToolbox API — a type-safe, entity-oriented
 
 ## Install
 ```bash
-npm install developer-toolbox
+npm install @voxgig-sdk/developer-toolbox
 ```
 ## Tutorial: your first API call
 

@@ -10,7 +10,7 @@ The Lua SDK for the DeveloperToolbox API — an entity-oriented client using Lua
 
 ## Install
 ```bash
-luarocks install developer-toolbox-sdk
+luarocks install voxgig-sdk-developer-toolbox
 ```
 
 If the module is not yet published, add the source directory to

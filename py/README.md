@@ -10,7 +10,7 @@ The Python SDK for the DeveloperToolbox API — an entity-oriented client follow
 
 ## Install
 ```bash
-pip install developer-toolbox-sdk
+pip install voxgig-sdk-developer-toolbox
 ```
 
 Or install from source:

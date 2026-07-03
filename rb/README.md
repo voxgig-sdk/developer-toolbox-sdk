@@ -10,13 +10,13 @@ The Ruby SDK for the DeveloperToolbox API — an entity-oriented client using id
 
 ## Install
 ```bash
-gem install developer-toolbox-sdk
+gem install voxgig-sdk-developer-toolbox
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "developer-toolbox-sdk"
+gem "voxgig-sdk-developer-toolbox"
 ```
 
 Then run:

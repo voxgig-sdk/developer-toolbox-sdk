@@ -10,7 +10,7 @@ The PHP SDK for the DeveloperToolbox API — an entity-oriented client using PHP
 
 ## Install
 ```bash
-composer require voxgig/developer-toolbox-sdk
+composer require voxgig-sdk/developer-toolbox
 ```
 
 
