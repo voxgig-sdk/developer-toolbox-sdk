@@ -95,6 +95,7 @@ def generator_basic_setup(extra)
     "DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID" => idmap,
     "DEVELOPERTOOLBOX_TEST_LIVE" => "FALSE",
     "DEVELOPERTOOLBOX_TEST_EXPLAIN" => "FALSE",
+    "DEVELOPERTOOLBOX_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -106,6 +107,7 @@ def generator_basic_setup(extra)
   if env["DEVELOPERTOOLBOX_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["DEVELOPERTOOLBOX_APIKEY"],
       },
       extra || {},
     ])

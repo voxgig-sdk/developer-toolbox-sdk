@@ -1,6 +1,11 @@
 # DeveloperToolbox Ruby SDK
 
-The Ruby SDK for the DeveloperToolbox API. Provides an entity-oriented interface using idiomatic Ruby conventions.
+
+
+The Ruby SDK for the DeveloperToolbox API — an entity-oriented client using idiomatic Ruby conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -31,13 +36,15 @@ loading a specific record.
 ```ruby
 require_relative "DeveloperToolbox_sdk"
 
-client = DeveloperToolboxSDK.new({})
+client = DeveloperToolboxSDK.new({
+  "apikey" => ENV["DEVELOPER-TOOLBOX_APIKEY"],
+})
 ```
 
 ### 2. List generators
 
 ```ruby
-result, err = client.Generator(nil).list(nil, nil)
+result, err = client.Generator().list
 raise err if err
 
 if result.is_a?(Array)
@@ -51,7 +58,7 @@ end
 ### 3. Load a generator
 
 ```ruby
-result, err = client.Generator(nil).load({ "id" => "example_id" }, nil)
+result, err = client.Generator().load({ "id" => "example_id" })
 raise err if err
 puts result
 ```
@@ -60,7 +67,7 @@ puts result
 
 ```ruby
 # Create
-created, _ = client.Generator(nil).create({ "name" => "Example" }, nil)
+created, _ = client.Generator().create({ "name" => "Example" })
 
 ```
 
@@ -105,11 +112,9 @@ puts fetchdef["headers"]
 Create a mock client for unit testing — no server required:
 
 ```ruby
-client = DeveloperToolboxSDK.test(nil, nil)
+client = DeveloperToolboxSDK.test
 
-result, err = client.DeveloperToolbox(nil).load(
-  { "id" => "test01" }, nil
-)
+result, err = client.DeveloperToolbox().load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -141,6 +146,7 @@ Create a `.env.local` file at the project root:
 
 ```
 DEVELOPER-TOOLBOX_TEST_LIVE=TRUE
+DEVELOPER-TOOLBOX_APIKEY=<your-key>
 ```
 
 Then run:
@@ -163,6 +169,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

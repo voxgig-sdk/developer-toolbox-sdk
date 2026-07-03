@@ -113,12 +113,14 @@ function generator_direct_setup($mockres)
     $env = Runner::env_override([
         "DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID" => [],
         "DEVELOPERTOOLBOX_TEST_LIVE" => "FALSE",
+        "DEVELOPERTOOLBOX_APIKEY" => "NONE",
     ]);
 
     $live = $env["DEVELOPERTOOLBOX_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["DEVELOPERTOOLBOX_APIKEY"],
         ];
         $client = new DeveloperToolboxSDK($merged_opts);
         return [

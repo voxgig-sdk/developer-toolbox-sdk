@@ -1,23 +1,8 @@
 # DeveloperToolbox SDK
 
-Free REST utilities for developers: UUIDs, passwords, fake data, time, IP lookup and more, with no signup
+Developer Toolbox API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Developer Toolbox API
-
-Developer Toolbox is a free REST API that bundles small developer utilities behind a single host. It is documented on the community catalogue [freepublicapis.com](https://freepublicapis.com/developer-toolbox-api) and served from `https://conway-toolbox-production.up.railway.app`.
-
-What you get from the API:
-
-- `/uuid` — generate a random UUID v4
-- `/uuid/5` — batch UUID generation (five at a time)
-- `/pw` — create a secure random password
-- `/fake/person` — synthetic person record (name, email, address, company)
-- `/time` — current time in ISO and Unix form, with ten major timezones
-- `/ip` — caller's public IP address with details
-
-Operational notes: no authentication is required and the free tier allows up to 120 requests per minute. CORS is disabled on the documented endpoints, so server-side or proxied calls are the supported path. Catalogue checks at the time of writing reported the upstream host as unreachable, so the SDK shape here may outlast the live service.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install developer-toolbox-sdk
 luarocks install developer-toolbox-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { DeveloperToolboxSDK } from 'developer-toolbox'
 
-const client = new DeveloperToolboxSDK({})
+const client = new DeveloperToolboxSDK({
+  apikey: process.env.DEVELOPER-TOOLBOX_APIKEY,
+})
 
 // List all generators
 const generators = await client.Generator().list()
+console.log(generators.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Generator** | Generator endpoints that produce fresh values on demand, such as UUIDs (`/uuid`, `/uuid/5`), random passwords (`/pw`) and fake person records (`/fake/person`). | `/api/qrcode` |
-| **UrlTool** | URL-oriented helpers; the catalogue advertises a URL shortener alongside the other utilities, though no specific path is documented in the public summary. | `/api/url/shorten` |
-| **Utility** | Miscellaneous developer utilities including current time across timezones (`/time`) and caller IP lookup (`/ip`). | `/api/base64/decode` |
+| **Generator** |  | `/api/qrcode` |
+| **UrlTool** |  | `/api/url/shorten` |
+| **Utility** |  | `/api/base64/decode` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -115,17 +102,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from developertoolbox_sdk import DeveloperToolboxSDK
 
-client = DeveloperToolboxSDK({})
+client = DeveloperToolboxSDK({
+    "apikey": os.environ.get("DEVELOPER-TOOLBOX_APIKEY"),
+})
 
 # List all generators
-generators, err = client.Generator(None).list(None, None)
+generators, err = client.Generator().list()
+print(generators)
 
 # Load a specific generator
-generator, err = client.Generator(None).load(
-    {"id": "example_id"}, None
-)
+generator, err = client.Generator().load({"id": "example_id"})
+print(generator)
 ```
 
 ### PHP
@@ -134,15 +124,17 @@ generator, err = client.Generator(None).load(
 <?php
 require_once 'developertoolbox_sdk.php';
 
-$client = new DeveloperToolboxSDK([]);
+$client = new DeveloperToolboxSDK([
+    "apikey" => getenv("DEVELOPER-TOOLBOX_APIKEY"),
+]);
 
 // List all generators
-[$generators, $err] = $client->Generator(null)->list(null, null);
+[$generators, $err] = $client->Generator()->list();
+print_r($generators);
 
 // Load a specific generator
-[$generator, $err] = $client->Generator(null)->load(
-    ["id" => "example_id"], null
-);
+[$generator, $err] = $client->Generator()->load(["id" => "example_id"]);
+print_r($generator);
 ```
 
 ### Golang
@@ -150,10 +142,13 @@ $client = new DeveloperToolboxSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/developer-toolbox-sdk/go"
 
-client := sdk.NewDeveloperToolboxSDK(map[string]any{})
+client := sdk.NewDeveloperToolboxSDK(map[string]any{
+    "apikey": os.Getenv("DEVELOPER-TOOLBOX_APIKEY"),
+})
 
 // List all generators
 generators, err := client.Generator(nil).List(nil, nil)
+fmt.Println(generators)
 ```
 
 ### Ruby
@@ -161,15 +156,17 @@ generators, err := client.Generator(nil).List(nil, nil)
 ```ruby
 require_relative "DeveloperToolbox_sdk"
 
-client = DeveloperToolboxSDK.new({})
+client = DeveloperToolboxSDK.new({
+  "apikey" => ENV["DEVELOPER-TOOLBOX_APIKEY"],
+})
 
 # List all generators
-generators, err = client.Generator(nil).list(nil, nil)
+generators, err = client.Generator().list
+puts generators
 
 # Load a specific generator
-generator, err = client.Generator(nil).load(
-  { "id" => "example_id" }, nil
-)
+generator, err = client.Generator().load({ "id" => "example_id" })
+puts generator
 ```
 
 ### Lua
@@ -177,15 +174,17 @@ generator, err = client.Generator(nil).load(
 ```lua
 local sdk = require("developer-toolbox_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("DEVELOPER-TOOLBOX_APIKEY"),
+})
 
 -- List all generators
-local generators, err = client:Generator(nil):list(nil, nil)
+local generators, err = client:Generator():list()
+print(generators)
 
 -- Load a specific generator
-local generator, err = client:Generator(nil):load(
-  { id = "example_id" }, nil
-)
+local generator, err = client:Generator():load({ id = "example_id" })
+print(generator)
 ```
 
 ## Unit testing in offline mode
@@ -204,25 +203,21 @@ const result = await client.Generator().load({ id: 'test01' })
 ### Python
 
 ```python
-client = DeveloperToolboxSDK.test(None, None)
-result, err = client.Generator(None).load(
-    {"id": "test01"}, None
-)
+client = DeveloperToolboxSDK.test()
+result, err = client.Generator().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = DeveloperToolboxSDK::test(null, null);
-[$result, $err] = $client->Generator(null)->load(
-    ["id" => "test01"], null
-);
+$client = DeveloperToolboxSDK::test();
+[$result, $err] = $client->Generator()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Generator(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -231,19 +226,15 @@ result, err := client.Generator(nil).Load(
 ### Ruby
 
 ```ruby
-client = DeveloperToolboxSDK.test(nil, nil)
-result, err = client.Generator(nil).load(
-  { "id" => "test01" }, nil
-)
+client = DeveloperToolboxSDK.test
+result, err = client.Generator().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Generator(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Generator():load({ id = "test01" })
 ```
 
 ## How it works
@@ -347,16 +338,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Developer Toolbox API
-
-- Upstream: [https://conway-toolbox-production.up.railway.app](https://conway-toolbox-production.up.railway.app)
-- API docs: [https://freepublicapis.com/developer-toolbox-api](https://freepublicapis.com/developer-toolbox-api)
-
-- No explicit license is published for the Developer Toolbox API.
-- The service is offered as a free public API with no signup required.
-- Free tier is rate-limited to 120 requests per minute.
-- Endpoints are documented as having CORS disabled, so browser-side calls may need a proxy.
 
 ---
 

@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'DEVELOPER_TOOLBOX_TEST_UTILITY_ENTID': idmap,
     'DEVELOPER_TOOLBOX_TEST_LIVE': 'FALSE',
     'DEVELOPER_TOOLBOX_TEST_EXPLAIN': 'FALSE',
+    'DEVELOPER_TOOLBOX_APIKEY': 'NONE',
   })
 
   idmap = env['DEVELOPER_TOOLBOX_TEST_UTILITY_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new DeveloperToolboxSDK(merge([
       {
+        apikey: env.DEVELOPER_TOOLBOX_APIKEY,
       },
       extra
     ]))

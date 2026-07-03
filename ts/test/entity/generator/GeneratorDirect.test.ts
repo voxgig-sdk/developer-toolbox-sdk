@@ -135,12 +135,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID': {},
     'DEVELOPERTOOLBOX_TEST_LIVE': 'FALSE',
+    'DEVELOPERTOOLBOX_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.DEVELOPERTOOLBOX_TEST_LIVE
 
   if (live) {
     const client = new DeveloperToolboxSDK({
+      apikey: env.DEVELOPERTOOLBOX_APIKEY,
     })
 
     let idmap: any = env['DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID']

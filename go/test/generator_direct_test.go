@@ -164,12 +164,14 @@ func generatorDirectSetup(mockres any) *generatorDirectSetupResult {
 	env := envOverride(map[string]any{
 		"DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID": map[string]any{},
 		"DEVELOPERTOOLBOX_TEST_LIVE":    "FALSE",
+		"DEVELOPERTOOLBOX_APIKEY":       "NONE",
 	})
 
 	live := env["DEVELOPERTOOLBOX_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["DEVELOPERTOOLBOX_APIKEY"],
 		}
 		client := sdk.NewDeveloperToolboxSDK(mergedOpts)
 

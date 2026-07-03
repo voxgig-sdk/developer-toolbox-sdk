@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://conway-toolbox-production.up.railway.app',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -61,6 +65,7 @@ class Config {
     "generator": {
       "fields": [
         {
+          "active": true,
           "name": "data",
           "op": {
             "list": {
@@ -70,79 +75,80 @@ class Config {
           },
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "password",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "size",
           "req": false,
           "type": "`$INTEGER`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "uuid",
           "req": false,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 3
         }
       ],
       "name": "generator",
       "op": {
         "create": {
+          "input": "data",
           "name": "create",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/api/qrcode",
               "parts": [
                 "api",
                 "qrcode"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "create"
         },
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": 1,
                     "kind": "query",
                     "name": "count",
                     "orig": "count",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "example": "user",
                     "kind": "query",
                     "name": "type",
                     "orig": "type",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -162,20 +168,20 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             },
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": 1,
                     "kind": "query",
                     "name": "count",
                     "orig": "count",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   }
                 ]
               },
@@ -194,63 +200,63 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 1
             }
           ],
-          "input": "data",
           "key$": "list"
         },
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": 16,
                     "kind": "query",
                     "name": "length",
                     "orig": "length",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "example": true,
                     "kind": "query",
                     "name": "lowercase",
                     "orig": "lowercase",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   },
                   {
+                    "active": true,
                     "example": true,
                     "kind": "query",
                     "name": "number",
                     "orig": "number",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   },
                   {
+                    "active": true,
                     "example": true,
                     "kind": "query",
                     "name": "symbol",
                     "orig": "symbol",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   },
                   {
+                    "active": true,
                     "example": true,
                     "kind": "query",
                     "name": "uppercase",
                     "orig": "uppercase",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   }
                 ]
               },
@@ -273,11 +279,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -288,40 +292,43 @@ class Config {
     "url_tool": {
       "fields": [
         {
+          "active": true,
           "name": "custom_alia",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "original_url",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "short_url",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "url",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 3
         }
       ],
       "name": "url_tool",
       "op": {
         "create": {
+          "input": "data",
           "name": "create",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/api/url/shorten",
               "parts": [
@@ -329,17 +336,14 @@ class Config {
                 "url",
                 "shorten"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "create"
         }
       },
@@ -350,20 +354,21 @@ class Config {
     "utility": {
       "fields": [
         {
+          "active": true,
           "name": "algorithm",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "decoded",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "encoded",
           "op": {
             "create": {
@@ -373,128 +378,130 @@ class Config {
           },
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "error",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 3
         },
         {
+          "active": true,
           "name": "flag",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 4
         },
         {
+          "active": true,
           "name": "formatted",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 5
         },
         {
+          "active": true,
           "name": "hash",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 6
         },
         {
+          "active": true,
           "name": "header",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 7
         },
         {
+          "active": true,
           "name": "indent",
           "req": false,
           "type": "`$INTEGER`",
-          "active": true,
           "index$": 8
         },
         {
+          "active": true,
           "name": "is_match",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 9
         },
         {
+          "active": true,
           "name": "json",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 10
         },
         {
+          "active": true,
           "name": "match",
           "req": false,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 11
         },
         {
+          "active": true,
           "name": "parsed",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 12
         },
         {
+          "active": true,
           "name": "pattern",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 13
         },
         {
+          "active": true,
           "name": "payload",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 14
         },
         {
+          "active": true,
           "name": "signature",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 15
         },
         {
+          "active": true,
           "name": "text",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 16
         },
         {
+          "active": true,
           "name": "token",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 17
         },
         {
+          "active": true,
           "name": "valid",
           "req": false,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 18
         }
       ],
       "name": "utility",
       "op": {
         "create": {
+          "input": "data",
           "name": "create",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/api/base64/decode",
               "parts": [
@@ -502,16 +509,16 @@ class Config {
                 "base64",
                 "decode"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             },
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/api/base64/encode",
               "parts": [
@@ -519,32 +526,32 @@ class Config {
                 "base64",
                 "encode"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 1
             },
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/api/hash",
               "parts": [
                 "api",
                 "hash"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 2
             },
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/api/json/format",
               "parts": [
@@ -552,16 +559,16 @@ class Config {
                 "json",
                 "format"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 3
             },
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/api/json/validate",
               "parts": [
@@ -569,16 +576,16 @@ class Config {
                 "json",
                 "validate"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 4
             },
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/api/jwt/decode",
               "parts": [
@@ -586,16 +593,16 @@ class Config {
                 "jwt",
                 "decode"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 5
             },
             {
+              "active": true,
+              "args": {},
               "method": "POST",
               "orig": "/api/regex/test",
               "parts": [
@@ -603,17 +610,14 @@ class Config {
                 "regex",
                 "test"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 6
             }
           ],
-          "input": "data",
           "key$": "create"
         }
       },

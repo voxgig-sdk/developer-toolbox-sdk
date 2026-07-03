@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -120,9 +120,9 @@ local generator = client:Generator(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Generator(nil):create({
+local result, err = client:Generator():create({
   data = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 #### `list(reqmatch, ctrl) -> any, err`
@@ -130,7 +130,7 @@ local result, err = client:Generator(nil):create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Generator(nil):list(nil, nil)
+local results, err = client:Generator():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -138,7 +138,7 @@ local results, err = client:Generator(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Generator(nil):load({ id = "generator_id" }, nil)
+local result, err = client:Generator():load({ id = "generator_id" })
 ```
 
 ### Common Methods
@@ -193,9 +193,9 @@ local url_tool = client:UrlTool(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:UrlTool(nil):create({
+local result, err = client:UrlTool():create({
   url = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods
@@ -289,13 +289,13 @@ local utility = client:Utility(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Utility(nil):create({
+local result, err = client:Utility():create({
   encoded = --[[ `$STRING` ]],
   json = --[[ `$STRING` ]],
   pattern = --[[ `$STRING` ]],
   text = --[[ `$STRING` ]],
   token = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods

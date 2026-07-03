@@ -1,6 +1,11 @@
 # DeveloperToolbox Python SDK
 
-The Python SDK for the DeveloperToolbox API. Provides an entity-oriented interface following Pythonic conventions.
+
+
+The Python SDK for the DeveloperToolbox API — an entity-oriented client following Pythonic conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -23,15 +28,18 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
+import os
 from developertoolbox_sdk import DeveloperToolboxSDK
 
-client = DeveloperToolboxSDK({})
+client = DeveloperToolboxSDK({
+    "apikey": os.environ.get("DEVELOPER-TOOLBOX_APIKEY"),
+})
 ```
 
 ### 2. List generators
 
 ```python
-result, err = client.Generator(None).list(None, None)
+result, err = client.Generator().list()
 if err:
     raise Exception(err)
 
@@ -44,7 +52,7 @@ if isinstance(result, list):
 ### 3. Load a generator
 
 ```python
-result, err = client.Generator(None).load({"id": "example_id"}, None)
+result, err = client.Generator().load({"id": "example_id"})
 if err:
     raise Exception(err)
 print(result)
@@ -54,7 +62,7 @@ print(result)
 
 ```python
 # Create
-created, _ = client.Generator(None).create({"name": "Example"}, None)
+created, _ = client.Generator().create({"name": "Example"})
 
 ```
 
@@ -100,11 +108,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```python
-client = DeveloperToolboxSDK.test(None, None)
+client = DeveloperToolboxSDK.test()
 
-result, err = client.DeveloperToolbox(None).load(
-    {"id": "test01"}, None
-)
+result, err = client.DeveloperToolbox().load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -135,6 +141,7 @@ Create a `.env.local` file at the project root:
 
 ```
 DEVELOPER-TOOLBOX_TEST_LIVE=TRUE
+DEVELOPER-TOOLBOX_APIKEY=<your-key>
 ```
 
 Then run:
@@ -158,6 +165,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
