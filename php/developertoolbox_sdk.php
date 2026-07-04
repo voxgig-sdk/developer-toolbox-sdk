@@ -233,10 +233,10 @@ class DeveloperToolboxSDK
 
     private $_generator = null;
 
-    // Idiomatic facade: $client->generator()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Generator() (PHP method
-    // names are case-insensitive).
-    public function generator($data = null)
+    // Canonical facade: $client->Generator()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->generator()
+    // resolves here too.
+    public function Generator($data = null)
     {
         require_once __DIR__ . '/entity/generator_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class DeveloperToolboxSDK
 
     private $_url_tool = null;
 
-    // Idiomatic facade: $client->url_tool()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias UrlTool() (PHP method
-    // names are case-insensitive).
-    public function url_tool($data = null)
+    // Canonical facade: $client->UrlTool()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->url_tool()
+    // resolves here too.
+    public function UrlTool($data = null)
     {
         require_once __DIR__ . '/entity/url_tool_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class DeveloperToolboxSDK
 
     private $_utility = null;
 
-    // Idiomatic facade: $client->utility()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Utility() (PHP method
-    // names are case-insensitive).
-    public function utility($data = null)
+    // Canonical facade: $client->Utility()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->utility()
+    // resolves here too.
+    public function Utility($data = null)
     {
         require_once __DIR__ . '/entity/utility_entity.php';
         if ($data === null) {

@@ -206,42 +206,21 @@ class DeveloperToolboxSDK {
 
 
 
-  _generator?: GeneratorEntity
-
-  // Idiomatic facade: `client.generator.list()` / `client.generator.load({ id })`.
-  get generator(): GeneratorEntity {
-    return (this._generator ??= new GeneratorEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.generator` instead. */
+  // Entity access: `client.Generator().list()` / `client.Generator().load({ id })`.
   Generator(data?: any) {
     const self = this
     return new GeneratorEntity(self,data)
   }
 
 
-  _url_tool?: UrlToolEntity
-
-  // Idiomatic facade: `client.url_tool.list()` / `client.url_tool.load({ id })`.
-  get url_tool(): UrlToolEntity {
-    return (this._url_tool ??= new UrlToolEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.url_tool` instead. */
+  // Entity access: `client.UrlTool().list()` / `client.UrlTool().load({ id })`.
   UrlTool(data?: any) {
     const self = this
     return new UrlToolEntity(self,data)
   }
 
 
-  _utility?: UtilityEntity
-
-  // Idiomatic facade: `client.utility.list()` / `client.utility.load({ id })`.
-  get utility(): UtilityEntity {
-    return (this._utility ??= new UtilityEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.utility` instead. */
+  // Entity access: `client.Utility().list()` / `client.Utility().load({ id })`.
   Utility(data?: any) {
     const self = this
     return new UtilityEntity(self,data)

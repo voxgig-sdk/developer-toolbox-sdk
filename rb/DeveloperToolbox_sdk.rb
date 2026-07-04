@@ -208,39 +208,21 @@ class DeveloperToolboxSDK
   end
 
 
-  # Idiomatic facade: client.generator.list / client.generator.load({ "id" => ... })
-  def generator
-    require_relative 'entity/generator_entity'
-    @generator ||= GeneratorEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.generator instead.
+  # Canonical facade: client.Generator.list / client.Generator.load({ "id" => ... })
   def Generator(data = nil)
     require_relative 'entity/generator_entity'
     GeneratorEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.url_tool.list / client.url_tool.load({ "id" => ... })
-  def url_tool
-    require_relative 'entity/url_tool_entity'
-    @url_tool ||= UrlToolEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.url_tool instead.
+  # Canonical facade: client.UrlTool.list / client.UrlTool.load({ "id" => ... })
   def UrlTool(data = nil)
     require_relative 'entity/url_tool_entity'
     UrlToolEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.utility.list / client.utility.load({ "id" => ... })
-  def utility
-    require_relative 'entity/utility_entity'
-    @utility ||= UtilityEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.utility instead.
+  # Canonical facade: client.Utility.list / client.Utility.load({ "id" => ... })
   def Utility(data = nil)
     require_relative 'entity/utility_entity'
     UtilityEntity.new(self, data)

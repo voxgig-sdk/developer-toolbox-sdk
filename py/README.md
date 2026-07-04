@@ -31,24 +31,28 @@ from developertoolbox_sdk import DeveloperToolboxSDK
 client = DeveloperToolboxSDK()
 ```
 
-### 2. List generators
+### 2. List generator records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.generator.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    generators = client.Generator().list({})
+    for generator in generators:
+        print(generator)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a generator
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.generator.load({"id": "example_id"})
-    print(result)
+    generator = client.Generator().load({"id": "example_id"})
+    print(generator)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -56,8 +60,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.generator.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Generator().create({"name": "Example"})
 
 ```
 
@@ -104,8 +108,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DeveloperToolboxSDK.test()
 
-result = client.generator.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+generator = client.Generator().load({"id": "test01"})
+# generator contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -182,8 +187,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Generator` | `(data) -> GeneratorEntity` | Create a Generator entity instance. |
-| `UrlTool` | `(data) -> UrlToolEntity` | Create a UrlTool entity instance. |
-| `Utility` | `(data) -> UtilityEntity` | Create a Utility entity instance. |
+| `UrlTool` | `(data) -> UrlToolEntity` | Create an UrlTool entity instance. |
+| `Utility` | `(data) -> UtilityEntity` | Create an Utility entity instance. |
 
 ### Entity interface
 
@@ -284,7 +289,7 @@ API path: `/api/base64/decode`
 
 ### Generator
 
-Create an instance: `const generator = client.generator`
+Create an instance: `generator = client.Generator()`
 
 #### Operations
 
@@ -305,28 +310,28 @@ Create an instance: `const generator = client.generator`
 
 #### Example: Load
 
-```ts
-const generator = await client.generator.load({ id: 'generator_id' })
+```python
+generator = client.Generator().load({"id": "generator_id"})
 ```
 
 #### Example: List
 
-```ts
-const generators = await client.generator.list()
+```python
+generators = client.Generator().list({})
 ```
 
 #### Example: Create
 
-```ts
-const generator = await client.generator.create({
-  data: /* `$STRING` */,
+```python
+generator = client.Generator().create({
+    "data": ...,  # `$STRING`
 })
 ```
 
 
 ### UrlTool
 
-Create an instance: `const url_tool = client.url_tool`
+Create an instance: `url_tool = client.UrlTool()`
 
 #### Operations
 
@@ -345,16 +350,16 @@ Create an instance: `const url_tool = client.url_tool`
 
 #### Example: Create
 
-```ts
-const url_tool = await client.url_tool.create({
-  url: /* `$STRING` */,
+```python
+url_tool = client.UrlTool().create({
+    "url": ...,  # `$STRING`
 })
 ```
 
 
 ### Utility
 
-Create an instance: `const utility = client.utility`
+Create an instance: `utility = client.Utility()`
 
 #### Operations
 
@@ -388,13 +393,13 @@ Create an instance: `const utility = client.utility`
 
 #### Example: Create
 
-```ts
-const utility = await client.utility.create({
-  encoded: /* `$STRING` */,
-  json: /* `$STRING` */,
-  pattern: /* `$STRING` */,
-  text: /* `$STRING` */,
-  token: /* `$STRING` */,
+```python
+utility = client.Utility().create({
+    "encoded": ...,  # `$STRING`
+    "json": ...,  # `$STRING`
+    "pattern": ...,  # `$STRING`
+    "text": ...,  # `$STRING`
+    "token": ...,  # `$STRING`
 })
 ```
 
@@ -469,7 +474,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-generator = client.generator
+generator = client.Generator()
 generator.load({"id": "example_id"})
 
 # generator.data_get() now returns the loaded generator data

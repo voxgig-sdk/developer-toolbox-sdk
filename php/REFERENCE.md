@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GeneratorEntity
 
 ```php
-$generator = $client->generator();
+$generator = $client->Generator();
 ```
 
 ### Fields
@@ -121,7 +121,7 @@ $generator = $client->generator();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->generator()->create([
+$result = $client->Generator()->create([
   "data" => /* `$STRING` */,
 ]);
 ```
@@ -131,7 +131,7 @@ $result = $client->generator()->create([
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->generator()->list([]);
+$results = $client->Generator()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -139,7 +139,7 @@ $results = $client->generator()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->generator()->load(["id" => "generator_id"]);
+$result = $client->Generator()->load(["id" => "generator_id"]);
 ```
 
 ### Common Methods
@@ -175,7 +175,7 @@ Return the entity name.
 ## UrlToolEntity
 
 ```php
-$url_tool = $client->url_tool();
+$url_tool = $client->UrlTool();
 ```
 
 ### Fields
@@ -194,7 +194,7 @@ $url_tool = $client->url_tool();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->url_tool()->create([
+$result = $client->UrlTool()->create([
   "url" => /* `$STRING` */,
 ]);
 ```
@@ -232,7 +232,7 @@ Return the entity name.
 ## UtilityEntity
 
 ```php
-$utility = $client->utility();
+$utility = $client->Utility();
 ```
 
 ### Fields
@@ -290,7 +290,7 @@ $utility = $client->utility();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->utility()->create([
+$result = $client->Utility()->create([
   "encoded" => /* `$STRING` */,
   "json" => /* `$STRING` */,
   "pattern" => /* `$STRING` */,

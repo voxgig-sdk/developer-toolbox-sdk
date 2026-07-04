@@ -28,16 +28,14 @@ require_relative "DeveloperToolbox_sdk"
 client = DeveloperToolboxSDK.new
 ```
 
-### 2. List generators
+### 2. List generator records
 
 ```ruby
 begin
-  result = client.generator.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Generator records — iterate directly.
+  generators = client.Generator.list
+  generators.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.generator.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Generator record (raises on error).
+  generator = client.Generator.load({ "id" => "example_id" })
+  puts generator
 rescue => err
   warn "load failed: #{err}"
 end
@@ -58,8 +57,8 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.generator.create({ "name" => "Example" })
+# create returns the bare created Generator record.
+created = client.Generator.create({ "name" => "Example" })
 
 ```
 
@@ -104,13 +103,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = DeveloperToolboxSDK.test
+client = DeveloperToolboxSDK.test({
+  "entity" => { "generator" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.generator.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+generator = client.Generator.load({ "id" => "test01" })
+puts generator
 ```
 
 ### Use a custom fetch function
@@ -187,8 +190,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Generator` | `(data) -> GeneratorEntity` | Create a Generator entity instance. |
-| `UrlTool` | `(data) -> UrlToolEntity` | Create a UrlTool entity instance. |
-| `Utility` | `(data) -> UtilityEntity` | Create a Utility entity instance. |
+| `UrlTool` | `(data) -> UrlToolEntity` | Create an UrlTool entity instance. |
+| `Utility` | `(data) -> UtilityEntity` | Create an Utility entity instance. |
 
 ### Entity interface
 
@@ -288,7 +291,7 @@ API path: `/api/base64/decode`
 
 ### Generator
 
-Create an instance: `const generator = client.generator`
+Create an instance: `generator = client.Generator`
 
 #### Operations
 
@@ -309,28 +312,30 @@ Create an instance: `const generator = client.generator`
 
 #### Example: Load
 
-```ts
-const generator = await client.generator.load({ id: 'generator_id' })
+```ruby
+# load returns the bare Generator record (raises on error).
+generator = client.Generator.load({ "id" => "generator_id" })
 ```
 
 #### Example: List
 
-```ts
-const generators = await client.generator.list()
+```ruby
+# list returns an Array of Generator records (raises on error).
+generators = client.Generator.list
 ```
 
 #### Example: Create
 
-```ts
-const generator = await client.generator.create({
-  data: /* `$STRING` */,
+```ruby
+generator = client.Generator.create({
+  "data" => nil, # `$STRING`
 })
 ```
 
 
 ### UrlTool
 
-Create an instance: `const url_tool = client.url_tool`
+Create an instance: `url_tool = client.UrlTool`
 
 #### Operations
 
@@ -349,16 +354,16 @@ Create an instance: `const url_tool = client.url_tool`
 
 #### Example: Create
 
-```ts
-const url_tool = await client.url_tool.create({
-  url: /* `$STRING` */,
+```ruby
+url_tool = client.UrlTool.create({
+  "url" => nil, # `$STRING`
 })
 ```
 
 
 ### Utility
 
-Create an instance: `const utility = client.utility`
+Create an instance: `utility = client.Utility`
 
 #### Operations
 
@@ -392,13 +397,13 @@ Create an instance: `const utility = client.utility`
 
 #### Example: Create
 
-```ts
-const utility = await client.utility.create({
-  encoded: /* `$STRING` */,
-  json: /* `$STRING` */,
-  pattern: /* `$STRING` */,
-  text: /* `$STRING` */,
-  token: /* `$STRING` */,
+```ruby
+utility = client.Utility.create({
+  "encoded" => nil, # `$STRING`
+  "json" => nil, # `$STRING`
+  "pattern" => nil, # `$STRING`
+  "text" => nil, # `$STRING`
+  "token" => nil, # `$STRING`
 })
 ```
 
@@ -474,7 +479,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-generator = client.generator
+generator = client.Generator
 generator.load({ "id" => "example_id" })
 
 # generator.data_get now returns the loaded generator data

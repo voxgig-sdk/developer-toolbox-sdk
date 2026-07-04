@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## GeneratorEntity
 
 ```lua
-local generator = client:generator(nil)
+local generator = client:Generator(nil)
 ```
 
 ### Fields
@@ -119,7 +119,7 @@ local generator = client:generator(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:generator():create({
+local result, err = client:Generator():create({
   data = --[[ `$STRING` ]],
 })
 ```
@@ -129,7 +129,7 @@ local result, err = client:generator():create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:generator():list()
+local results, err = client:Generator():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -137,7 +137,7 @@ local results, err = client:generator():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:generator():load({ id = "generator_id" })
+local result, err = client:Generator():load({ id = "generator_id" })
 ```
 
 ### Common Methods
@@ -173,7 +173,7 @@ Return the entity name.
 ## UrlToolEntity
 
 ```lua
-local url_tool = client:url_tool(nil)
+local url_tool = client:UrlTool(nil)
 ```
 
 ### Fields
@@ -192,7 +192,7 @@ local url_tool = client:url_tool(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:url_tool():create({
+local result, err = client:UrlTool():create({
   url = --[[ `$STRING` ]],
 })
 ```
@@ -230,7 +230,7 @@ Return the entity name.
 ## UtilityEntity
 
 ```lua
-local utility = client:utility(nil)
+local utility = client:Utility(nil)
 ```
 
 ### Fields
@@ -288,7 +288,7 @@ local utility = client:utility(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:utility():create({
+local result, err = client:Utility():create({
   encoded = --[[ `$STRING` ]],
   json = --[[ `$STRING` ]],
   pattern = --[[ `$STRING` ]],

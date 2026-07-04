@@ -4,103 +4,108 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Generator:
+class GeneratorRequired(TypedDict):
     data: str
-    password: Optional[str] = None
-    size: Optional[int] = None
-    uuid: Optional[list] = None
 
 
-@dataclass
-class GeneratorLoadMatch:
-    data: Optional[str] = None
-    password: Optional[str] = None
-    size: Optional[int] = None
-    uuid: Optional[list] = None
+class Generator(GeneratorRequired, total=False):
+    password: str
+    size: int
+    uuid: list
 
 
-@dataclass
-class GeneratorListMatch:
-    data: Optional[str] = None
-    password: Optional[str] = None
-    size: Optional[int] = None
-    uuid: Optional[list] = None
+class GeneratorLoadMatch(TypedDict, total=False):
+    data: str
+    password: str
+    size: int
+    uuid: list
 
 
-@dataclass
-class GeneratorCreateData:
-    data: Optional[str] = None
-    password: Optional[str] = None
-    size: Optional[int] = None
-    uuid: Optional[list] = None
+class GeneratorListMatch(TypedDict, total=False):
+    data: str
+    password: str
+    size: int
+    uuid: list
 
 
-@dataclass
-class UrlTool:
+class GeneratorCreateData(TypedDict, total=False):
+    data: str
+    password: str
+    size: int
+    uuid: list
+
+
+class UrlToolRequired(TypedDict):
     url: str
-    custom_alia: Optional[str] = None
-    original_url: Optional[str] = None
-    short_url: Optional[str] = None
 
 
-@dataclass
-class UrlToolCreateData:
-    custom_alia: Optional[str] = None
-    original_url: Optional[str] = None
-    short_url: Optional[str] = None
-    url: Optional[str] = None
+class UrlTool(UrlToolRequired, total=False):
+    custom_alia: str
+    original_url: str
+    short_url: str
 
 
-@dataclass
-class Utility:
+class UrlToolCreateData(TypedDict, total=False):
+    custom_alia: str
+    original_url: str
+    short_url: str
+    url: str
+
+
+class UtilityRequired(TypedDict):
     encoded: str
     json: str
     pattern: str
     text: str
     token: str
-    algorithm: Optional[str] = None
-    decoded: Optional[str] = None
-    error: Optional[str] = None
-    flag: Optional[str] = None
-    formatted: Optional[str] = None
-    hash: Optional[str] = None
-    header: Optional[dict] = None
-    indent: Optional[int] = None
-    is_match: Optional[bool] = None
-    match: Optional[list] = None
-    parsed: Optional[dict] = None
-    payload: Optional[dict] = None
-    signature: Optional[str] = None
-    valid: Optional[bool] = None
 
 
-@dataclass
-class UtilityCreateData:
-    algorithm: Optional[str] = None
-    decoded: Optional[str] = None
-    encoded: Optional[str] = None
-    error: Optional[str] = None
-    flag: Optional[str] = None
-    formatted: Optional[str] = None
-    hash: Optional[str] = None
-    header: Optional[dict] = None
-    indent: Optional[int] = None
-    is_match: Optional[bool] = None
-    json: Optional[str] = None
-    match: Optional[list] = None
-    parsed: Optional[dict] = None
-    pattern: Optional[str] = None
-    payload: Optional[dict] = None
-    signature: Optional[str] = None
-    text: Optional[str] = None
-    token: Optional[str] = None
-    valid: Optional[bool] = None
+class Utility(UtilityRequired, total=False):
+    algorithm: str
+    decoded: str
+    error: str
+    flag: str
+    formatted: str
+    hash: str
+    header: dict
+    indent: int
+    is_match: bool
+    match: list
+    parsed: dict
+    payload: dict
+    signature: str
+    valid: bool
 
+
+class UtilityCreateData(TypedDict, total=False):
+    algorithm: str
+    decoded: str
+    encoded: str
+    error: str
+    flag: str
+    formatted: str
+    hash: str
+    header: dict
+    indent: int
+    is_match: bool
+    json: str
+    match: list
+    parsed: dict
+    pattern: str
+    payload: dict
+    signature: str
+    text: str
+    token: str
+    valid: bool

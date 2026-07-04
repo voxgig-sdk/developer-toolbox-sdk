@@ -94,7 +94,7 @@ same parameters as `direct()`. Raises on error.
 ## GeneratorEntity
 
 ```ruby
-generator = client.generator
+generator = client.Generator
 ```
 
 ### Fields
@@ -122,7 +122,7 @@ generator = client.generator
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.generator.create({
+result = client.Generator.create({
   "data" => # `$STRING`,
 })
 ```
@@ -132,7 +132,7 @@ result = client.generator.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.generator.list(nil)
+results = client.Generator.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -140,7 +140,7 @@ results = client.generator.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.generator.load({ "id" => "generator_id" })
+result = client.Generator.load({ "id" => "generator_id" })
 ```
 
 ### Common Methods
@@ -176,7 +176,7 @@ Return the entity name.
 ## UrlToolEntity
 
 ```ruby
-url_tool = client.url_tool
+url_tool = client.UrlTool
 ```
 
 ### Fields
@@ -195,7 +195,7 @@ url_tool = client.url_tool
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.url_tool.create({
+result = client.UrlTool.create({
   "url" => # `$STRING`,
 })
 ```
@@ -233,7 +233,7 @@ Return the entity name.
 ## UtilityEntity
 
 ```ruby
-utility = client.utility
+utility = client.Utility
 ```
 
 ### Fields
@@ -291,7 +291,7 @@ utility = client.utility
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.utility.create({
+result = client.Utility.create({
   "encoded" => # `$STRING`,
   "json" => # `$STRING`,
   "pattern" => # `$STRING`,

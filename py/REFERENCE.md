@@ -88,7 +88,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GeneratorEntity
 
 ```python
-generator = client.generator
+generator = client.Generator()
 ```
 
 ### Fields
@@ -116,8 +116,8 @@ generator = client.generator
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.generator.create({
-    "data": # `$STRING`,
+result = client.Generator().create({
+    "data": ...,  # `$STRING`
 })
 ```
 
@@ -126,7 +126,9 @@ result = client.generator.create({
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.generator.list({})
+results = client.Generator().list({})
+for generator in results:
+    print(generator)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -134,7 +136,7 @@ results = client.generator.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.generator.load({"id": "generator_id"})
+result = client.Generator().load({"id": "generator_id"})
 ```
 
 ### Common Methods
@@ -169,7 +171,7 @@ Return the entity name.
 ## UrlToolEntity
 
 ```python
-url_tool = client.url_tool
+url_tool = client.UrlTool()
 ```
 
 ### Fields
@@ -188,8 +190,8 @@ url_tool = client.url_tool
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.url_tool.create({
-    "url": # `$STRING`,
+result = client.UrlTool().create({
+    "url": ...,  # `$STRING`
 })
 ```
 
@@ -225,7 +227,7 @@ Return the entity name.
 ## UtilityEntity
 
 ```python
-utility = client.utility
+utility = client.Utility()
 ```
 
 ### Fields
@@ -283,12 +285,12 @@ utility = client.utility
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.utility.create({
-    "encoded": # `$STRING`,
-    "json": # `$STRING`,
-    "pattern": # `$STRING`,
-    "text": # `$STRING`,
-    "token": # `$STRING`,
+result = client.Utility().create({
+    "encoded": ...,  # `$STRING`
+    "json": ...,  # `$STRING`
+    "pattern": ...,  # `$STRING`
+    "text": ...,  # `$STRING`
+    "token": ...,  # `$STRING`
 })
 ```
 

@@ -26,9 +26,11 @@ import { DeveloperToolboxSDK } from '@voxgig-sdk/developer-toolbox'
 
 const client = new DeveloperToolboxSDK()
 
-// List all generators
-const generators = await client.generator.list()
-console.log(generators.data)
+// List all generators (returns Generator[])
+const generators = await client.Generator().list()
+for (const generator of generators) {
+  console.log(generator)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,12 +87,13 @@ from developertoolbox_sdk import DeveloperToolboxSDK
 
 client = DeveloperToolboxSDK()
 
-# List all generators
-generators = client.generator.list()
-print(generators)
+# List all generators (returns a list, raises on error)
+generators = client.Generator().list({})
+for generator in generators:
+    print(generator)
 
-# Load a specific generator
-generator = client.generator.load({"id": "example_id"})
+# Load a specific generator (returns the record, raises on error)
+generator = client.Generator().load({"id": "example_id"})
 print(generator)
 ```
 
@@ -102,12 +105,12 @@ require_once 'developertoolbox_sdk.php';
 
 $client = new DeveloperToolboxSDK();
 
-// List all generators (throws on error)
-$generators = $client->generator()->list();
+// List all generators (returns an array; throws on error)
+$generators = $client->Generator()->list();
 print_r($generators);
 
-// Load a specific generator
-$generator = $client->generator()->load(["id" => "example_id"]);
+// Load a specific generator (returns the bare record; throws on error)
+$generator = $client->Generator()->load(["id" => "example_id"]);
 print_r($generator);
 ```
 
@@ -130,12 +133,12 @@ require_relative "DeveloperToolbox_sdk"
 
 client = DeveloperToolboxSDK.new
 
-# List all generators
-generators = client.generator.list
+# List all generators (returns an Array; raises on error)
+generators = client.Generator.list
 puts generators
 
-# Load a specific generator
-generator = client.generator.load({ "id" => "example_id" })
+# Load a specific generator (returns the bare record; raises on error)
+generator = client.Generator.load({ "id" => "example_id" })
 puts generator
 ```
 
@@ -147,11 +150,11 @@ local sdk = require("developer-toolbox_sdk")
 local client = sdk.new()
 
 -- List all generators
-local generators, err = client:generator():list()
+local generators, err = client:Generator():list()
 print(generators)
 
 -- Load a specific generator
-local generator, err = client:generator():load({ id = "example_id" })
+local generator, err = client:Generator():load({ id = "example_id" })
 print(generator)
 ```
 
@@ -164,22 +167,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = DeveloperToolboxSDK.test()
-const result = await client.generator.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const generator = await client.Generator().load({ id: 'test01' })
+// generator is a bare Generator populated with mock data
+console.log(generator)
 ```
 
 ### Python
 
 ```python
 client = DeveloperToolboxSDK.test()
-result = client.generator.load({"id": "test01"})
+generator = client.Generator().load({"id": "test01"})
+print(generator)
 ```
 
 ### PHP
 
 ```php
-$client = DeveloperToolboxSDK::test();
-$result = $client->generator()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = DeveloperToolboxSDK::test([
+    "entity" => ["generator" => ["test01" => ["id" => "test01"]]],
+]);
+$generator = $client->Generator()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -194,15 +202,18 @@ result, err := client.Generator(nil).Load(
 ### Ruby
 
 ```ruby
-client = DeveloperToolboxSDK.test
-result = client.generator.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = DeveloperToolboxSDK.test({
+  "entity" => { "generator" => { "test01" => { "id" => "test01" } } },
+})
+generator = client.Generator.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:generator():load({ id = "test01" })
+local result, err = client:Generator():load({ id = "test01" })
 ```
 
 ## How it works
@@ -250,6 +261,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

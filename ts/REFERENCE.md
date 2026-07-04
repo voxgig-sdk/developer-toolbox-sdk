@@ -133,7 +133,7 @@ Alias for `DeveloperToolboxSDK.test()`.
 ## GeneratorEntity
 
 ```ts
-const generator = client.generator
+const generator = client.Generator()
 ```
 
 ### Fields
@@ -161,7 +161,7 @@ const generator = client.generator
 Create a new entity with the given data.
 
 ```ts
-const result = await client.generator.create({
+const result = await client.Generator().create({
   data: /* `$STRING` */,
 })
 ```
@@ -171,7 +171,7 @@ const result = await client.generator.create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.generator.list()
+const results = await client.Generator().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -179,7 +179,7 @@ const results = await client.generator.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.generator.load({ id: 'generator_id' })
+const result = await client.Generator().load({ id: 'generator_id' })
 ```
 
 ### Common Methods
@@ -213,7 +213,7 @@ Return a copy of the entity options.
 ## UrlToolEntity
 
 ```ts
-const url_tool = client.url_tool
+const url_tool = client.UrlTool()
 ```
 
 ### Fields
@@ -232,7 +232,7 @@ const url_tool = client.url_tool
 Create a new entity with the given data.
 
 ```ts
-const result = await client.url_tool.create({
+const result = await client.UrlTool().create({
   url: /* `$STRING` */,
 })
 ```
@@ -268,7 +268,7 @@ Return a copy of the entity options.
 ## UtilityEntity
 
 ```ts
-const utility = client.utility
+const utility = client.Utility()
 ```
 
 ### Fields
@@ -326,7 +326,7 @@ const utility = client.utility
 Create a new entity with the given data.
 
 ```ts
-const result = await client.utility.create({
+const result = await client.Utility().create({
   encoded: /* `$STRING` */,
   json: /* `$STRING` */,
   pattern: /* `$STRING` */,

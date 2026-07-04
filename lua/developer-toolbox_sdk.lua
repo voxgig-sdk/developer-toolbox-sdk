@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:generator():list() / client:generator():load({ id = ... })
-function DeveloperToolboxSDK:generator(data)
+-- Idiomatic facade: client:Generator():list() / client:Generator():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DeveloperToolboxSDK:Generator(data)
   local EntityMod = require("entity.generator_entity")
   if data == nil then
     if self._generator == nil then
@@ -256,15 +257,10 @@ function DeveloperToolboxSDK:generator(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:generator() instead.
-function DeveloperToolboxSDK:Generator(data)
-  local EntityMod = require("entity.generator_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:url_tool():list() / client:url_tool():load({ id = ... })
-function DeveloperToolboxSDK:url_tool(data)
+-- Idiomatic facade: client:UrlTool():list() / client:UrlTool():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DeveloperToolboxSDK:UrlTool(data)
   local EntityMod = require("entity.url_tool_entity")
   if data == nil then
     if self._url_tool == nil then
@@ -275,15 +271,10 @@ function DeveloperToolboxSDK:url_tool(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:url_tool() instead.
-function DeveloperToolboxSDK:UrlTool(data)
-  local EntityMod = require("entity.url_tool_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:utility():list() / client:utility():load({ id = ... })
-function DeveloperToolboxSDK:utility(data)
+-- Idiomatic facade: client:Utility():list() / client:Utility():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DeveloperToolboxSDK:Utility(data)
   local EntityMod = require("entity.utility_entity")
   if data == nil then
     if self._utility == nil then
@@ -291,12 +282,6 @@ function DeveloperToolboxSDK:utility(data)
     end
     return self._utility
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:utility() instead.
-function DeveloperToolboxSDK:Utility(data)
-  local EntityMod = require("entity.utility_entity")
   return EntityMod.new(self, data)
 end
 

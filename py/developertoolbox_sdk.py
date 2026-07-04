@@ -220,57 +220,27 @@ class DeveloperToolboxSDK:
         }
 
 
-    @property
-    def generator(self):
-        """Idiomatic facade: client.generator.list() / client.generator.load({"id": ...})."""
-        from entity.generator_entity import GeneratorEntity
-        cached = getattr(self, "_generator", None)
-        if cached is None:
-            cached = GeneratorEntity(self, None)
-            self._generator = cached
-        return cached
-
-    def Generator(self, data=None):
-        # Deprecated: use client.generator instead.
+    def Generator(self, data=None) -> "GeneratorEntity":
+        """Entity factory: client.Generator().list({}) / client.Generator().load({"id": ...})."""
         from entity.generator_entity import GeneratorEntity
         return GeneratorEntity(self, data)
 
 
-    @property
-    def url_tool(self):
-        """Idiomatic facade: client.url_tool.list() / client.url_tool.load({"id": ...})."""
-        from entity.url_tool_entity import UrlToolEntity
-        cached = getattr(self, "_url_tool", None)
-        if cached is None:
-            cached = UrlToolEntity(self, None)
-            self._url_tool = cached
-        return cached
-
-    def UrlTool(self, data=None):
-        # Deprecated: use client.url_tool instead.
+    def UrlTool(self, data=None) -> "UrlToolEntity":
+        """Entity factory: client.UrlTool().list({}) / client.UrlTool().load({"id": ...})."""
         from entity.url_tool_entity import UrlToolEntity
         return UrlToolEntity(self, data)
 
 
-    @property
-    def utility(self):
-        """Idiomatic facade: client.utility.list() / client.utility.load({"id": ...})."""
-        from entity.utility_entity import UtilityEntity
-        cached = getattr(self, "_utility", None)
-        if cached is None:
-            cached = UtilityEntity(self, None)
-            self._utility = cached
-        return cached
-
-    def Utility(self, data=None):
-        # Deprecated: use client.utility instead.
+    def Utility(self, data=None) -> "UtilityEntity":
+        """Entity factory: client.Utility().list({}) / client.Utility().load({"id": ...})."""
         from entity.utility_entity import UtilityEntity
         return UtilityEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "DeveloperToolboxSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class DeveloperToolboxSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.generator_entity import GeneratorEntity
+    from entity.url_tool_entity import UrlToolEntity
+    from entity.utility_entity import UtilityEntity

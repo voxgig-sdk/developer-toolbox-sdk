@@ -29,18 +29,16 @@ require_once 'developertoolbox_sdk.php';
 $client = new DeveloperToolboxSDK();
 ```
 
-### 2. List generators
+### 2. List generator records
 
 ```php
 try {
-    $result = $client->generator()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Generator records — iterate directly.
+    $generators = $client->Generator()->list();
+    foreach ($generators as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->generator()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Generator record (throws on error).
+    $generator = $client->Generator()->load(["id" => "example_id"]);
+    print_r($generator);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -59,8 +58,8 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->generator()->create(["name" => "Example"]);
+// create() returns the bare created Generator record.
+$created = $client->Generator()->create(["name" => "Example"]);
 
 ```
 
@@ -105,13 +104,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = DeveloperToolboxSDK::test();
+$client = DeveloperToolboxSDK::test([
+    "entity" => ["generator" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->generator()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$generator = $client->Generator()->load(["id" => "test01"]);
+print_r($generator);
 ```
 
 ### Use a custom fetch function
@@ -191,8 +194,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `Generator` | `($data): GeneratorEntity` | Create a Generator entity instance. |
-| `UrlTool` | `($data): UrlToolEntity` | Create a UrlTool entity instance. |
-| `Utility` | `($data): UtilityEntity` | Create a Utility entity instance. |
+| `UrlTool` | `($data): UrlToolEntity` | Create an UrlTool entity instance. |
+| `Utility` | `($data): UtilityEntity` | Create an Utility entity instance. |
 
 ### Entity interface
 
@@ -293,7 +296,7 @@ API path: `/api/base64/decode`
 
 ### Generator
 
-Create an instance: `const generator = client.generator`
+Create an instance: `$generator = $client->Generator();`
 
 #### Operations
 
@@ -314,28 +317,30 @@ Create an instance: `const generator = client.generator`
 
 #### Example: Load
 
-```ts
-const generator = await client.generator.load({ id: 'generator_id' })
+```php
+// load() returns the bare Generator record (throws on error).
+$generator = $client->Generator()->load(["id" => "generator_id"]);
 ```
 
 #### Example: List
 
-```ts
-const generators = await client.generator.list()
+```php
+// list() returns an array of Generator records (throws on error).
+$generators = $client->Generator()->list();
 ```
 
 #### Example: Create
 
-```ts
-const generator = await client.generator.create({
-  data: /* `$STRING` */,
-})
+```php
+$generator = $client->Generator()->create([
+    "data" => null, // `$STRING`
+]);
 ```
 
 
 ### UrlTool
 
-Create an instance: `const url_tool = client.url_tool`
+Create an instance: `$url_tool = $client->UrlTool();`
 
 #### Operations
 
@@ -354,16 +359,16 @@ Create an instance: `const url_tool = client.url_tool`
 
 #### Example: Create
 
-```ts
-const url_tool = await client.url_tool.create({
-  url: /* `$STRING` */,
-})
+```php
+$url_tool = $client->UrlTool()->create([
+    "url" => null, // `$STRING`
+]);
 ```
 
 
 ### Utility
 
-Create an instance: `const utility = client.utility`
+Create an instance: `$utility = $client->Utility();`
 
 #### Operations
 
@@ -397,14 +402,14 @@ Create an instance: `const utility = client.utility`
 
 #### Example: Create
 
-```ts
-const utility = await client.utility.create({
-  encoded: /* `$STRING` */,
-  json: /* `$STRING` */,
-  pattern: /* `$STRING` */,
-  text: /* `$STRING` */,
-  token: /* `$STRING` */,
-})
+```php
+$utility = $client->Utility()->create([
+    "encoded" => null, // `$STRING`
+    "json" => null, // `$STRING`
+    "pattern" => null, // `$STRING`
+    "text" => null, // `$STRING`
+    "token" => null, // `$STRING`
+]);
 ```
 
 
@@ -479,7 +484,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$generator = $client->generator();
+$generator = $client->Generator();
 $generator->load(["id" => "example_id"]);
 
 // $generator->dataGet() now returns the loaded generator data
