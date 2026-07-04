@@ -15,9 +15,6 @@ module DeveloperToolboxConfig
       },
       "options" => {
         "base" => "https://conway-toolbox-production.up.railway.app",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

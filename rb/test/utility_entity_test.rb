@@ -36,8 +36,7 @@ class UtilityEntityTest < Minitest::Test
     utility_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.utility"), "utility_ref01"))
 
-    utility_ref01_data_result, err = utility_ref01_ent.create(utility_ref01_data, nil)
-    assert_nil err
+    utility_ref01_data_result = utility_ref01_ent.create(utility_ref01_data, nil)
     utility_ref01_data = Helpers.to_map(utility_ref01_data_result)
     assert !utility_ref01_data.nil?
 
@@ -77,7 +76,6 @@ def utility_basic_setup(extra)
     "DEVELOPERTOOLBOX_TEST_UTILITY_ENTID" => idmap,
     "DEVELOPERTOOLBOX_TEST_LIVE" => "FALSE",
     "DEVELOPERTOOLBOX_TEST_EXPLAIN" => "FALSE",
-    "DEVELOPERTOOLBOX_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -89,7 +87,6 @@ def utility_basic_setup(extra)
   if env["DEVELOPERTOOLBOX_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DEVELOPERTOOLBOX_APIKEY"],
       },
       extra || {},
     ])

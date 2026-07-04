@@ -104,7 +104,6 @@ function generator_basic_setup(extra)
     ["DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID"] = idmap,
     ["DEVELOPERTOOLBOX_TEST_LIVE"] = "FALSE",
     ["DEVELOPERTOOLBOX_TEST_EXPLAIN"] = "FALSE",
-    ["DEVELOPERTOOLBOX_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -116,7 +115,6 @@ function generator_basic_setup(extra)
   if env["DEVELOPERTOOLBOX_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["DEVELOPERTOOLBOX_APIKEY"],
       },
       extra or {},
     })

@@ -43,8 +43,7 @@ class UtilityEntityTest extends TestCase
         $utility_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.utility"), "utility_ref01"));
 
-        [$utility_ref01_data_result, $err] = $utility_ref01_ent->create($utility_ref01_data, null);
-        $this->assertNull($err);
+        $utility_ref01_data_result = $utility_ref01_ent->create($utility_ref01_data, null);
         $utility_ref01_data = Helpers::to_map($utility_ref01_data_result);
         $this->assertNotNull($utility_ref01_data);
 
@@ -80,7 +79,6 @@ function utility_basic_setup($extra)
         "DEVELOPERTOOLBOX_TEST_UTILITY_ENTID" => $idmap,
         "DEVELOPERTOOLBOX_TEST_LIVE" => "FALSE",
         "DEVELOPERTOOLBOX_TEST_EXPLAIN" => "FALSE",
-        "DEVELOPERTOOLBOX_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +90,6 @@ function utility_basic_setup($extra)
     if ($env["DEVELOPERTOOLBOX_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DEVELOPERTOOLBOX_APIKEY"],
             ],
             $extra ?? [],
         ]);

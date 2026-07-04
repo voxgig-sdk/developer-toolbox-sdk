@@ -9,12 +9,9 @@ The Lua SDK for the DeveloperToolbox API — an entity-oriented client using Lua
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-developer-toolbox
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("developer-toolbox_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("DEVELOPER-TOOLBOX_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List generators
 
 ```lua
-local result, err = client:Generator():list()
+local result, err = client:generator():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a generator
 
 ```lua
-local result, err = client:Generator():load({ id = "example_id" })
+local result, err = client:generator():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -62,7 +57,7 @@ print(result)
 
 ```lua
 -- Create
-local created, _ = client:Generator():create({ name = "Example" })
+local created, _ = client:generator():create({ name = "Example" })
 
 ```
 
@@ -109,7 +104,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:DeveloperToolbox():load({ id = "test01" })
+local result, err = client:generator():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -142,8 +137,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-DEVELOPER-TOOLBOX_TEST_LIVE=TRUE
-DEVELOPER-TOOLBOX_APIKEY=<your-key>
+DEVELOPER_TOOLBOX_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -166,7 +160,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -289,7 +282,7 @@ API path: `/api/base64/decode`
 
 ### Generator
 
-Create an instance: `const generator = client.Generator()`
+Create an instance: `const generator = client.generator`
 
 #### Operations
 
@@ -311,19 +304,19 @@ Create an instance: `const generator = client.Generator()`
 #### Example: Load
 
 ```ts
-const generator = await client.Generator().load({ id: 'generator_id' })
+const generator = await client.generator.load({ id: 'generator_id' })
 ```
 
 #### Example: List
 
 ```ts
-const generators = await client.Generator().list()
+const generators = await client.generator.list()
 ```
 
 #### Example: Create
 
 ```ts
-const generator = await client.Generator().create({
+const generator = await client.generator.create({
   data: /* `$STRING` */,
 })
 ```
@@ -331,7 +324,7 @@ const generator = await client.Generator().create({
 
 ### UrlTool
 
-Create an instance: `const url_tool = client.UrlTool()`
+Create an instance: `const url_tool = client.url_tool`
 
 #### Operations
 
@@ -351,7 +344,7 @@ Create an instance: `const url_tool = client.UrlTool()`
 #### Example: Create
 
 ```ts
-const url_tool = await client.UrlTool().create({
+const url_tool = await client.url_tool.create({
   url: /* `$STRING` */,
 })
 ```
@@ -359,7 +352,7 @@ const url_tool = await client.UrlTool().create({
 
 ### Utility
 
-Create an instance: `const utility = client.Utility()`
+Create an instance: `const utility = client.utility`
 
 #### Operations
 
@@ -394,7 +387,7 @@ Create an instance: `const utility = client.Utility()`
 #### Example: Create
 
 ```ts
-const utility = await client.Utility().create({
+const utility = await client.utility.create({
   encoded: /* `$STRING` */,
   json: /* `$STRING` */,
   pattern: /* `$STRING` */,
@@ -475,11 +468,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local generator = client:generator()
+generator:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- generator:data_get() now returns the loaded generator data
+-- generator:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

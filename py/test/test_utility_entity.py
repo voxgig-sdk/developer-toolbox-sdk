@@ -44,9 +44,7 @@ class TestUtilityEntity:
         utility_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.utility"), "utility_ref01"))
 
-        utility_ref01_data_result, err = utility_ref01_ent.create(utility_ref01_data, None)
-        assert err is None
-        utility_ref01_data = helpers.to_map(utility_ref01_data_result)
+        utility_ref01_data = helpers.to_map(utility_ref01_ent.create(utility_ref01_data, None))
         assert utility_ref01_data is not None
 
 
@@ -87,7 +85,6 @@ def _utility_basic_setup(extra):
         "DEVELOPERTOOLBOX_TEST_UTILITY_ENTID": idmap,
         "DEVELOPERTOOLBOX_TEST_LIVE": "FALSE",
         "DEVELOPERTOOLBOX_TEST_EXPLAIN": "FALSE",
-        "DEVELOPERTOOLBOX_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +95,6 @@ def _utility_basic_setup(extra):
     if env.get("DEVELOPERTOOLBOX_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DEVELOPERTOOLBOX_APIKEY"),
             },
             extra or {},
         ])

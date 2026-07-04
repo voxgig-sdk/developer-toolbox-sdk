@@ -36,16 +36,14 @@ class GeneratorEntityTest < Minitest::Test
     generator_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.generator"), "generator_ref01"))
 
-    generator_ref01_data_result, err = generator_ref01_ent.create(generator_ref01_data, nil)
-    assert_nil err
+    generator_ref01_data_result = generator_ref01_ent.create(generator_ref01_data, nil)
     generator_ref01_data = Helpers.to_map(generator_ref01_data_result)
     assert !generator_ref01_data.nil?
 
     # LIST
     generator_ref01_match = {}
 
-    generator_ref01_list_result, err = generator_ref01_ent.list(generator_ref01_match, nil)
-    assert_nil err
+    generator_ref01_list_result = generator_ref01_ent.list(generator_ref01_match, nil)
     assert generator_ref01_list_result.is_a?(Array)
 
     found_item = Vs.select(
@@ -55,8 +53,7 @@ class GeneratorEntityTest < Minitest::Test
 
     # LOAD
     generator_ref01_match_dt0 = {}
-    generator_ref01_data_dt0_loaded, err = generator_ref01_ent.load(generator_ref01_match_dt0, nil)
-    assert_nil err
+    generator_ref01_data_dt0_loaded = generator_ref01_ent.load(generator_ref01_match_dt0, nil)
     assert !generator_ref01_data_dt0_loaded.nil?
 
   end
@@ -95,7 +92,6 @@ def generator_basic_setup(extra)
     "DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID" => idmap,
     "DEVELOPERTOOLBOX_TEST_LIVE" => "FALSE",
     "DEVELOPERTOOLBOX_TEST_EXPLAIN" => "FALSE",
-    "DEVELOPERTOOLBOX_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -107,7 +103,6 @@ def generator_basic_setup(extra)
   if env["DEVELOPERTOOLBOX_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DEVELOPERTOOLBOX_APIKEY"],
       },
       extra || {},
     ])

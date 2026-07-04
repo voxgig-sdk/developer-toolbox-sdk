@@ -107,14 +107,12 @@ function generator_direct_setup(mockres)
   local env = runner.env_override({
     ["DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID"] = {},
     ["DEVELOPERTOOLBOX_TEST_LIVE"] = "FALSE",
-    ["DEVELOPERTOOLBOX_APIKEY"] = "NONE",
   })
 
   local live = env["DEVELOPERTOOLBOX_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["DEVELOPERTOOLBOX_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

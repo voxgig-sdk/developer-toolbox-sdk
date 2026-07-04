@@ -44,9 +44,7 @@ class TestUrlToolEntity:
         url_tool_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.url_tool"), "url_tool_ref01"))
 
-        url_tool_ref01_data_result, err = url_tool_ref01_ent.create(url_tool_ref01_data, None)
-        assert err is None
-        url_tool_ref01_data = helpers.to_map(url_tool_ref01_data_result)
+        url_tool_ref01_data = helpers.to_map(url_tool_ref01_ent.create(url_tool_ref01_data, None))
         assert url_tool_ref01_data is not None
 
 
@@ -87,7 +85,6 @@ def _url_tool_basic_setup(extra):
         "DEVELOPERTOOLBOX_TEST_URL_TOOL_ENTID": idmap,
         "DEVELOPERTOOLBOX_TEST_LIVE": "FALSE",
         "DEVELOPERTOOLBOX_TEST_EXPLAIN": "FALSE",
-        "DEVELOPERTOOLBOX_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +95,6 @@ def _url_tool_basic_setup(extra):
     if env.get("DEVELOPERTOOLBOX_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DEVELOPERTOOLBOX_APIKEY"),
             },
             extra or {},
         ])

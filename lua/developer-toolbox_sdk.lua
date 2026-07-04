@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:generator():list() / client:generator():load({ id = ... })
+function DeveloperToolboxSDK:generator(data)
+  local EntityMod = require("entity.generator_entity")
+  if data == nil then
+    if self._generator == nil then
+      self._generator = EntityMod.new(self, nil)
+    end
+    return self._generator
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:generator() instead.
 function DeveloperToolboxSDK:Generator(data)
   local EntityMod = require("entity.generator_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:url_tool():list() / client:url_tool():load({ id = ... })
+function DeveloperToolboxSDK:url_tool(data)
+  local EntityMod = require("entity.url_tool_entity")
+  if data == nil then
+    if self._url_tool == nil then
+      self._url_tool = EntityMod.new(self, nil)
+    end
+    return self._url_tool
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:url_tool() instead.
 function DeveloperToolboxSDK:UrlTool(data)
   local EntityMod = require("entity.url_tool_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:utility():list() / client:utility():load({ id = ... })
+function DeveloperToolboxSDK:utility(data)
+  local EntityMod = require("entity.utility_entity")
+  if data == nil then
+    if self._utility == nil then
+      self._utility = EntityMod.new(self, nil)
+    end
+    return self._utility
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:utility() instead.
 function DeveloperToolboxSDK:Utility(data)
   local EntityMod = require("entity.utility_entity")
   return EntityMod.new(self, data)

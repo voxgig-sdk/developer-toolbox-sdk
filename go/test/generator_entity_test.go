@@ -137,7 +137,6 @@ func generatorBasicSetup(extra map[string]any) *entityTestSetup {
 		"DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID": idmap,
 		"DEVELOPERTOOLBOX_TEST_LIVE":      "FALSE",
 		"DEVELOPERTOOLBOX_TEST_EXPLAIN":   "FALSE",
-		"DEVELOPERTOOLBOX_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID"])
@@ -148,7 +147,6 @@ func generatorBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["DEVELOPERTOOLBOX_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["DEVELOPERTOOLBOX_APIKEY"],
 			},
 			extra,
 		})

@@ -9,9 +9,10 @@ The PHP SDK for the DeveloperToolbox API — an entity-oriented client using PHP
 
 
 ## Install
-```bash
-composer require voxgig-sdk/developer-toolbox
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/developer-toolbox-sdk/releases](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,38 +26,41 @@ loading a specific record.
 <?php
 require_once 'developertoolbox_sdk.php';
 
-$client = new DeveloperToolboxSDK([
-    "apikey" => getenv("DEVELOPER-TOOLBOX_APIKEY"),
-]);
+$client = new DeveloperToolboxSDK();
 ```
 
 ### 2. List generators
 
 ```php
-[$result, $err] = $client->Generator()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->generator()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
 ### 3. Load a generator
 
 ```php
-[$result, $err] = $client->Generator()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->generator()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->Generator()->create(["name" => "Example"]);
+$created = $client->generator()->create(["name" => "Example"]);
 
 ```
 
@@ -68,28 +72,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -103,7 +110,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = DeveloperToolboxSDK::test();
 
-[$result, $err] = $client->DeveloperToolbox()->load(["id" => "test01"]);
+$result = $client->generator()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -137,8 +144,7 @@ $client = new DeveloperToolboxSDK([
 Create a `.env.local` file at the project root:
 
 ```
-DEVELOPER-TOOLBOX_TEST_LIVE=TRUE
-DEVELOPER-TOOLBOX_APIKEY=<your-key>
+DEVELOPER_TOOLBOX_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -161,7 +167,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -209,8 +214,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -284,7 +293,7 @@ API path: `/api/base64/decode`
 
 ### Generator
 
-Create an instance: `const generator = client.Generator()`
+Create an instance: `const generator = client.generator`
 
 #### Operations
 
@@ -306,19 +315,19 @@ Create an instance: `const generator = client.Generator()`
 #### Example: Load
 
 ```ts
-const generator = await client.Generator().load({ id: 'generator_id' })
+const generator = await client.generator.load({ id: 'generator_id' })
 ```
 
 #### Example: List
 
 ```ts
-const generators = await client.Generator().list()
+const generators = await client.generator.list()
 ```
 
 #### Example: Create
 
 ```ts
-const generator = await client.Generator().create({
+const generator = await client.generator.create({
   data: /* `$STRING` */,
 })
 ```
@@ -326,7 +335,7 @@ const generator = await client.Generator().create({
 
 ### UrlTool
 
-Create an instance: `const url_tool = client.UrlTool()`
+Create an instance: `const url_tool = client.url_tool`
 
 #### Operations
 
@@ -346,7 +355,7 @@ Create an instance: `const url_tool = client.UrlTool()`
 #### Example: Create
 
 ```ts
-const url_tool = await client.UrlTool().create({
+const url_tool = await client.url_tool.create({
   url: /* `$STRING` */,
 })
 ```
@@ -354,7 +363,7 @@ const url_tool = await client.UrlTool().create({
 
 ### Utility
 
-Create an instance: `const utility = client.Utility()`
+Create an instance: `const utility = client.utility`
 
 #### Operations
 
@@ -389,7 +398,7 @@ Create an instance: `const utility = client.Utility()`
 #### Example: Create
 
 ```ts
-const utility = await client.Utility().create({
+const utility = await client.utility.create({
   encoded: /* `$STRING` */,
   json: /* `$STRING` */,
   pattern: /* `$STRING` */,
@@ -470,11 +479,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$generator = $client->generator();
+$generator->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $generator->dataGet() now returns the loaded generator data
+// $generator->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

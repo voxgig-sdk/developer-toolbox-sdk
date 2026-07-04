@@ -245,16 +245,25 @@ func (sdk *DeveloperToolboxSDK) Direct(fetchargs map[string]any) (map[string]any
 }
 
 
+// Generator returns a Generator entity bound to this client.
+// Idiomatic usage: client.Generator(nil).List(nil, nil) or
+// client.Generator(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DeveloperToolboxSDK) Generator(data map[string]any) DeveloperToolboxEntity {
 	return NewGeneratorEntityFunc(sdk, data)
 }
 
 
+// UrlTool returns a UrlTool entity bound to this client.
+// Idiomatic usage: client.UrlTool(nil).List(nil, nil) or
+// client.UrlTool(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DeveloperToolboxSDK) UrlTool(data map[string]any) DeveloperToolboxEntity {
 	return NewUrlToolEntityFunc(sdk, data)
 }
 
 
+// Utility returns a Utility entity bound to this client.
+// Idiomatic usage: client.Utility(nil).List(nil, nil) or
+// client.Utility(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DeveloperToolboxSDK) Utility(data map[string]any) DeveloperToolboxEntity {
 	return NewUtilityEntityFunc(sdk, data)
 }

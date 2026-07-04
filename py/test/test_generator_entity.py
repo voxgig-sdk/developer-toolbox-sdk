@@ -44,16 +44,13 @@ class TestGeneratorEntity:
         generator_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.generator"), "generator_ref01"))
 
-        generator_ref01_data_result, err = generator_ref01_ent.create(generator_ref01_data, None)
-        assert err is None
-        generator_ref01_data = helpers.to_map(generator_ref01_data_result)
+        generator_ref01_data = helpers.to_map(generator_ref01_ent.create(generator_ref01_data, None))
         assert generator_ref01_data is not None
 
         # LIST
         generator_ref01_match = {}
 
-        generator_ref01_list_result, err = generator_ref01_ent.list(generator_ref01_match, None)
-        assert err is None
+        generator_ref01_list_result = generator_ref01_ent.list(generator_ref01_match, None)
         assert isinstance(generator_ref01_list_result, list)
 
         found_item = vs.select(
@@ -63,8 +60,7 @@ class TestGeneratorEntity:
 
         # LOAD
         generator_ref01_match_dt0 = {}
-        generator_ref01_data_dt0_loaded, err = generator_ref01_ent.load(generator_ref01_match_dt0, None)
-        assert err is None
+        generator_ref01_data_dt0_loaded = generator_ref01_ent.load(generator_ref01_match_dt0, None)
         assert generator_ref01_data_dt0_loaded is not None
 
 
@@ -105,7 +101,6 @@ def _generator_basic_setup(extra):
         "DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID": idmap,
         "DEVELOPERTOOLBOX_TEST_LIVE": "FALSE",
         "DEVELOPERTOOLBOX_TEST_EXPLAIN": "FALSE",
-        "DEVELOPERTOOLBOX_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -116,7 +111,6 @@ def _generator_basic_setup(extra):
     if env.get("DEVELOPERTOOLBOX_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DEVELOPERTOOLBOX_APIKEY"),
             },
             extra or {},
         ])

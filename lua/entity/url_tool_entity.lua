@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata UrlToolCreateData
+---@param ctrl? table
+---@return UrlTool
+---@return string? err
 function UrlToolEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

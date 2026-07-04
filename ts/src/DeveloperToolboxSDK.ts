@@ -4,6 +4,8 @@ import { GeneratorEntity } from './entity/GeneratorEntity'
 import { UrlToolEntity } from './entity/UrlToolEntity'
 import { UtilityEntity } from './entity/UtilityEntity'
 
+export type * from './DeveloperToolboxTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class DeveloperToolboxSDK {
 
 
 
+  _generator?: GeneratorEntity
+
+  // Idiomatic facade: `client.generator.list()` / `client.generator.load({ id })`.
+  get generator(): GeneratorEntity {
+    return (this._generator ??= new GeneratorEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.generator` instead. */
   Generator(data?: any) {
     const self = this
     return new GeneratorEntity(self,data)
   }
 
 
+  _url_tool?: UrlToolEntity
+
+  // Idiomatic facade: `client.url_tool.list()` / `client.url_tool.load({ id })`.
+  get url_tool(): UrlToolEntity {
+    return (this._url_tool ??= new UrlToolEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.url_tool` instead. */
   UrlTool(data?: any) {
     const self = this
     return new UrlToolEntity(self,data)
   }
 
 
+  _utility?: UtilityEntity
+
+  // Idiomatic facade: `client.utility.list()` / `client.utility.load({ id })`.
+  get utility(): UtilityEntity {
+    return (this._utility ??= new UtilityEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.utility` instead. */
   Utility(data?: any) {
     const self = this
     return new UtilityEntity(self,data)

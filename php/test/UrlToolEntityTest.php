@@ -43,8 +43,7 @@ class UrlToolEntityTest extends TestCase
         $url_tool_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.url_tool"), "url_tool_ref01"));
 
-        [$url_tool_ref01_data_result, $err] = $url_tool_ref01_ent->create($url_tool_ref01_data, null);
-        $this->assertNull($err);
+        $url_tool_ref01_data_result = $url_tool_ref01_ent->create($url_tool_ref01_data, null);
         $url_tool_ref01_data = Helpers::to_map($url_tool_ref01_data_result);
         $this->assertNotNull($url_tool_ref01_data);
 
@@ -80,7 +79,6 @@ function url_tool_basic_setup($extra)
         "DEVELOPERTOOLBOX_TEST_URL_TOOL_ENTID" => $idmap,
         "DEVELOPERTOOLBOX_TEST_LIVE" => "FALSE",
         "DEVELOPERTOOLBOX_TEST_EXPLAIN" => "FALSE",
-        "DEVELOPERTOOLBOX_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +90,6 @@ function url_tool_basic_setup($extra)
     if ($env["DEVELOPERTOOLBOX_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DEVELOPERTOOLBOX_APIKEY"],
             ],
             $extra ?? [],
         ]);

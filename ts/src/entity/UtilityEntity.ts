@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Utility,
+  UtilityCreateData,
+} from '../DeveloperToolboxTypes'
 
 // TODO: needs Entity superclass
-class UtilityEntity extends DeveloperToolboxEntityBase {
+class UtilityEntity extends DeveloperToolboxEntityBase<Utility> {
 
   constructor(client: DeveloperToolboxSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class UtilityEntity extends DeveloperToolboxEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: UtilityCreateData, ctrl?: Control): Promise<Utility> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class UtilityEntity extends DeveloperToolboxEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Utility> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

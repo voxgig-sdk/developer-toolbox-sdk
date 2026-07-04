@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  UrlTool,
+  UrlToolCreateData,
+} from '../DeveloperToolboxTypes'
 
 // TODO: needs Entity superclass
-class UrlToolEntity extends DeveloperToolboxEntityBase {
+class UrlToolEntity extends DeveloperToolboxEntityBase<UrlTool> {
 
   constructor(client: DeveloperToolboxSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class UrlToolEntity extends DeveloperToolboxEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: UrlToolCreateData, ctrl?: Control): Promise<UrlTool> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class UrlToolEntity extends DeveloperToolboxEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<UrlTool> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

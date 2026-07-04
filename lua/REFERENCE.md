@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -92,7 +91,7 @@ same parameters as `direct()`.
 ## GeneratorEntity
 
 ```lua
-local generator = client:Generator(nil)
+local generator = client:generator(nil)
 ```
 
 ### Fields
@@ -120,7 +119,7 @@ local generator = client:Generator(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Generator():create({
+local result, err = client:generator():create({
   data = --[[ `$STRING` ]],
 })
 ```
@@ -130,7 +129,7 @@ local result, err = client:Generator():create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Generator():list()
+local results, err = client:generator():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -138,7 +137,7 @@ local results, err = client:Generator():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Generator():load({ id = "generator_id" })
+local result, err = client:generator():load({ id = "generator_id" })
 ```
 
 ### Common Methods
@@ -174,7 +173,7 @@ Return the entity name.
 ## UrlToolEntity
 
 ```lua
-local url_tool = client:UrlTool(nil)
+local url_tool = client:url_tool(nil)
 ```
 
 ### Fields
@@ -193,7 +192,7 @@ local url_tool = client:UrlTool(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:UrlTool():create({
+local result, err = client:url_tool():create({
   url = --[[ `$STRING` ]],
 })
 ```
@@ -231,7 +230,7 @@ Return the entity name.
 ## UtilityEntity
 
 ```lua
-local utility = client:Utility(nil)
+local utility = client:utility(nil)
 ```
 
 ### Fields
@@ -289,7 +288,7 @@ local utility = client:Utility(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Utility():create({
+local result, err = client:utility():create({
   encoded = --[[ `$STRING` ]],
   json = --[[ `$STRING` ]],
   pattern = --[[ `$STRING` ]],

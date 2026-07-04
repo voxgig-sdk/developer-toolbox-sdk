@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -134,7 +133,7 @@ Alias for `DeveloperToolboxSDK.test()`.
 ## GeneratorEntity
 
 ```ts
-const generator = client.Generator()
+const generator = client.generator
 ```
 
 ### Fields
@@ -162,7 +161,7 @@ const generator = client.Generator()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Generator().create({
+const result = await client.generator.create({
   data: /* `$STRING` */,
 })
 ```
@@ -172,7 +171,7 @@ const result = await client.Generator().create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Generator().list()
+const results = await client.generator.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -180,7 +179,7 @@ const results = await client.Generator().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Generator().load({ id: 'generator_id' })
+const result = await client.generator.load({ id: 'generator_id' })
 ```
 
 ### Common Methods
@@ -214,7 +213,7 @@ Return a copy of the entity options.
 ## UrlToolEntity
 
 ```ts
-const url_tool = client.UrlTool()
+const url_tool = client.url_tool
 ```
 
 ### Fields
@@ -233,7 +232,7 @@ const url_tool = client.UrlTool()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.UrlTool().create({
+const result = await client.url_tool.create({
   url: /* `$STRING` */,
 })
 ```
@@ -269,7 +268,7 @@ Return a copy of the entity options.
 ## UtilityEntity
 
 ```ts
-const utility = client.Utility()
+const utility = client.utility
 ```
 
 ### Fields
@@ -327,7 +326,7 @@ const utility = client.Utility()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Utility().create({
+const result = await client.utility.create({
   encoded: /* `$STRING` */,
   json: /* `$STRING` */,
   pattern: /* `$STRING` */,

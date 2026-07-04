@@ -43,16 +43,14 @@ class GeneratorEntityTest extends TestCase
         $generator_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.generator"), "generator_ref01"));
 
-        [$generator_ref01_data_result, $err] = $generator_ref01_ent->create($generator_ref01_data, null);
-        $this->assertNull($err);
+        $generator_ref01_data_result = $generator_ref01_ent->create($generator_ref01_data, null);
         $generator_ref01_data = Helpers::to_map($generator_ref01_data_result);
         $this->assertNotNull($generator_ref01_data);
 
         // LIST
         $generator_ref01_match = [];
 
-        [$generator_ref01_list_result, $err] = $generator_ref01_ent->list($generator_ref01_match, null);
-        $this->assertNull($err);
+        $generator_ref01_list_result = $generator_ref01_ent->list($generator_ref01_match, null);
         $this->assertIsArray($generator_ref01_list_result);
 
         $found_item = sdk_select(
@@ -62,8 +60,7 @@ class GeneratorEntityTest extends TestCase
 
         // LOAD
         $generator_ref01_match_dt0 = [];
-        [$generator_ref01_data_dt0_loaded, $err] = $generator_ref01_ent->load($generator_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $generator_ref01_data_dt0_loaded = $generator_ref01_ent->load($generator_ref01_match_dt0, null);
         $this->assertNotNull($generator_ref01_data_dt0_loaded);
 
     }
@@ -98,7 +95,6 @@ function generator_basic_setup($extra)
         "DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID" => $idmap,
         "DEVELOPERTOOLBOX_TEST_LIVE" => "FALSE",
         "DEVELOPERTOOLBOX_TEST_EXPLAIN" => "FALSE",
-        "DEVELOPERTOOLBOX_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -110,7 +106,6 @@ function generator_basic_setup($extra)
     if ($env["DEVELOPERTOOLBOX_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DEVELOPERTOOLBOX_APIKEY"],
             ],
             $extra ?? [],
         ]);
