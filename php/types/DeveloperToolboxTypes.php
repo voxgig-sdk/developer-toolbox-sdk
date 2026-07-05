@@ -21,7 +21,7 @@ class Generator
     public ?array $uuid = null;
 }
 
-/** Match filter for Generator#load (any subset of Generator fields). */
+/** Request payload for Generator#load. */
 class GeneratorLoadMatch
 {
     public ?string $data = null;
@@ -30,7 +30,7 @@ class GeneratorLoadMatch
     public ?array $uuid = null;
 }
 
-/** Match filter for Generator#list (any subset of Generator fields). */
+/** Request payload for Generator#list. */
 class GeneratorListMatch
 {
     public ?string $data = null;
@@ -39,10 +39,10 @@ class GeneratorListMatch
     public ?array $uuid = null;
 }
 
-/** Match filter for Generator#create (any subset of Generator fields). */
+/** Request payload for Generator#create. */
 class GeneratorCreateData
 {
-    public ?string $data = null;
+    public string $data;
     public ?string $password = null;
     public ?int $size = null;
     public ?array $uuid = null;
@@ -57,13 +57,13 @@ class UrlTool
     public string $url;
 }
 
-/** Match filter for UrlTool#create (any subset of UrlTool fields). */
+/** Request payload for UrlTool#create. */
 class UrlToolCreateData
 {
     public ?string $custom_alia = null;
     public ?string $original_url = null;
     public ?string $short_url = null;
-    public ?string $url = null;
+    public string $url;
 }
 
 /** Utility entity data model. */
@@ -90,12 +90,12 @@ class Utility
     public ?bool $valid = null;
 }
 
-/** Match filter for Utility#create (any subset of Utility fields). */
+/** Request payload for Utility#create. */
 class UtilityCreateData
 {
     public ?string $algorithm = null;
     public ?string $decoded = null;
-    public ?string $encoded = null;
+    public string $encoded;
     public ?string $error = null;
     public ?string $flag = null;
     public ?string $formatted = null;
@@ -103,14 +103,14 @@ class UtilityCreateData
     public ?array $header = null;
     public ?int $indent = null;
     public ?bool $is_match = null;
-    public ?string $json = null;
+    public string $json;
     public ?array $match = null;
     public ?array $parsed = null;
-    public ?string $pattern = null;
+    public string $pattern;
     public ?array $payload = null;
     public ?string $signature = null;
-    public ?string $text = null;
-    public ?string $token = null;
+    public string $text;
+    public string $token;
     public ?bool $valid = null;
 }
 

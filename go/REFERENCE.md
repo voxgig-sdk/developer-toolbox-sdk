@@ -105,19 +105,19 @@ generator := client.Generator(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `uuid` | ``$ARRAY`` | No |  |
+| `data` | `string` | Yes |  |
+| `password` | `string` | No |  |
+| `size` | `int` | No |  |
+| `uuid` | `[]any` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `data` | - | Yes | - | - | - |
-| `password` | - | - | - | - | - |
-| `size` | - | - | - | - | - |
-| `uuid` | - | - | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `data` | - | Yes | - |
+| `password` | - | - | - |
+| `size` | - | - | - |
+| `uuid` | - | - | - |
 
 ### Operations
 
@@ -127,7 +127,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Generator(nil).Create(map[string]any{
-    "data": /* `$STRING` */,
+    "data": /* string */,
 }, nil)
 ```
 
@@ -144,7 +144,7 @@ results, err := client.Generator(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Generator(nil).Load(map[string]any{"id": "generator_id"}, nil)
+result, err := client.Generator(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -181,10 +181,10 @@ url_tool := client.UrlTool(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | ``$STRING`` | No |  |
-| `original_url` | ``$STRING`` | No |  |
-| `short_url` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `custom_alia` | `string` | No |  |
+| `original_url` | `string` | No |  |
+| `short_url` | `string` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -194,7 +194,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.UrlTool(nil).Create(map[string]any{
-    "url": /* `$STRING` */,
+    "url": /* string */,
 }, nil)
 ```
 
@@ -232,49 +232,49 @@ utility := client.Utility(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `algorithm` | ``$STRING`` | No |  |
-| `decoded` | ``$STRING`` | No |  |
-| `encoded` | ``$STRING`` | Yes |  |
-| `error` | ``$STRING`` | No |  |
-| `flag` | ``$STRING`` | No |  |
-| `formatted` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `header` | ``$OBJECT`` | No |  |
-| `indent` | ``$INTEGER`` | No |  |
-| `is_match` | ``$BOOLEAN`` | No |  |
-| `json` | ``$STRING`` | Yes |  |
-| `match` | ``$ARRAY`` | No |  |
-| `parsed` | ``$OBJECT`` | No |  |
-| `pattern` | ``$STRING`` | Yes |  |
-| `payload` | ``$OBJECT`` | No |  |
-| `signature` | ``$STRING`` | No |  |
-| `text` | ``$STRING`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
-| `valid` | ``$BOOLEAN`` | No |  |
+| `algorithm` | `string` | No |  |
+| `decoded` | `string` | No |  |
+| `encoded` | `string` | Yes |  |
+| `error` | `string` | No |  |
+| `flag` | `string` | No |  |
+| `formatted` | `string` | No |  |
+| `hash` | `string` | No |  |
+| `header` | `map[string]any` | No |  |
+| `indent` | `int` | No |  |
+| `is_match` | `bool` | No |  |
+| `json` | `string` | Yes |  |
+| `match` | `[]any` | No |  |
+| `parsed` | `map[string]any` | No |  |
+| `pattern` | `string` | Yes |  |
+| `payload` | `map[string]any` | No |  |
+| `signature` | `string` | No |  |
+| `text` | `string` | Yes |  |
+| `token` | `string` | Yes |  |
+| `valid` | `bool` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `algorithm` | - | - | - | - | - |
-| `decoded` | - | - | - | - | - |
-| `encoded` | - | - | Yes | - | - |
-| `error` | - | - | - | - | - |
-| `flag` | - | - | - | - | - |
-| `formatted` | - | - | - | - | - |
-| `hash` | - | - | - | - | - |
-| `header` | - | - | - | - | - |
-| `indent` | - | - | - | - | - |
-| `is_match` | - | - | - | - | - |
-| `json` | - | - | - | - | - |
-| `match` | - | - | - | - | - |
-| `parsed` | - | - | - | - | - |
-| `pattern` | - | - | - | - | - |
-| `payload` | - | - | - | - | - |
-| `signature` | - | - | - | - | - |
-| `text` | - | - | - | - | - |
-| `token` | - | - | - | - | - |
-| `valid` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `algorithm` | - |
+| `decoded` | - |
+| `encoded` | Yes |
+| `error` | - |
+| `flag` | - |
+| `formatted` | - |
+| `hash` | - |
+| `header` | - |
+| `indent` | - |
+| `is_match` | - |
+| `json` | - |
+| `match` | - |
+| `parsed` | - |
+| `pattern` | - |
+| `payload` | - |
+| `signature` | - |
+| `text` | - |
+| `token` | - |
+| `valid` | - |
 
 ### Operations
 
@@ -284,11 +284,11 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Utility(nil).Create(map[string]any{
-    "encoded": /* `$STRING` */,
-    "json": /* `$STRING` */,
-    "pattern": /* `$STRING` */,
-    "text": /* `$STRING` */,
-    "token": /* `$STRING` */,
+    "encoded": /* string */,
+    "json": /* string */,
+    "pattern": /* string */,
+    "text": /* string */,
+    "token": /* string */,
 }, nil)
 ```
 

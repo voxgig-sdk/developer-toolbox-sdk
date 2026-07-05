@@ -40,8 +40,11 @@ class GeneratorListMatch(TypedDict, total=False):
     uuid: list
 
 
-class GeneratorCreateData(TypedDict, total=False):
+class GeneratorCreateDataRequired(TypedDict):
     data: str
+
+
+class GeneratorCreateData(GeneratorCreateDataRequired, total=False):
     password: str
     size: int
     uuid: list
@@ -57,11 +60,14 @@ class UrlTool(UrlToolRequired, total=False):
     short_url: str
 
 
-class UrlToolCreateData(TypedDict, total=False):
+class UrlToolCreateDataRequired(TypedDict):
+    url: str
+
+
+class UrlToolCreateData(UrlToolCreateDataRequired, total=False):
     custom_alia: str
     original_url: str
     short_url: str
-    url: str
 
 
 class UtilityRequired(TypedDict):
@@ -89,10 +95,17 @@ class Utility(UtilityRequired, total=False):
     valid: bool
 
 
-class UtilityCreateData(TypedDict, total=False):
+class UtilityCreateDataRequired(TypedDict):
+    encoded: str
+    json: str
+    pattern: str
+    text: str
+    token: str
+
+
+class UtilityCreateData(UtilityCreateDataRequired, total=False):
     algorithm: str
     decoded: str
-    encoded: str
     error: str
     flag: str
     formatted: str
@@ -100,12 +113,8 @@ class UtilityCreateData(TypedDict, total=False):
     header: dict
     indent: int
     is_match: bool
-    json: str
     match: list
     parsed: dict
-    pattern: str
     payload: dict
     signature: str
-    text: str
-    token: str
     valid: bool

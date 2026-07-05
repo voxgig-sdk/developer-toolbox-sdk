@@ -98,19 +98,19 @@ local generator = client:Generator(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `uuid` | ``$ARRAY`` | No |  |
+| `data` | `string` | Yes |  |
+| `password` | `string` | No |  |
+| `size` | `number` | No |  |
+| `uuid` | `table` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `data` | - | Yes | - | - | - |
-| `password` | - | - | - | - | - |
-| `size` | - | - | - | - | - |
-| `uuid` | - | - | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `data` | - | Yes | - |
+| `password` | - | - | - |
+| `size` | - | - | - |
+| `uuid` | - | - | - |
 
 ### Operations
 
@@ -120,7 +120,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Generator():create({
-  data = --[[ `$STRING` ]],
+  data = --[[ string ]],
 })
 ```
 
@@ -137,7 +137,7 @@ local results, err = client:Generator():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Generator():load({ id = "generator_id" })
+local result, err = client:Generator():load()
 ```
 
 ### Common Methods
@@ -180,10 +180,10 @@ local url_tool = client:UrlTool(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | ``$STRING`` | No |  |
-| `original_url` | ``$STRING`` | No |  |
-| `short_url` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `custom_alia` | `string` | No |  |
+| `original_url` | `string` | No |  |
+| `short_url` | `string` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -193,7 +193,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:UrlTool():create({
-  url = --[[ `$STRING` ]],
+  url = --[[ string ]],
 })
 ```
 
@@ -237,49 +237,49 @@ local utility = client:Utility(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `algorithm` | ``$STRING`` | No |  |
-| `decoded` | ``$STRING`` | No |  |
-| `encoded` | ``$STRING`` | Yes |  |
-| `error` | ``$STRING`` | No |  |
-| `flag` | ``$STRING`` | No |  |
-| `formatted` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `header` | ``$OBJECT`` | No |  |
-| `indent` | ``$INTEGER`` | No |  |
-| `is_match` | ``$BOOLEAN`` | No |  |
-| `json` | ``$STRING`` | Yes |  |
-| `match` | ``$ARRAY`` | No |  |
-| `parsed` | ``$OBJECT`` | No |  |
-| `pattern` | ``$STRING`` | Yes |  |
-| `payload` | ``$OBJECT`` | No |  |
-| `signature` | ``$STRING`` | No |  |
-| `text` | ``$STRING`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
-| `valid` | ``$BOOLEAN`` | No |  |
+| `algorithm` | `string` | No |  |
+| `decoded` | `string` | No |  |
+| `encoded` | `string` | Yes |  |
+| `error` | `string` | No |  |
+| `flag` | `string` | No |  |
+| `formatted` | `string` | No |  |
+| `hash` | `string` | No |  |
+| `header` | `table` | No |  |
+| `indent` | `number` | No |  |
+| `is_match` | `boolean` | No |  |
+| `json` | `string` | Yes |  |
+| `match` | `table` | No |  |
+| `parsed` | `table` | No |  |
+| `pattern` | `string` | Yes |  |
+| `payload` | `table` | No |  |
+| `signature` | `string` | No |  |
+| `text` | `string` | Yes |  |
+| `token` | `string` | Yes |  |
+| `valid` | `boolean` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `algorithm` | - | - | - | - | - |
-| `decoded` | - | - | - | - | - |
-| `encoded` | - | - | Yes | - | - |
-| `error` | - | - | - | - | - |
-| `flag` | - | - | - | - | - |
-| `formatted` | - | - | - | - | - |
-| `hash` | - | - | - | - | - |
-| `header` | - | - | - | - | - |
-| `indent` | - | - | - | - | - |
-| `is_match` | - | - | - | - | - |
-| `json` | - | - | - | - | - |
-| `match` | - | - | - | - | - |
-| `parsed` | - | - | - | - | - |
-| `pattern` | - | - | - | - | - |
-| `payload` | - | - | - | - | - |
-| `signature` | - | - | - | - | - |
-| `text` | - | - | - | - | - |
-| `token` | - | - | - | - | - |
-| `valid` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `algorithm` | - |
+| `decoded` | - |
+| `encoded` | Yes |
+| `error` | - |
+| `flag` | - |
+| `formatted` | - |
+| `hash` | - |
+| `header` | - |
+| `indent` | - |
+| `is_match` | - |
+| `json` | - |
+| `match` | - |
+| `parsed` | - |
+| `pattern` | - |
+| `payload` | - |
+| `signature` | - |
+| `text` | - |
+| `token` | - |
+| `valid` | - |
 
 ### Operations
 
@@ -289,11 +289,11 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Utility():create({
-  encoded = --[[ `$STRING` ]],
-  json = --[[ `$STRING` ]],
-  pattern = --[[ `$STRING` ]],
-  text = --[[ `$STRING` ]],
-  token = --[[ `$STRING` ]],
+  encoded = --[[ string ]],
+  json = --[[ string ]],
+  pattern = --[[ string ]],
+  text = --[[ string ]],
+  token = --[[ string ]],
 })
 ```
 

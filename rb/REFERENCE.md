@@ -8,7 +8,7 @@ Complete API reference for the DeveloperToolbox Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'developer-toolbox_sdk'
+require_relative 'DeveloperToolbox_sdk'
 
 client = DeveloperToolboxSDK.new(options)
 ```
@@ -101,19 +101,19 @@ generator = client.Generator
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `uuid` | ``$ARRAY`` | No |  |
+| `data` | `String` | Yes |  |
+| `password` | `String` | No |  |
+| `size` | `Integer` | No |  |
+| `uuid` | `Array` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `data` | - | Yes | - | - | - |
-| `password` | - | - | - | - | - |
-| `size` | - | - | - | - | - |
-| `uuid` | - | - | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `data` | - | Yes | - |
+| `password` | - | - | - |
+| `size` | - | - | - |
+| `uuid` | - | - | - |
 
 ### Operations
 
@@ -123,16 +123,16 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Generator.create({
-  "data" => # `$STRING`,
+  "data" => "example", # String
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Generator.list(nil)
+results = client.Generator.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -140,7 +140,7 @@ results = client.Generator.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Generator.load({ "id" => "generator_id" })
+result = client.Generator.load()
 ```
 
 ### Common Methods
@@ -183,10 +183,10 @@ url_tool = client.UrlTool
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | ``$STRING`` | No |  |
-| `original_url` | ``$STRING`` | No |  |
-| `short_url` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `custom_alia` | `String` | No |  |
+| `original_url` | `String` | No |  |
+| `short_url` | `String` | No |  |
+| `url` | `String` | Yes |  |
 
 ### Operations
 
@@ -196,7 +196,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.UrlTool.create({
-  "url" => # `$STRING`,
+  "url" => "example", # String
 })
 ```
 
@@ -240,49 +240,49 @@ utility = client.Utility
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `algorithm` | ``$STRING`` | No |  |
-| `decoded` | ``$STRING`` | No |  |
-| `encoded` | ``$STRING`` | Yes |  |
-| `error` | ``$STRING`` | No |  |
-| `flag` | ``$STRING`` | No |  |
-| `formatted` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `header` | ``$OBJECT`` | No |  |
-| `indent` | ``$INTEGER`` | No |  |
-| `is_match` | ``$BOOLEAN`` | No |  |
-| `json` | ``$STRING`` | Yes |  |
-| `match` | ``$ARRAY`` | No |  |
-| `parsed` | ``$OBJECT`` | No |  |
-| `pattern` | ``$STRING`` | Yes |  |
-| `payload` | ``$OBJECT`` | No |  |
-| `signature` | ``$STRING`` | No |  |
-| `text` | ``$STRING`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
-| `valid` | ``$BOOLEAN`` | No |  |
+| `algorithm` | `String` | No |  |
+| `decoded` | `String` | No |  |
+| `encoded` | `String` | Yes |  |
+| `error` | `String` | No |  |
+| `flag` | `String` | No |  |
+| `formatted` | `String` | No |  |
+| `hash` | `String` | No |  |
+| `header` | `Hash` | No |  |
+| `indent` | `Integer` | No |  |
+| `is_match` | `Boolean` | No |  |
+| `json` | `String` | Yes |  |
+| `match` | `Array` | No |  |
+| `parsed` | `Hash` | No |  |
+| `pattern` | `String` | Yes |  |
+| `payload` | `Hash` | No |  |
+| `signature` | `String` | No |  |
+| `text` | `String` | Yes |  |
+| `token` | `String` | Yes |  |
+| `valid` | `Boolean` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `algorithm` | - | - | - | - | - |
-| `decoded` | - | - | - | - | - |
-| `encoded` | - | - | Yes | - | - |
-| `error` | - | - | - | - | - |
-| `flag` | - | - | - | - | - |
-| `formatted` | - | - | - | - | - |
-| `hash` | - | - | - | - | - |
-| `header` | - | - | - | - | - |
-| `indent` | - | - | - | - | - |
-| `is_match` | - | - | - | - | - |
-| `json` | - | - | - | - | - |
-| `match` | - | - | - | - | - |
-| `parsed` | - | - | - | - | - |
-| `pattern` | - | - | - | - | - |
-| `payload` | - | - | - | - | - |
-| `signature` | - | - | - | - | - |
-| `text` | - | - | - | - | - |
-| `token` | - | - | - | - | - |
-| `valid` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `algorithm` | - |
+| `decoded` | - |
+| `encoded` | Yes |
+| `error` | - |
+| `flag` | - |
+| `formatted` | - |
+| `hash` | - |
+| `header` | - |
+| `indent` | - |
+| `is_match` | - |
+| `json` | - |
+| `match` | - |
+| `parsed` | - |
+| `pattern` | - |
+| `payload` | - |
+| `signature` | - |
+| `text` | - |
+| `token` | - |
+| `valid` | - |
 
 ### Operations
 
@@ -292,11 +292,11 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Utility.create({
-  "encoded" => # `$STRING`,
-  "json" => # `$STRING`,
-  "pattern" => # `$STRING`,
-  "text" => # `$STRING`,
-  "token" => # `$STRING`,
+  "encoded" => "example", # String
+  "json" => "example", # String
+  "pattern" => "example", # String
+  "text" => "example", # String
+  "token" => "example", # String
 })
 ```
 

@@ -29,7 +29,7 @@ Generator = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Generator#load (any subset of Generator fields).
+# Request payload for Generator#load.
 #
 # @!attribute [rw] data
 #   @return [String, nil]
@@ -50,7 +50,7 @@ GeneratorLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Generator#list (any subset of Generator fields).
+# Request payload for Generator#list.
 #
 # @!attribute [rw] data
 #   @return [String, nil]
@@ -71,10 +71,10 @@ GeneratorListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Generator#create (any subset of Generator fields).
+# Request payload for Generator#create.
 #
 # @!attribute [rw] data
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] password
 #   @return [String, nil]
@@ -113,7 +113,7 @@ UrlTool = Struct.new(
   keyword_init: true
 )
 
-# Match filter for UrlTool#create (any subset of UrlTool fields).
+# Request payload for UrlTool#create.
 #
 # @!attribute [rw] custom_alia
 #   @return [String, nil]
@@ -125,7 +125,7 @@ UrlTool = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] url
-#   @return [String, nil]
+#   @return [String]
 UrlToolCreateData = Struct.new(
   :custom_alia,
   :original_url,
@@ -215,7 +215,7 @@ Utility = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Utility#create (any subset of Utility fields).
+# Request payload for Utility#create.
 #
 # @!attribute [rw] algorithm
 #   @return [String, nil]
@@ -224,7 +224,7 @@ Utility = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] encoded
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] error
 #   @return [String, nil]
@@ -248,7 +248,7 @@ Utility = Struct.new(
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] json
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] match
 #   @return [Array, nil]
@@ -257,7 +257,7 @@ Utility = Struct.new(
 #   @return [Hash, nil]
 #
 # @!attribute [rw] pattern
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] payload
 #   @return [Hash, nil]
@@ -266,10 +266,10 @@ Utility = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] text
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] token
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] valid
 #   @return [Boolean, nil]

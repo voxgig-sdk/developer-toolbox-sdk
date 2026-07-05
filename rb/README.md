@@ -4,6 +4,8 @@
 
 The Ruby SDK for the DeveloperToolbox API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Generator` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,7 +37,7 @@ begin
   # list returns an Array of Generator records — iterate directly.
   generators = client.Generator.list
   generators.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["data"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -47,7 +49,7 @@ end
 ```ruby
 begin
   # load returns the bare Generator record (raises on error).
-  generator = client.Generator.load({ "id" => "example_id" })
+  generator = client.Generator.load()
   puts generator
 rescue => err
   warn "load failed: #{err}"
@@ -58,8 +60,35 @@ end
 
 ```ruby
 # create returns the bare created Generator record.
-created = client.Generator.create({ "name" => "Example" })
+created = client.Generator.create({ "data" => "example" })
 
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  generators = client.Generator.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -80,7 +109,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -103,16 +134,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = DeveloperToolboxSDK.test({
-  "entity" => { "generator" => { "test01" => { "id" => "test01" } } },
-})
+client = DeveloperToolboxSDK.test
 
-# load returns the bare mock record (raises on error).
-generator = client.Generator.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+generator = client.Generator.list()
 puts generator
 ```
 
@@ -200,10 +228,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -305,16 +331,16 @@ Create an instance: `generator = client.Generator`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$STRING`` |  |
-| `password` | ``$STRING`` |  |
-| `size` | ``$INTEGER`` |  |
-| `uuid` | ``$ARRAY`` |  |
+| `data` | `String` |  |
+| `password` | `String` |  |
+| `size` | `Integer` |  |
+| `uuid` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Generator record (raises on error).
-generator = client.Generator.load({ "id" => "generator_id" })
+generator = client.Generator.load()
 ```
 
 #### Example: List
@@ -328,7 +354,7 @@ generators = client.Generator.list
 
 ```ruby
 generator = client.Generator.create({
-  "data" => nil, # `$STRING`
+  "data" => "example", # String
 })
 ```
 
@@ -347,16 +373,16 @@ Create an instance: `url_tool = client.UrlTool`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `custom_alia` | ``$STRING`` |  |
-| `original_url` | ``$STRING`` |  |
-| `short_url` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `custom_alia` | `String` |  |
+| `original_url` | `String` |  |
+| `short_url` | `String` |  |
+| `url` | `String` |  |
 
 #### Example: Create
 
 ```ruby
 url_tool = client.UrlTool.create({
-  "url" => nil, # `$STRING`
+  "url" => "example", # String
 })
 ```
 
@@ -375,45 +401,49 @@ Create an instance: `utility = client.Utility`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `algorithm` | ``$STRING`` |  |
-| `decoded` | ``$STRING`` |  |
-| `encoded` | ``$STRING`` |  |
-| `error` | ``$STRING`` |  |
-| `flag` | ``$STRING`` |  |
-| `formatted` | ``$STRING`` |  |
-| `hash` | ``$STRING`` |  |
-| `header` | ``$OBJECT`` |  |
-| `indent` | ``$INTEGER`` |  |
-| `is_match` | ``$BOOLEAN`` |  |
-| `json` | ``$STRING`` |  |
-| `match` | ``$ARRAY`` |  |
-| `parsed` | ``$OBJECT`` |  |
-| `pattern` | ``$STRING`` |  |
-| `payload` | ``$OBJECT`` |  |
-| `signature` | ``$STRING`` |  |
-| `text` | ``$STRING`` |  |
-| `token` | ``$STRING`` |  |
-| `valid` | ``$BOOLEAN`` |  |
+| `algorithm` | `String` |  |
+| `decoded` | `String` |  |
+| `encoded` | `String` |  |
+| `error` | `String` |  |
+| `flag` | `String` |  |
+| `formatted` | `String` |  |
+| `hash` | `String` |  |
+| `header` | `Hash` |  |
+| `indent` | `Integer` |  |
+| `is_match` | `Boolean` |  |
+| `json` | `String` |  |
+| `match` | `Array` |  |
+| `parsed` | `Hash` |  |
+| `pattern` | `String` |  |
+| `payload` | `Hash` |  |
+| `signature` | `String` |  |
+| `text` | `String` |  |
+| `token` | `String` |  |
+| `valid` | `Boolean` |  |
 
 #### Example: Create
 
 ```ruby
 utility = client.Utility.create({
-  "encoded" => nil, # `$STRING`
-  "json" => nil, # `$STRING`
-  "pattern" => nil, # `$STRING`
-  "text" => nil, # `$STRING`
-  "token" => nil, # `$STRING`
+  "encoded" => "example", # String
+  "json" => "example", # String
+  "pattern" => "example", # String
+  "text" => "example", # String
+  "token" => "example", # String
 })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -430,8 +460,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -475,14 +506,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 generator = client.Generator
-generator.load({ "id" => "example_id" })
+generator.list()
 
-# generator.data_get now returns the loaded generator data
+# generator.data_get now returns the generator data from the last list
 # generator.match_get returns the last match criteria
 ```
 

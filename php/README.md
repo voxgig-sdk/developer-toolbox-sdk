@@ -4,6 +4,8 @@
 
 The PHP SDK for the DeveloperToolbox API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Generator()` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,7 +38,7 @@ try {
     // list() returns an array of Generator records — iterate directly.
     $generators = $client->Generator()->list();
     foreach ($generators as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["data"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -48,7 +50,7 @@ try {
 ```php
 try {
     // load() returns the bare Generator record (throws on error).
-    $generator = $client->Generator()->load(["id" => "example_id"]);
+    $generator = $client->Generator()->load();
     print_r($generator);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -59,8 +61,39 @@ try {
 
 ```php
 // create() returns the bare created Generator record.
-$created = $client->Generator()->create(["name" => "Example"]);
+$created = $client->Generator()->create(["data" => "example"]);
 
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $generators = $client->Generator()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
+}
 ```
 
 
@@ -83,7 +116,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -104,16 +140,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = DeveloperToolboxSDK::test([
-    "entity" => ["generator" => ["test01" => ["id" => "test01"]]],
-]);
+$client = DeveloperToolboxSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$generator = $client->Generator()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$generator = $client->Generator()->list();
 print_r($generator);
 ```
 
@@ -204,10 +237,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -310,16 +341,16 @@ Create an instance: `$generator = $client->Generator();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$STRING`` |  |
-| `password` | ``$STRING`` |  |
-| `size` | ``$INTEGER`` |  |
-| `uuid` | ``$ARRAY`` |  |
+| `data` | `string` |  |
+| `password` | `string` |  |
+| `size` | `int` |  |
+| `uuid` | `array` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Generator record (throws on error).
-$generator = $client->Generator()->load(["id" => "generator_id"]);
+$generator = $client->Generator()->load();
 ```
 
 #### Example: List
@@ -333,7 +364,7 @@ $generators = $client->Generator()->list();
 
 ```php
 $generator = $client->Generator()->create([
-    "data" => null, // `$STRING`
+    "data" => null, // string
 ]);
 ```
 
@@ -352,16 +383,16 @@ Create an instance: `$url_tool = $client->UrlTool();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `custom_alia` | ``$STRING`` |  |
-| `original_url` | ``$STRING`` |  |
-| `short_url` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `custom_alia` | `string` |  |
+| `original_url` | `string` |  |
+| `short_url` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Create
 
 ```php
 $url_tool = $client->UrlTool()->create([
-    "url" => null, // `$STRING`
+    "url" => null, // string
 ]);
 ```
 
@@ -380,45 +411,49 @@ Create an instance: `$utility = $client->Utility();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `algorithm` | ``$STRING`` |  |
-| `decoded` | ``$STRING`` |  |
-| `encoded` | ``$STRING`` |  |
-| `error` | ``$STRING`` |  |
-| `flag` | ``$STRING`` |  |
-| `formatted` | ``$STRING`` |  |
-| `hash` | ``$STRING`` |  |
-| `header` | ``$OBJECT`` |  |
-| `indent` | ``$INTEGER`` |  |
-| `is_match` | ``$BOOLEAN`` |  |
-| `json` | ``$STRING`` |  |
-| `match` | ``$ARRAY`` |  |
-| `parsed` | ``$OBJECT`` |  |
-| `pattern` | ``$STRING`` |  |
-| `payload` | ``$OBJECT`` |  |
-| `signature` | ``$STRING`` |  |
-| `text` | ``$STRING`` |  |
-| `token` | ``$STRING`` |  |
-| `valid` | ``$BOOLEAN`` |  |
+| `algorithm` | `string` |  |
+| `decoded` | `string` |  |
+| `encoded` | `string` |  |
+| `error` | `string` |  |
+| `flag` | `string` |  |
+| `formatted` | `string` |  |
+| `hash` | `string` |  |
+| `header` | `array` |  |
+| `indent` | `int` |  |
+| `is_match` | `bool` |  |
+| `json` | `string` |  |
+| `match` | `array` |  |
+| `parsed` | `array` |  |
+| `pattern` | `string` |  |
+| `payload` | `array` |  |
+| `signature` | `string` |  |
+| `text` | `string` |  |
+| `token` | `string` |  |
+| `valid` | `bool` |  |
 
 #### Example: Create
 
 ```php
 $utility = $client->Utility()->create([
-    "encoded" => null, // `$STRING`
-    "json" => null, // `$STRING`
-    "pattern" => null, // `$STRING`
-    "text" => null, // `$STRING`
-    "token" => null, // `$STRING`
+    "encoded" => null, // string
+    "json" => null, // string
+    "pattern" => null, // string
+    "text" => null, // string
+    "token" => null, // string
 ]);
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -435,8 +470,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -480,15 +516,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $generator = $client->Generator();
-$generator->load(["id" => "example_id"]);
+$generator->list();
 
-// $generator->dataGet() now returns the loaded generator data
-// $generator->matchGet() returns the last match criteria
+// $generator->data_get() now returns the generator data from the last list
+// $generator->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

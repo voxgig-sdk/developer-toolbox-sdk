@@ -221,19 +221,19 @@ class DeveloperToolboxSDK:
 
 
     def Generator(self, data=None) -> "GeneratorEntity":
-        """Entity factory: client.Generator().list({}) / client.Generator().load({"id": ...})."""
+        """Entity factory: client.Generator().list() / client.Generator().load({"id": ...})."""
         from entity.generator_entity import GeneratorEntity
         return GeneratorEntity(self, data)
 
 
     def UrlTool(self, data=None) -> "UrlToolEntity":
-        """Entity factory: client.UrlTool().list({}) / client.UrlTool().load({"id": ...})."""
+        """Entity factory: client.UrlTool().list() / client.UrlTool().load({"id": ...})."""
         from entity.url_tool_entity import UrlToolEntity
         return UrlToolEntity(self, data)
 
 
     def Utility(self, data=None) -> "UtilityEntity":
-        """Entity factory: client.Utility().list({}) / client.Utility().load({"id": ...})."""
+        """Entity factory: client.Utility().list() / client.Utility().load({"id": ...})."""
         from entity.utility_entity import UtilityEntity
         return UtilityEntity(self, data)
 

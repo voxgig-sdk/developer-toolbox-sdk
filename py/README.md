@@ -4,6 +4,11 @@
 
 The Python SDK for the DeveloperToolbox API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Generator()` — each
+carrying a small, uniform set of operations (`list`, `load`, `create`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    generators = client.Generator().list({})
+    generators = client.Generator().list()
     for generator in generators:
         print(generator)
 except Exception as err:
@@ -51,7 +56,7 @@ except Exception as err:
 
 ```python
 try:
-    generator = client.Generator().load({"id": "example_id"})
+    generator = client.Generator().load()
     print(generator)
 except Exception as err:
     print(f"load failed: {err}")
@@ -61,8 +66,36 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Generator().create({"name": "Example"})
+created = client.Generator().create({"data": "example"})
 
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    generators = client.Generator().list()
+    print(generators)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -83,7 +116,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -109,7 +145,7 @@ Create a mock client for unit testing — no server required:
 client = DeveloperToolboxSDK.test()
 
 # Entity ops return the bare record and raise on error.
-generator = client.Generator().load({"id": "test01"})
+generator = client.Generator().list()
 # generator contains the mock response record
 ```
 
@@ -199,8 +235,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -296,35 +330,35 @@ Create an instance: `generator = client.Generator()`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$STRING`` |  |
-| `password` | ``$STRING`` |  |
-| `size` | ``$INTEGER`` |  |
-| `uuid` | ``$ARRAY`` |  |
+| `data` | `str` |  |
+| `password` | `str` |  |
+| `size` | `int` |  |
+| `uuid` | `list` |  |
 
 #### Example: Load
 
 ```python
-generator = client.Generator().load({"id": "generator_id"})
+generator = client.Generator().load()
 ```
 
 #### Example: List
 
 ```python
-generators = client.Generator().list({})
+generators = client.Generator().list()
 ```
 
 #### Example: Create
 
 ```python
 generator = client.Generator().create({
-    "data": ...,  # `$STRING`
+    "data": "example",  # str
 })
 ```
 
@@ -343,16 +377,16 @@ Create an instance: `url_tool = client.UrlTool()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `custom_alia` | ``$STRING`` |  |
-| `original_url` | ``$STRING`` |  |
-| `short_url` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `custom_alia` | `str` |  |
+| `original_url` | `str` |  |
+| `short_url` | `str` |  |
+| `url` | `str` |  |
 
 #### Example: Create
 
 ```python
 url_tool = client.UrlTool().create({
-    "url": ...,  # `$STRING`
+    "url": "example",  # str
 })
 ```
 
@@ -371,45 +405,49 @@ Create an instance: `utility = client.Utility()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `algorithm` | ``$STRING`` |  |
-| `decoded` | ``$STRING`` |  |
-| `encoded` | ``$STRING`` |  |
-| `error` | ``$STRING`` |  |
-| `flag` | ``$STRING`` |  |
-| `formatted` | ``$STRING`` |  |
-| `hash` | ``$STRING`` |  |
-| `header` | ``$OBJECT`` |  |
-| `indent` | ``$INTEGER`` |  |
-| `is_match` | ``$BOOLEAN`` |  |
-| `json` | ``$STRING`` |  |
-| `match` | ``$ARRAY`` |  |
-| `parsed` | ``$OBJECT`` |  |
-| `pattern` | ``$STRING`` |  |
-| `payload` | ``$OBJECT`` |  |
-| `signature` | ``$STRING`` |  |
-| `text` | ``$STRING`` |  |
-| `token` | ``$STRING`` |  |
-| `valid` | ``$BOOLEAN`` |  |
+| `algorithm` | `str` |  |
+| `decoded` | `str` |  |
+| `encoded` | `str` |  |
+| `error` | `str` |  |
+| `flag` | `str` |  |
+| `formatted` | `str` |  |
+| `hash` | `str` |  |
+| `header` | `dict` |  |
+| `indent` | `int` |  |
+| `is_match` | `bool` |  |
+| `json` | `str` |  |
+| `match` | `list` |  |
+| `parsed` | `dict` |  |
+| `pattern` | `str` |  |
+| `payload` | `dict` |  |
+| `signature` | `str` |  |
+| `text` | `str` |  |
+| `token` | `str` |  |
+| `valid` | `bool` |  |
 
 #### Example: Create
 
 ```python
 utility = client.Utility().create({
-    "encoded": ...,  # `$STRING`
-    "json": ...,  # `$STRING`
-    "pattern": ...,  # `$STRING`
-    "text": ...,  # `$STRING`
-    "token": ...,  # `$STRING`
+    "encoded": "example",  # str
+    "json": "example",  # str
+    "pattern": "example",  # str
+    "text": "example",  # str
+    "token": "example",  # str
 })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -426,8 +464,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -470,14 +509,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 generator = client.Generator()
-generator.load({"id": "example_id"})
+generator.list()
 
-# generator.data_get() now returns the loaded generator data
+# generator.data_get() now returns the generator data from the last list
 # generator.match_get() returns the last match criteria
 ```
 

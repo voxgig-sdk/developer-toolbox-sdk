@@ -16,8 +16,7 @@ type Generator struct {
 	Uuid *[]any `json:"uuid,omitempty"`
 }
 
-// GeneratorLoadMatch mirrors the generator fields as an all-optional match
-// filter (Go analog of Partial<Generator>).
+// GeneratorLoadMatch is the typed request payload for Generator.LoadTyped.
 type GeneratorLoadMatch struct {
 	Data *string `json:"data,omitempty"`
 	Password *string `json:"password,omitempty"`
@@ -25,8 +24,7 @@ type GeneratorLoadMatch struct {
 	Uuid *[]any `json:"uuid,omitempty"`
 }
 
-// GeneratorListMatch mirrors the generator fields as an all-optional match
-// filter (Go analog of Partial<Generator>).
+// GeneratorListMatch is the typed request payload for Generator.ListTyped.
 type GeneratorListMatch struct {
 	Data *string `json:"data,omitempty"`
 	Password *string `json:"password,omitempty"`
@@ -34,10 +32,9 @@ type GeneratorListMatch struct {
 	Uuid *[]any `json:"uuid,omitempty"`
 }
 
-// GeneratorCreateData mirrors the generator fields as an all-optional match
-// filter (Go analog of Partial<Generator>).
+// GeneratorCreateData is the typed request payload for Generator.CreateTyped.
 type GeneratorCreateData struct {
-	Data *string `json:"data,omitempty"`
+	Data string `json:"data"`
 	Password *string `json:"password,omitempty"`
 	Size *int `json:"size,omitempty"`
 	Uuid *[]any `json:"uuid,omitempty"`
@@ -51,13 +48,12 @@ type UrlTool struct {
 	Url string `json:"url"`
 }
 
-// UrlToolCreateData mirrors the url_tool fields as an all-optional match
-// filter (Go analog of Partial<UrlTool>).
+// UrlToolCreateData is the typed request payload for UrlTool.CreateTyped.
 type UrlToolCreateData struct {
 	CustomAlia *string `json:"custom_alia,omitempty"`
 	OriginalUrl *string `json:"original_url,omitempty"`
 	ShortUrl *string `json:"short_url,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Url string `json:"url"`
 }
 
 // Utility is the typed data model for the utility entity.
@@ -83,12 +79,11 @@ type Utility struct {
 	Valid *bool `json:"valid,omitempty"`
 }
 
-// UtilityCreateData mirrors the utility fields as an all-optional match
-// filter (Go analog of Partial<Utility>).
+// UtilityCreateData is the typed request payload for Utility.CreateTyped.
 type UtilityCreateData struct {
 	Algorithm *string `json:"algorithm,omitempty"`
 	Decoded *string `json:"decoded,omitempty"`
-	Encoded *string `json:"encoded,omitempty"`
+	Encoded string `json:"encoded"`
 	Error *string `json:"error,omitempty"`
 	Flag *string `json:"flag,omitempty"`
 	Formatted *string `json:"formatted,omitempty"`
@@ -96,14 +91,14 @@ type UtilityCreateData struct {
 	Header *map[string]any `json:"header,omitempty"`
 	Indent *int `json:"indent,omitempty"`
 	IsMatch *bool `json:"is_match,omitempty"`
-	Json *string `json:"json,omitempty"`
+	Json string `json:"json"`
 	Match *[]any `json:"match,omitempty"`
 	Parsed *map[string]any `json:"parsed,omitempty"`
-	Pattern *string `json:"pattern,omitempty"`
+	Pattern string `json:"pattern"`
 	Payload *map[string]any `json:"payload,omitempty"`
 	Signature *string `json:"signature,omitempty"`
-	Text *string `json:"text,omitempty"`
-	Token *string `json:"token,omitempty"`
+	Text string `json:"text"`
+	Token string `json:"token"`
 	Valid *bool `json:"valid,omitempty"`
 }
 

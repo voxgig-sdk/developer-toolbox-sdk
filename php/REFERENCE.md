@@ -8,7 +8,7 @@ Complete API reference for the DeveloperToolbox PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/developer-toolbox_sdk.php';
+require_once __DIR__ . '/developertoolbox_sdk.php';
 
 $client = new DeveloperToolboxSDK($options);
 ```
@@ -53,11 +53,11 @@ Create a new `UrlToolEntity` instance. Pass `null` for no initial data.
 
 Create a new `UtilityEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): DeveloperToolboxUtility`
 
 Return a copy of the SDK utility object.
 
@@ -100,19 +100,19 @@ $generator = $client->Generator();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$STRING`` | Yes |  |
-| `password` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `uuid` | ``$ARRAY`` | No |  |
+| `data` | `string` | Yes |  |
+| `password` | `string` | No |  |
+| `size` | `int` | No |  |
+| `uuid` | `array` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `data` | - | Yes | - | - | - |
-| `password` | - | - | - | - | - |
-| `size` | - | - | - | - | - |
-| `uuid` | - | - | - | - | - |
+| Field | load | list | create |
+| --- | --- | --- | --- |
+| `data` | - | Yes | - |
+| `password` | - | - | - |
+| `size` | - | - | - |
+| `uuid` | - | - | - |
 
 ### Operations
 
@@ -122,16 +122,16 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Generator()->create([
-  "data" => /* `$STRING` */,
+  "data" => null, // string
 ]);
 ```
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Generator()->list([]);
+$results = $client->Generator()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -139,24 +139,24 @@ $results = $client->Generator()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Generator()->load(["id" => "generator_id"]);
+$result = $client->Generator()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -165,7 +165,7 @@ Set the entity match criteria.
 Create a new `GeneratorEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -182,10 +182,10 @@ $url_tool = $client->UrlTool();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | ``$STRING`` | No |  |
-| `original_url` | ``$STRING`` | No |  |
-| `short_url` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `custom_alia` | `string` | No |  |
+| `original_url` | `string` | No |  |
+| `short_url` | `string` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -195,25 +195,25 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->UrlTool()->create([
-  "url" => /* `$STRING` */,
+  "url" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -222,7 +222,7 @@ Set the entity match criteria.
 Create a new `UrlToolEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -239,49 +239,49 @@ $utility = $client->Utility();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `algorithm` | ``$STRING`` | No |  |
-| `decoded` | ``$STRING`` | No |  |
-| `encoded` | ``$STRING`` | Yes |  |
-| `error` | ``$STRING`` | No |  |
-| `flag` | ``$STRING`` | No |  |
-| `formatted` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `header` | ``$OBJECT`` | No |  |
-| `indent` | ``$INTEGER`` | No |  |
-| `is_match` | ``$BOOLEAN`` | No |  |
-| `json` | ``$STRING`` | Yes |  |
-| `match` | ``$ARRAY`` | No |  |
-| `parsed` | ``$OBJECT`` | No |  |
-| `pattern` | ``$STRING`` | Yes |  |
-| `payload` | ``$OBJECT`` | No |  |
-| `signature` | ``$STRING`` | No |  |
-| `text` | ``$STRING`` | Yes |  |
-| `token` | ``$STRING`` | Yes |  |
-| `valid` | ``$BOOLEAN`` | No |  |
+| `algorithm` | `string` | No |  |
+| `decoded` | `string` | No |  |
+| `encoded` | `string` | Yes |  |
+| `error` | `string` | No |  |
+| `flag` | `string` | No |  |
+| `formatted` | `string` | No |  |
+| `hash` | `string` | No |  |
+| `header` | `array` | No |  |
+| `indent` | `int` | No |  |
+| `is_match` | `bool` | No |  |
+| `json` | `string` | Yes |  |
+| `match` | `array` | No |  |
+| `parsed` | `array` | No |  |
+| `pattern` | `string` | Yes |  |
+| `payload` | `array` | No |  |
+| `signature` | `string` | No |  |
+| `text` | `string` | Yes |  |
+| `token` | `string` | Yes |  |
+| `valid` | `bool` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `algorithm` | - | - | - | - | - |
-| `decoded` | - | - | - | - | - |
-| `encoded` | - | - | Yes | - | - |
-| `error` | - | - | - | - | - |
-| `flag` | - | - | - | - | - |
-| `formatted` | - | - | - | - | - |
-| `hash` | - | - | - | - | - |
-| `header` | - | - | - | - | - |
-| `indent` | - | - | - | - | - |
-| `is_match` | - | - | - | - | - |
-| `json` | - | - | - | - | - |
-| `match` | - | - | - | - | - |
-| `parsed` | - | - | - | - | - |
-| `pattern` | - | - | - | - | - |
-| `payload` | - | - | - | - | - |
-| `signature` | - | - | - | - | - |
-| `text` | - | - | - | - | - |
-| `token` | - | - | - | - | - |
-| `valid` | - | - | - | - | - |
+| Field | create |
+| --- | --- |
+| `algorithm` | - |
+| `decoded` | - |
+| `encoded` | Yes |
+| `error` | - |
+| `flag` | - |
+| `formatted` | - |
+| `hash` | - |
+| `header` | - |
+| `indent` | - |
+| `is_match` | - |
+| `json` | - |
+| `match` | - |
+| `parsed` | - |
+| `pattern` | - |
+| `payload` | - |
+| `signature` | - |
+| `text` | - |
+| `token` | - |
+| `valid` | - |
 
 ### Operations
 
@@ -291,29 +291,29 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Utility()->create([
-  "encoded" => /* `$STRING` */,
-  "json" => /* `$STRING` */,
-  "pattern" => /* `$STRING` */,
-  "text" => /* `$STRING` */,
-  "token" => /* `$STRING` */,
+  "encoded" => null, // string
+  "json" => null, // string
+  "pattern" => null, // string
+  "text" => null, // string
+  "token" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -322,7 +322,7 @@ Set the entity match criteria.
 Create a new `UtilityEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

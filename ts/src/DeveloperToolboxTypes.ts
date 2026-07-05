@@ -12,11 +12,26 @@ export interface Generator {
   uuid?: any[]
 }
 
-export type GeneratorLoadMatch = Partial<Generator>
+export interface GeneratorLoadMatch {
+  data?: string
+  password?: string
+  size?: number
+  uuid?: any[]
+}
 
-export type GeneratorListMatch = Partial<Generator>
+export interface GeneratorListMatch {
+  data?: string
+  password?: string
+  size?: number
+  uuid?: any[]
+}
 
-export type GeneratorCreateData = Partial<Generator>
+export interface GeneratorCreateData {
+  data: string
+  password?: string
+  size?: number
+  uuid?: any[]
+}
 
 export interface UrlTool {
   custom_alia?: string
@@ -25,7 +40,12 @@ export interface UrlTool {
   url: string
 }
 
-export type UrlToolCreateData = Partial<UrlTool>
+export interface UrlToolCreateData {
+  custom_alia?: string
+  original_url?: string
+  short_url?: string
+  url: string
+}
 
 export interface Utility {
   algorithm?: string
@@ -49,5 +69,25 @@ export interface Utility {
   valid?: boolean
 }
 
-export type UtilityCreateData = Partial<Utility>
+export interface UtilityCreateData {
+  algorithm?: string
+  decoded?: string
+  encoded: string
+  error?: string
+  flag?: string
+  formatted?: string
+  hash?: string
+  header?: Record<string, any>
+  indent?: number
+  is_match?: boolean
+  json: string
+  match?: any[]
+  parsed?: Record<string, any>
+  pattern: string
+  payload?: Record<string, any>
+  signature?: string
+  text: string
+  token: string
+  valid?: boolean
+}
 
