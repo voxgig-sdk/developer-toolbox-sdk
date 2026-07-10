@@ -117,7 +117,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Generator().create({
-    "data": "example",  # str
+    "data": "example_data",  # str
 })
 ```
 
@@ -191,7 +191,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.UrlTool().create({
-    "url": "example",  # str
+    "url": "example_url",  # str
 })
 ```
 
@@ -286,11 +286,11 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Utility().create({
-    "encoded": "example",  # str
-    "json": "example",  # str
-    "pattern": "example",  # str
-    "text": "example",  # str
-    "token": "example",  # str
+    "encoded": "example_encoded",  # str
+    "json": "example_json",  # str
+    "pattern": "example_pattern",  # str
+    "text": "example_text",  # str
+    "token": "example_token",  # str
 })
 ```
 

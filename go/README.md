@@ -67,7 +67,7 @@ func main() {
     fmt.Println(generator)
 
     // Create a generator.
-    created, err := client.Generator(nil).Create(map[string]any{"data": "example"}, nil)
+    created, err := client.Generator(nil).Create(map[string]any{"data": "example_data"}, nil)
     if err != nil {
         panic(err)
     }
@@ -342,9 +342,9 @@ Create an instance: `generator := client.Generator(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -379,14 +379,18 @@ fmt.Println(generators) // the array of records
 
 ```go
 result, err := client.Generator(nil).Create(map[string]any{
-    "data": /* string */,
+    "data": "example_data",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### UrlTool
 
-Create an instance: `url_tool := client.UrlTool(nil)`
+Create an instance: `urlTool := client.UrlTool(nil)`
 
 #### Operations
 
@@ -407,8 +411,12 @@ Create an instance: `url_tool := client.UrlTool(nil)`
 
 ```go
 result, err := client.UrlTool(nil).Create(map[string]any{
-    "url": /* string */,
+    "url": "example_url",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -450,12 +458,16 @@ Create an instance: `utility := client.Utility(nil)`
 
 ```go
 result, err := client.Utility(nil).Create(map[string]any{
-    "encoded": /* string */,
-    "json": /* string */,
-    "pattern": /* string */,
-    "text": /* string */,
-    "token": /* string */,
+    "encoded": "example_encoded",
+    "json": "example_json",
+    "pattern": "example_pattern",
+    "text": "example_text",
+    "token": "example_token",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

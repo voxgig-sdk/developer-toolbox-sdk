@@ -59,7 +59,7 @@ print(generator)
 
 ```lua
 -- Create
-local created, err = client:Generator():create({ data = "example" })
+local created, err = client:Generator():create({ data = "example_data" })
 if err then error(err) end
 
 ```
@@ -345,7 +345,7 @@ local generators, err = client:Generator():list()
 
 ```lua
 local generator, err = client:Generator():create({
-  data = nil, -- string
+  data = "example_data", -- string
 })
 ```
 
@@ -373,7 +373,7 @@ Create an instance: `local url_tool = client:UrlTool(nil)`
 
 ```lua
 local url_tool, err = client:UrlTool():create({
-  url = nil, -- string
+  url = "example_url", -- string
 })
 ```
 
@@ -416,11 +416,11 @@ Create an instance: `local utility = client:Utility(nil)`
 
 ```lua
 local utility, err = client:Utility():create({
-  encoded = nil, -- string
-  json = nil, -- string
-  pattern = nil, -- string
-  text = nil, -- string
-  token = nil, -- string
+  encoded = "example_encoded", -- string
+  json = "example_json", -- string
+  pattern = "example_pattern", -- string
+  text = "example_text", -- string
+  token = "example_token", -- string
 })
 ```
 

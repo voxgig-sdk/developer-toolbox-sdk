@@ -99,6 +99,7 @@ same parameters as `Direct()`.
 
 ```go
 generator := client.Generator(nil)
+fmt.Println(generator.GetName()) // "generator"
 ```
 
 ### Fields
@@ -121,22 +122,16 @@ generator := client.Generator(nil)
 
 ### Operations
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.Generator(nil).Create(map[string]any{
-    "data": /* string */,
-}, nil)
-```
-
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
 List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Generator(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -145,6 +140,24 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Generator(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Generator(nil).Create(map[string]any{
+    "data": "example_data",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -174,7 +187,8 @@ Return the entity name.
 ## UrlToolEntity
 
 ```go
-url_tool := client.UrlTool(nil)
+urlTool := client.UrlTool(nil)
+fmt.Println(urlTool.GetName()) // "url_tool"
 ```
 
 ### Fields
@@ -194,8 +208,12 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.UrlTool(nil).Create(map[string]any{
-    "url": /* string */,
+    "url": "example_url",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -226,6 +244,7 @@ Return the entity name.
 
 ```go
 utility := client.Utility(nil)
+fmt.Println(utility.GetName()) // "utility"
 ```
 
 ### Fields
@@ -284,12 +303,16 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Utility(nil).Create(map[string]any{
-    "encoded": /* string */,
-    "json": /* string */,
-    "pattern": /* string */,
-    "text": /* string */,
-    "token": /* string */,
+    "encoded": "example_encoded",
+    "json": "example_json",
+    "pattern": "example_pattern",
+    "text": "example_text",
+    "token": "example_token",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -123,7 +123,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Generator.create({
-  "data" => "example", # String
+  "data" => "example_data", # String
 })
 ```
 
@@ -196,7 +196,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.UrlTool.create({
-  "url" => "example", # String
+  "url" => "example_url", # String
 })
 ```
 
@@ -292,11 +292,11 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Utility.create({
-  "encoded" => "example", # String
-  "json" => "example", # String
-  "pattern" => "example", # String
-  "text" => "example", # String
-  "token" => "example", # String
+  "encoded" => "example_encoded", # String
+  "json" => "example_json", # String
+  "pattern" => "example_pattern", # String
+  "text" => "example_text", # String
+  "token" => "example_token", # String
 })
 ```
 

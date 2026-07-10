@@ -60,7 +60,7 @@ end
 
 ```ruby
 # create returns the bare created Generator record.
-created = client.Generator.create({ "data" => "example" })
+created = client.Generator.create({ "data" => "example_data" })
 
 ```
 
@@ -354,7 +354,7 @@ generators = client.Generator.list
 
 ```ruby
 generator = client.Generator.create({
-  "data" => "example", # String
+  "data" => "example_data", # String
 })
 ```
 
@@ -382,7 +382,7 @@ Create an instance: `url_tool = client.UrlTool`
 
 ```ruby
 url_tool = client.UrlTool.create({
-  "url" => "example", # String
+  "url" => "example_url", # String
 })
 ```
 
@@ -425,11 +425,11 @@ Create an instance: `utility = client.Utility`
 
 ```ruby
 utility = client.Utility.create({
-  "encoded" => "example", # String
-  "json" => "example", # String
-  "pattern" => "example", # String
-  "text" => "example", # String
-  "token" => "example", # String
+  "encoded" => "example_encoded", # String
+  "json" => "example_json", # String
+  "pattern" => "example_pattern", # String
+  "text" => "example_text", # String
+  "token" => "example_token", # String
 })
 ```
 

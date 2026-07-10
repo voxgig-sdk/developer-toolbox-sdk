@@ -15,9 +15,9 @@ main: {
           url: "https://conway-toolbox-production.up.railway.app"
         }
       ]
+      summary: "Free REST API with 40+ utilities for developers: UUID generation, QR codes, fake data, URL shortener, JSON tools, hashing, base64, regex tester, JWT decoder, password generator and more."
       title: "Developer Toolbox API"
       version: "1.0.0"
+      website: "https://conway-toolbox-production.up.railway.app"
     }
   }
-}
-

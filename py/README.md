@@ -66,7 +66,7 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Generator().create({"data": "example"})
+created = client.Generator().create({"data": "example_data"})
 
 ```
 
@@ -358,7 +358,7 @@ generators = client.Generator().list()
 
 ```python
 generator = client.Generator().create({
-    "data": "example",  # str
+    "data": "example_data",  # str
 })
 ```
 
@@ -386,7 +386,7 @@ Create an instance: `url_tool = client.UrlTool()`
 
 ```python
 url_tool = client.UrlTool().create({
-    "url": "example",  # str
+    "url": "example_url",  # str
 })
 ```
 
@@ -429,11 +429,11 @@ Create an instance: `utility = client.Utility()`
 
 ```python
 utility = client.Utility().create({
-    "encoded": "example",  # str
-    "json": "example",  # str
-    "pattern": "example",  # str
-    "text": "example",  # str
-    "token": "example",  # str
+    "encoded": "example_encoded",  # str
+    "json": "example_json",  # str
+    "pattern": "example_pattern",  # str
+    "text": "example_text",  # str
+    "token": "example_token",  # str
 })
 ```
 

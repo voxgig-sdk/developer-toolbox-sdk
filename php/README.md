@@ -61,7 +61,7 @@ try {
 
 ```php
 // create() returns the bare created Generator record.
-$created = $client->Generator()->create(["data" => "example"]);
+$created = $client->Generator()->create(["data" => "example_data"]);
 
 ```
 

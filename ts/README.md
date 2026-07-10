@@ -404,7 +404,7 @@ const generators = await client.Generator().list()
 
 ```ts
 const generator = await client.Generator().create({
-  data: /* string */,
+  data: 'example_data',
 })
 ```
 
@@ -432,7 +432,7 @@ Create an instance: `const url_tool = client.UrlTool()`
 
 ```ts
 const url_tool = await client.UrlTool().create({
-  url: /* string */,
+  url: 'example_url',
 })
 ```
 
@@ -475,11 +475,11 @@ Create an instance: `const utility = client.Utility()`
 
 ```ts
 const utility = await client.Utility().create({
-  encoded: /* string */,
-  json: /* string */,
-  pattern: /* string */,
-  text: /* string */,
-  token: /* string */,
+  encoded: 'example_encoded',
+  json: 'example_json',
+  pattern: 'example_pattern',
+  text: 'example_text',
+  token: 'example_token',
 })
 ```
 
