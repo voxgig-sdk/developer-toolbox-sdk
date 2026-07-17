@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- DeveloperToolbox SDK exists test
 
 local sdk = require("developer-toolbox_sdk")
 
