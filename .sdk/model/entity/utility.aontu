@@ -27,12 +27,7 @@ main: kit: entity: utility: {
       type: "`$STRING`"
     }
     {
-      name: "error"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "flag"
+      name: "flags"
       req: false
       type: "`$STRING`"
     }
@@ -57,7 +52,7 @@ main: kit: entity: utility: {
       type: "`$INTEGER`"
     }
     {
-      name: "is_match"
+      name: "isMatch"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -67,14 +62,9 @@ main: kit: entity: utility: {
       type: "`$STRING`"
     }
     {
-      name: "match"
+      name: "matches"
       req: false
       type: "`$ARRAY`"
-    }
-    {
-      name: "parsed"
-      req: false
-      type: "`$OBJECT`"
     }
     {
       name: "pattern"
@@ -100,11 +90,6 @@ main: kit: entity: utility: {
       name: "token"
       req: true
       type: "`$STRING`"
-    }
-    {
-      name: "valid"
-      req: false
-      type: "`$BOOLEAN`"
     }
   ]
 
@@ -174,7 +159,7 @@ main: kit: entity: utility: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.parsed`"
           }
         }
         {

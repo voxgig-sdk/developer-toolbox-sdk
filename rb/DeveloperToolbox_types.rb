@@ -19,13 +19,13 @@
 # @!attribute [rw] size
 #   @return [Integer, nil]
 #
-# @!attribute [rw] uuid
+# @!attribute [rw] uuids
 #   @return [Array, nil]
 Generator = Struct.new(
   :data,
   :password,
   :size,
-  :uuid,
+  :uuids,
   keyword_init: true
 )
 
@@ -40,13 +40,13 @@ Generator = Struct.new(
 # @!attribute [rw] size
 #   @return [Integer, nil]
 #
-# @!attribute [rw] uuid
+# @!attribute [rw] uuids
 #   @return [Array, nil]
 GeneratorLoadMatch = Struct.new(
   :data,
   :password,
   :size,
-  :uuid,
+  :uuids,
   keyword_init: true
 )
 
@@ -61,13 +61,13 @@ GeneratorLoadMatch = Struct.new(
 # @!attribute [rw] size
 #   @return [Integer, nil]
 #
-# @!attribute [rw] uuid
+# @!attribute [rw] uuids
 #   @return [Array, nil]
 GeneratorListMatch = Struct.new(
   :data,
   :password,
   :size,
-  :uuid,
+  :uuids,
   keyword_init: true
 )
 
@@ -82,54 +82,54 @@ GeneratorListMatch = Struct.new(
 # @!attribute [rw] size
 #   @return [Integer, nil]
 #
-# @!attribute [rw] uuid
+# @!attribute [rw] uuids
 #   @return [Array, nil]
 GeneratorCreateData = Struct.new(
   :data,
   :password,
   :size,
-  :uuid,
+  :uuids,
   keyword_init: true
 )
 
 # UrlTool entity data model.
 #
-# @!attribute [rw] custom_alia
+# @!attribute [rw] customAlias
 #   @return [String, nil]
 #
-# @!attribute [rw] original_url
+# @!attribute [rw] originalUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] short_url
+# @!attribute [rw] shortUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] url
 #   @return [String]
 UrlTool = Struct.new(
-  :custom_alia,
-  :original_url,
-  :short_url,
+  :customAlias,
+  :originalUrl,
+  :shortUrl,
   :url,
   keyword_init: true
 )
 
 # Request payload for UrlTool#create.
 #
-# @!attribute [rw] custom_alia
+# @!attribute [rw] customAlias
 #   @return [String, nil]
 #
-# @!attribute [rw] original_url
+# @!attribute [rw] originalUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] short_url
+# @!attribute [rw] shortUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] url
 #   @return [String]
 UrlToolCreateData = Struct.new(
-  :custom_alia,
-  :original_url,
-  :short_url,
+  :customAlias,
+  :originalUrl,
+  :shortUrl,
   :url,
   keyword_init: true
 )
@@ -145,10 +145,7 @@ UrlToolCreateData = Struct.new(
 # @!attribute [rw] encoded
 #   @return [String]
 #
-# @!attribute [rw] error
-#   @return [String, nil]
-#
-# @!attribute [rw] flag
+# @!attribute [rw] flags
 #   @return [String, nil]
 #
 # @!attribute [rw] formatted
@@ -163,17 +160,14 @@ UrlToolCreateData = Struct.new(
 # @!attribute [rw] indent
 #   @return [Integer, nil]
 #
-# @!attribute [rw] is_match
+# @!attribute [rw] isMatch
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] json
 #   @return [String]
 #
-# @!attribute [rw] match
+# @!attribute [rw] matches
 #   @return [Array, nil]
-#
-# @!attribute [rw] parsed
-#   @return [Hash, nil]
 #
 # @!attribute [rw] pattern
 #   @return [String]
@@ -189,29 +183,23 @@ UrlToolCreateData = Struct.new(
 #
 # @!attribute [rw] token
 #   @return [String]
-#
-# @!attribute [rw] valid
-#   @return [Boolean, nil]
 Utility = Struct.new(
   :algorithm,
   :decoded,
   :encoded,
-  :error,
-  :flag,
+  :flags,
   :formatted,
   :hash,
   :header,
   :indent,
-  :is_match,
+  :isMatch,
   :json,
-  :match,
-  :parsed,
+  :matches,
   :pattern,
   :payload,
   :signature,
   :text,
   :token,
-  :valid,
   keyword_init: true
 )
 
@@ -226,10 +214,7 @@ Utility = Struct.new(
 # @!attribute [rw] encoded
 #   @return [String]
 #
-# @!attribute [rw] error
-#   @return [String, nil]
-#
-# @!attribute [rw] flag
+# @!attribute [rw] flags
 #   @return [String, nil]
 #
 # @!attribute [rw] formatted
@@ -244,17 +229,14 @@ Utility = Struct.new(
 # @!attribute [rw] indent
 #   @return [Integer, nil]
 #
-# @!attribute [rw] is_match
+# @!attribute [rw] isMatch
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] json
 #   @return [String]
 #
-# @!attribute [rw] match
+# @!attribute [rw] matches
 #   @return [Array, nil]
-#
-# @!attribute [rw] parsed
-#   @return [Hash, nil]
 #
 # @!attribute [rw] pattern
 #   @return [String]
@@ -270,29 +252,23 @@ Utility = Struct.new(
 #
 # @!attribute [rw] token
 #   @return [String]
-#
-# @!attribute [rw] valid
-#   @return [Boolean, nil]
 UtilityCreateData = Struct.new(
   :algorithm,
   :decoded,
   :encoded,
-  :error,
-  :flag,
+  :flags,
   :formatted,
   :hash,
   :header,
   :indent,
-  :is_match,
+  :isMatch,
   :json,
-  :match,
-  :parsed,
+  :matches,
   :pattern,
   :payload,
   :signature,
   :text,
   :token,
-  :valid,
   keyword_init: true
 )
 

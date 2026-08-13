@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Generator record (raises on error).
+  # load returns the ENTITY — call data_get for the Generator record (raises on error).
   generator = client.Generator.load()
   puts generator
 rescue => err
@@ -59,7 +59,7 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Generator record.
+# create returns the ENTITY — call data_get for the created Generator record.
 created = client.Generator.create({ "data" => "example_data" })
 
 ```
@@ -139,7 +139,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = DeveloperToolboxSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 generator = client.Generator.list()
 puts generator
 ```
@@ -263,7 +264,7 @@ returns a result `Hash` with these keys:
 | `data` |  |
 | `password` |  |
 | `size` |  |
-| `uuid` |  |
+| `uuids` |  |
 
 Operations: Create, List, Load.
 
@@ -273,9 +274,9 @@ API path: `/api/qrcode`
 
 | Field | Description |
 | --- | --- |
-| `custom_alia` |  |
-| `original_url` |  |
-| `short_url` |  |
+| `customAlias` |  |
+| `originalUrl` |  |
+| `shortUrl` |  |
 | `url` |  |
 
 Operations: Create.
@@ -289,22 +290,19 @@ API path: `/api/url/shorten`
 | `algorithm` |  |
 | `decoded` |  |
 | `encoded` |  |
-| `error` |  |
-| `flag` |  |
+| `flags` |  |
 | `formatted` |  |
 | `hash` |  |
 | `header` |  |
 | `indent` |  |
-| `is_match` |  |
+| `isMatch` |  |
 | `json` |  |
-| `match` |  |
-| `parsed` |  |
+| `matches` |  |
 | `pattern` |  |
 | `payload` |  |
 | `signature` |  |
 | `text` |  |
 | `token` |  |
-| `valid` |  |
 
 Operations: Create.
 
@@ -334,12 +332,12 @@ Create an instance: `generator = client.Generator`
 | `data` | `String` |  |
 | `password` | `String` |  |
 | `size` | `Integer` |  |
-| `uuid` | `Array` |  |
+| `uuids` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Generator record (raises on error).
+# load returns the ENTITY — call data_get for the Generator record (raises on error).
 generator = client.Generator.load()
 ```
 
@@ -373,9 +371,9 @@ Create an instance: `url_tool = client.UrlTool`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `custom_alia` | `String` |  |
-| `original_url` | `String` |  |
-| `short_url` | `String` |  |
+| `customAlias` | `String` |  |
+| `originalUrl` | `String` |  |
+| `shortUrl` | `String` |  |
 | `url` | `String` |  |
 
 #### Example: Create
@@ -404,22 +402,19 @@ Create an instance: `utility = client.Utility`
 | `algorithm` | `String` |  |
 | `decoded` | `String` |  |
 | `encoded` | `String` |  |
-| `error` | `String` |  |
-| `flag` | `String` |  |
+| `flags` | `String` |  |
 | `formatted` | `String` |  |
 | `hash` | `String` |  |
 | `header` | `Hash` |  |
 | `indent` | `Integer` |  |
-| `is_match` | `Boolean` |  |
+| `isMatch` | `Boolean` |  |
 | `json` | `String` |  |
-| `match` | `Array` |  |
-| `parsed` | `Hash` |  |
+| `matches` | `Array` |  |
 | `pattern` | `String` |  |
 | `payload` | `Hash` |  |
 | `signature` | `String` |  |
 | `text` | `String` |  |
 | `token` | `String` |  |
-| `valid` | `Boolean` |  |
 
 #### Example: Create
 

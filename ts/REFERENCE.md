@@ -143,7 +143,7 @@ const generator = client.Generator()
 | `data` | `string` | Yes |  |
 | `password` | `string` | No |  |
 | `size` | `number` | No |  |
-| `uuid` | `any[]` | No |  |
+| `uuids` | `any[]` | No |  |
 
 ### Field Usage by Operation
 
@@ -152,7 +152,7 @@ const generator = client.Generator()
 | `data` | - | Yes | - |
 | `password` | - | - | - |
 | `size` | - | - | - |
-| `uuid` | - | - | - |
+| `uuids` | - | - | - |
 
 ### Operations
 
@@ -220,9 +220,9 @@ const url_tool = client.UrlTool()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | `string` | No |  |
-| `original_url` | `string` | No |  |
-| `short_url` | `string` | No |  |
+| `customAlias` | `string` | No |  |
+| `originalUrl` | `string` | No |  |
+| `shortUrl` | `string` | No |  |
 | `url` | `string` | Yes |  |
 
 ### Operations
@@ -278,22 +278,19 @@ const utility = client.Utility()
 | `algorithm` | `string` | No |  |
 | `decoded` | `string` | No |  |
 | `encoded` | `string` | Yes |  |
-| `error` | `string` | No |  |
-| `flag` | `string` | No |  |
+| `flags` | `string` | No |  |
 | `formatted` | `string` | No |  |
 | `hash` | `string` | No |  |
 | `header` | `Record<string, any>` | No |  |
 | `indent` | `number` | No |  |
-| `is_match` | `boolean` | No |  |
+| `isMatch` | `boolean` | No |  |
 | `json` | `string` | Yes |  |
-| `match` | `any[]` | No |  |
-| `parsed` | `Record<string, any>` | No |  |
+| `matches` | `any[]` | No |  |
 | `pattern` | `string` | Yes |  |
 | `payload` | `Record<string, any>` | No |  |
 | `signature` | `string` | No |  |
 | `text` | `string` | Yes |  |
 | `token` | `string` | Yes |  |
-| `valid` | `boolean` | No |  |
 
 ### Field Usage by Operation
 
@@ -302,22 +299,19 @@ const utility = client.Utility()
 | `algorithm` | - |
 | `decoded` | - |
 | `encoded` | Yes |
-| `error` | - |
-| `flag` | - |
+| `flags` | - |
 | `formatted` | - |
 | `hash` | - |
 | `header` | - |
 | `indent` | - |
-| `is_match` | - |
+| `isMatch` | - |
 | `json` | - |
-| `match` | - |
-| `parsed` | - |
+| `matches` | - |
 | `pattern` | - |
 | `payload` | - |
 | `signature` | - |
 | `text` | - |
 | `token` | - |
-| `valid` | - |
 
 ### Operations
 

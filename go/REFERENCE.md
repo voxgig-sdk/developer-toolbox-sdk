@@ -109,7 +109,7 @@ fmt.Println(generator.GetName()) // "generator"
 | `data` | `string` | Yes |  |
 | `password` | `string` | No |  |
 | `size` | `int` | No |  |
-| `uuid` | `[]any` | No |  |
+| `uuids` | `[]any` | No |  |
 
 ### Field Usage by Operation
 
@@ -118,7 +118,7 @@ fmt.Println(generator.GetName()) // "generator"
 | `data` | - | Yes | - |
 | `password` | - | - | - |
 | `size` | - | - | - |
-| `uuid` | - | - | - |
+| `uuids` | - | - | - |
 
 ### Operations
 
@@ -195,9 +195,9 @@ fmt.Println(urlTool.GetName()) // "url_tool"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | `string` | No |  |
-| `original_url` | `string` | No |  |
-| `short_url` | `string` | No |  |
+| `customAlias` | `string` | No |  |
+| `originalUrl` | `string` | No |  |
+| `shortUrl` | `string` | No |  |
 | `url` | `string` | Yes |  |
 
 ### Operations
@@ -254,22 +254,19 @@ fmt.Println(utility.GetName()) // "utility"
 | `algorithm` | `string` | No |  |
 | `decoded` | `string` | No |  |
 | `encoded` | `string` | Yes |  |
-| `error` | `string` | No |  |
-| `flag` | `string` | No |  |
+| `flags` | `string` | No |  |
 | `formatted` | `string` | No |  |
 | `hash` | `string` | No |  |
 | `header` | `map[string]any` | No |  |
 | `indent` | `int` | No |  |
-| `is_match` | `bool` | No |  |
+| `isMatch` | `bool` | No |  |
 | `json` | `string` | Yes |  |
-| `match` | `[]any` | No |  |
-| `parsed` | `map[string]any` | No |  |
+| `matches` | `[]any` | No |  |
 | `pattern` | `string` | Yes |  |
 | `payload` | `map[string]any` | No |  |
 | `signature` | `string` | No |  |
 | `text` | `string` | Yes |  |
 | `token` | `string` | Yes |  |
-| `valid` | `bool` | No |  |
 
 ### Field Usage by Operation
 
@@ -278,22 +275,19 @@ fmt.Println(utility.GetName()) // "utility"
 | `algorithm` | - |
 | `decoded` | - |
 | `encoded` | Yes |
-| `error` | - |
-| `flag` | - |
+| `flags` | - |
 | `formatted` | - |
 | `hash` | - |
 | `header` | - |
 | `indent` | - |
-| `is_match` | - |
+| `isMatch` | - |
 | `json` | - |
-| `match` | - |
-| `parsed` | - |
+| `matches` | - |
 | `pattern` | - |
 | `payload` | - |
 | `signature` | - |
 | `text` | - |
 | `token` | - |
-| `valid` | - |
 
 ### Operations
 

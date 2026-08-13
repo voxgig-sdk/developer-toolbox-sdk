@@ -43,8 +43,8 @@ class DeveloperToolboxTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('DEVELOPERTOOLBOX_TEST_LIVE');
-        $override = self::getenv('DEVELOPERTOOLBOX_TEST_OVERRIDE');
+        $live = self::getenv('DEVELOPER_TOOLBOX_TEST_LIVE');
+        $override = self::getenv('DEVELOPER_TOOLBOX_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class DeveloperToolboxTestRunner
             }
         }
 
-        $explain = self::getenv('DEVELOPERTOOLBOX_TEST_EXPLAIN');
+        $explain = self::getenv('DEVELOPER_TOOLBOX_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['DEVELOPERTOOLBOX_TEST_EXPLAIN'] = $explain;
+            $m['DEVELOPER_TOOLBOX_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

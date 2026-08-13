@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import DeveloperToolboxControl
-from core.error import DeveloperToolboxError
-from core.result import DeveloperToolboxResult
-from core.spec import DeveloperToolboxSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import DeveloperToolboxControl
+from projectname_sdk.core.error import DeveloperToolboxError
+from projectname_sdk.core.result import DeveloperToolboxResult
+from projectname_sdk.core.spec import DeveloperToolboxSpec
 
 
 # True when this SDK was generated with the named feature.

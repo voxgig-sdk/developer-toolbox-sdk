@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# DeveloperToolbox SDK exists test
 
 import pytest
 from developertoolbox_sdk import DeveloperToolboxSDK

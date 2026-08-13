@@ -26,8 +26,8 @@ import {
 describe('UtilityEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DEVELOPERTOOLBOX_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DEVELOPERTOOLBOX_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DEVELOPER_TOOLBOX_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DEVELOPER_TOOLBOX_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DeveloperToolboxSDK.test()
@@ -62,7 +62,7 @@ describe('UtilityEntity', async () => {
     const utility_ref01_ent = client.Utility()
     let utility_ref01_data = setup.data.new.utility['utility_ref01']
 
-    utility_ref01_data = await utility_ref01_ent.create(utility_ref01_data)
+    utility_ref01_data = (await utility_ref01_ent.create(utility_ref01_data)).data()
     assert(null != utility_ref01_data)
 
 

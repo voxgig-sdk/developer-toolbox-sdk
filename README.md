@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = DeveloperToolboxSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = DeveloperToolboxSDK.test({
+  entity: {
+    generator: {
+      test01: { id: 'test01', data: 'example_data' },
+    },
+  },
+})
 const generators = await client.Generator().list()
-// generators is an array of bare Generator records populated with mock data
+// generators is an array of Generator entities, populated with mock data
+// — call generators[0].data() for the record itself
 console.log(generators)
 ```
 
@@ -110,7 +119,7 @@ import { DeveloperToolboxSDK } from '@voxgig-sdk/developer-toolbox'
 
 const client = new DeveloperToolboxSDK()
 
-// List all generators (returns Generator[])
+// List all generators (returns GeneratorEntity[] — .data() for the record)
 const generators = await client.Generator().list()
 for (const generator of generators) {
   console.log(generator)
@@ -155,7 +164,7 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Generator** | The Generator entity (create, list, load). | `/api/qrcode` |
+| **Generator** | The Generator entity (create, list, load). | `/api/fake-data` |
 | **UrlTool** | The UrlTool entity (create). | `/api/url/shorten` |
 | **Utility** | The Utility entity (create). | `/api/base64/decode` |
 
@@ -193,7 +202,7 @@ $client = new DeveloperToolboxSDK();
 $generators = $client->Generator()->list();
 print_r($generators);
 
-// Load a specific generator (returns the bare record; throws on error)
+// Load a specific generator (returns the ENTITY; call data_get() for the record; throws on error)
 $generator = $client->Generator()->load();
 print_r($generator);
 ```
@@ -224,7 +233,7 @@ client = DeveloperToolboxSDK.new
 generators = client.Generator.list
 puts generators
 
-# Load a specific generator (returns the bare record; raises on error)
+# Load a specific generator (returns the ENTITY; call data_get for the record)
 generator = client.Generator.load()
 puts generator
 ```
@@ -361,6 +370,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://conway-toolbox-production.up.railway.app](https://conway-toolbox-production.up.railway.app)
 

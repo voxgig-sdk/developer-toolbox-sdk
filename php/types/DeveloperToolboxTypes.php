@@ -18,7 +18,7 @@ class Generator
     public string $data;
     public ?string $password = null;
     public ?int $size = null;
-    public ?array $uuid = null;
+    public ?array $uuids = null;
 }
 
 /** Request payload for Generator#load. */
@@ -27,7 +27,7 @@ class GeneratorLoadMatch
     public ?string $data = null;
     public ?string $password = null;
     public ?int $size = null;
-    public ?array $uuid = null;
+    public ?array $uuids = null;
 }
 
 /** Request payload for Generator#list. */
@@ -36,7 +36,7 @@ class GeneratorListMatch
     public ?string $data = null;
     public ?string $password = null;
     public ?int $size = null;
-    public ?array $uuid = null;
+    public ?array $uuids = null;
 }
 
 /** Request payload for Generator#create. */
@@ -45,24 +45,24 @@ class GeneratorCreateData
     public string $data;
     public ?string $password = null;
     public ?int $size = null;
-    public ?array $uuid = null;
+    public ?array $uuids = null;
 }
 
 /** UrlTool entity data model. */
 class UrlTool
 {
-    public ?string $custom_alia = null;
-    public ?string $original_url = null;
-    public ?string $short_url = null;
+    public ?string $customAlias = null;
+    public ?string $originalUrl = null;
+    public ?string $shortUrl = null;
     public string $url;
 }
 
 /** Request payload for UrlTool#create. */
 class UrlToolCreateData
 {
-    public ?string $custom_alia = null;
-    public ?string $original_url = null;
-    public ?string $short_url = null;
+    public ?string $customAlias = null;
+    public ?string $originalUrl = null;
+    public ?string $shortUrl = null;
     public string $url;
 }
 
@@ -72,22 +72,19 @@ class Utility
     public ?string $algorithm = null;
     public ?string $decoded = null;
     public string $encoded;
-    public ?string $error = null;
-    public ?string $flag = null;
+    public ?string $flags = null;
     public ?string $formatted = null;
     public ?string $hash = null;
     public ?array $header = null;
     public ?int $indent = null;
-    public ?bool $is_match = null;
+    public ?bool $isMatch = null;
     public string $json;
-    public ?array $match = null;
-    public ?array $parsed = null;
+    public ?array $matches = null;
     public string $pattern;
     public ?array $payload = null;
     public ?string $signature = null;
     public string $text;
     public string $token;
-    public ?bool $valid = null;
 }
 
 /** Request payload for Utility#create. */
@@ -96,21 +93,18 @@ class UtilityCreateData
     public ?string $algorithm = null;
     public ?string $decoded = null;
     public string $encoded;
-    public ?string $error = null;
-    public ?string $flag = null;
+    public ?string $flags = null;
     public ?string $formatted = null;
     public ?string $hash = null;
     public ?array $header = null;
     public ?int $indent = null;
-    public ?bool $is_match = null;
+    public ?bool $isMatch = null;
     public string $json;
-    public ?array $match = null;
-    public ?array $parsed = null;
+    public ?array $matches = null;
     public string $pattern;
     public ?array $payload = null;
     public ?string $signature = null;
     public string $text;
     public string $token;
-    public ?bool $valid = null;
 }
 

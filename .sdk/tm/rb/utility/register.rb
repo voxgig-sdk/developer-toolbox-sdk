@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ DeveloperToolboxUtility.registrar = ->(u) {
   u.prepare_params = DeveloperToolboxUtilities::PrepareParams
   u.prepare_path = DeveloperToolboxUtilities::PreparePath
   u.prepare_query = DeveloperToolboxUtilities::PrepareQuery
+  u.graphql_body = DeveloperToolboxUtilities::GraphqlBody
+  u.graphql_errors = DeveloperToolboxUtilities::GraphqlErrors
   u.result_basic = DeveloperToolboxUtilities::ResultBasic
   u.result_body = DeveloperToolboxUtilities::ResultBody
   u.result_headers = DeveloperToolboxUtilities::ResultHeaders

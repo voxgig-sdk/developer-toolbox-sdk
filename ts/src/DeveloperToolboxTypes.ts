@@ -9,41 +9,41 @@ export interface Generator {
   data: string
   password?: string
   size?: number
-  uuid?: any[]
+  uuids?: any[]
 }
 
 export interface GeneratorLoadMatch {
   data?: string
   password?: string
   size?: number
-  uuid?: any[]
+  uuids?: any[]
 }
 
 export interface GeneratorListMatch {
   data?: string
   password?: string
   size?: number
-  uuid?: any[]
+  uuids?: any[]
 }
 
 export interface GeneratorCreateData {
   data: string
   password?: string
   size?: number
-  uuid?: any[]
+  uuids?: any[]
 }
 
 export interface UrlTool {
-  custom_alia?: string
-  original_url?: string
-  short_url?: string
+  customAlias?: string
+  originalUrl?: string
+  shortUrl?: string
   url: string
 }
 
 export interface UrlToolCreateData {
-  custom_alia?: string
-  original_url?: string
-  short_url?: string
+  customAlias?: string
+  originalUrl?: string
+  shortUrl?: string
   url: string
 }
 
@@ -51,43 +51,37 @@ export interface Utility {
   algorithm?: string
   decoded?: string
   encoded: string
-  error?: string
-  flag?: string
+  flags?: string
   formatted?: string
   hash?: string
   header?: Record<string, any>
   indent?: number
-  is_match?: boolean
+  isMatch?: boolean
   json: string
-  match?: any[]
-  parsed?: Record<string, any>
+  matches?: any[]
   pattern: string
   payload?: Record<string, any>
   signature?: string
   text: string
   token: string
-  valid?: boolean
 }
 
 export interface UtilityCreateData {
   algorithm?: string
   decoded?: string
   encoded: string
-  error?: string
-  flag?: string
+  flags?: string
   formatted?: string
   hash?: string
   header?: Record<string, any>
   indent?: number
-  is_match?: boolean
+  isMatch?: boolean
   json: string
-  match?: any[]
-  parsed?: Record<string, any>
+  matches?: any[]
   pattern: string
   payload?: Record<string, any>
   signature?: string
   text: string
   token: string
-  valid?: boolean
 }
 

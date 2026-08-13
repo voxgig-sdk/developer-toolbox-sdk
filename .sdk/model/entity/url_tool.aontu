@@ -6,17 +6,17 @@ main: kit: entity: url_tool: {
 
   fields: [
     {
-      name: "custom_alia"
+      name: "customAlias"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "original_url"
+      name: "originalUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "short_url"
+      name: "shortUrl"
       req: false
       type: "`$STRING`"
     }

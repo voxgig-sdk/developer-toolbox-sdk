@@ -104,7 +104,7 @@ generator = client.Generator
 | `data` | `String` | Yes |  |
 | `password` | `String` | No |  |
 | `size` | `Integer` | No |  |
-| `uuid` | `Array` | No |  |
+| `uuids` | `Array` | No |  |
 
 ### Field Usage by Operation
 
@@ -113,7 +113,7 @@ generator = client.Generator
 | `data` | - | Yes | - |
 | `password` | - | - | - |
 | `size` | - | - | - |
-| `uuid` | - | - | - |
+| `uuids` | - | - | - |
 
 ### Operations
 
@@ -183,9 +183,9 @@ url_tool = client.UrlTool
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | `String` | No |  |
-| `original_url` | `String` | No |  |
-| `short_url` | `String` | No |  |
+| `customAlias` | `String` | No |  |
+| `originalUrl` | `String` | No |  |
+| `shortUrl` | `String` | No |  |
 | `url` | `String` | Yes |  |
 
 ### Operations
@@ -243,22 +243,19 @@ utility = client.Utility
 | `algorithm` | `String` | No |  |
 | `decoded` | `String` | No |  |
 | `encoded` | `String` | Yes |  |
-| `error` | `String` | No |  |
-| `flag` | `String` | No |  |
+| `flags` | `String` | No |  |
 | `formatted` | `String` | No |  |
 | `hash` | `String` | No |  |
 | `header` | `Hash` | No |  |
 | `indent` | `Integer` | No |  |
-| `is_match` | `Boolean` | No |  |
+| `isMatch` | `Boolean` | No |  |
 | `json` | `String` | Yes |  |
-| `match` | `Array` | No |  |
-| `parsed` | `Hash` | No |  |
+| `matches` | `Array` | No |  |
 | `pattern` | `String` | Yes |  |
 | `payload` | `Hash` | No |  |
 | `signature` | `String` | No |  |
 | `text` | `String` | Yes |  |
 | `token` | `String` | Yes |  |
-| `valid` | `Boolean` | No |  |
 
 ### Field Usage by Operation
 
@@ -267,22 +264,19 @@ utility = client.Utility
 | `algorithm` | - |
 | `decoded` | - |
 | `encoded` | Yes |
-| `error` | - |
-| `flag` | - |
+| `flags` | - |
 | `formatted` | - |
 | `hash` | - |
 | `header` | - |
 | `indent` | - |
-| `is_match` | - |
+| `isMatch` | - |
 | `json` | - |
-| `match` | - |
-| `parsed` | - |
+| `matches` | - |
 | `pattern` | - |
 | `payload` | - |
 | `signature` | - |
 | `text` | - |
 | `token` | - |
-| `valid` | - |
 
 ### Operations
 

@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Generator record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Generator record (throws on error).
     $generator = $client->Generator()->load();
     print_r($generator);
 } catch (\Throwable $err) {
@@ -60,7 +60,7 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Generator record.
+// create() returns the ENTITY — call data_get() for the created Generator record.
 $created = $client->Generator()->create(["data" => "example_data"]);
 
 ```
@@ -145,7 +145,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = DeveloperToolboxSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $generator = $client->Generator()->list();
 print_r($generator);
 ```
@@ -248,7 +249,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -273,7 +274,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `data` |  |
 | `password` |  |
 | `size` |  |
-| `uuid` |  |
+| `uuids` |  |
 
 Operations: Create, List, Load.
 
@@ -283,9 +284,9 @@ API path: `/api/qrcode`
 
 | Field | Description |
 | --- | --- |
-| `custom_alia` |  |
-| `original_url` |  |
-| `short_url` |  |
+| `customAlias` |  |
+| `originalUrl` |  |
+| `shortUrl` |  |
 | `url` |  |
 
 Operations: Create.
@@ -299,22 +300,19 @@ API path: `/api/url/shorten`
 | `algorithm` |  |
 | `decoded` |  |
 | `encoded` |  |
-| `error` |  |
-| `flag` |  |
+| `flags` |  |
 | `formatted` |  |
 | `hash` |  |
 | `header` |  |
 | `indent` |  |
-| `is_match` |  |
+| `isMatch` |  |
 | `json` |  |
-| `match` |  |
-| `parsed` |  |
+| `matches` |  |
 | `pattern` |  |
 | `payload` |  |
 | `signature` |  |
 | `text` |  |
 | `token` |  |
-| `valid` |  |
 
 Operations: Create.
 
@@ -344,12 +342,12 @@ Create an instance: `$generator = $client->Generator();`
 | `data` | `string` |  |
 | `password` | `string` |  |
 | `size` | `int` |  |
-| `uuid` | `array` |  |
+| `uuids` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Generator record (throws on error).
+// load() returns the ENTITY — call data_get() for the Generator record (throws on error).
 $generator = $client->Generator()->load();
 ```
 
@@ -383,9 +381,9 @@ Create an instance: `$url_tool = $client->UrlTool();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `custom_alia` | `string` |  |
-| `original_url` | `string` |  |
-| `short_url` | `string` |  |
+| `customAlias` | `string` |  |
+| `originalUrl` | `string` |  |
+| `shortUrl` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Create
@@ -414,22 +412,19 @@ Create an instance: `$utility = $client->Utility();`
 | `algorithm` | `string` |  |
 | `decoded` | `string` |  |
 | `encoded` | `string` |  |
-| `error` | `string` |  |
-| `flag` | `string` |  |
+| `flags` | `string` |  |
 | `formatted` | `string` |  |
 | `hash` | `string` |  |
 | `header` | `array` |  |
 | `indent` | `int` |  |
-| `is_match` | `bool` |  |
+| `isMatch` | `bool` |  |
 | `json` | `string` |  |
-| `match` | `array` |  |
-| `parsed` | `array` |  |
+| `matches` | `array` |  |
 | `pattern` | `string` |  |
 | `payload` | `array` |  |
 | `signature` | `string` |  |
 | `text` | `string` |  |
 | `token` | `string` |  |
-| `valid` | `bool` |  |
 
 #### Example: Create
 

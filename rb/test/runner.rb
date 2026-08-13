@@ -23,8 +23,8 @@ module DeveloperToolboxTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("DEVELOPERTOOLBOX_TEST_LIVE")
-    override = getenv("DEVELOPERTOOLBOX_TEST_OVERRIDE")
+    live = getenv("DEVELOPER_TOOLBOX_TEST_LIVE")
+    override = getenv("DEVELOPER_TOOLBOX_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module DeveloperToolboxTestRunner
       end
     end
 
-    explain = getenv("DEVELOPERTOOLBOX_TEST_EXPLAIN")
-    m["DEVELOPERTOOLBOX_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("DEVELOPER_TOOLBOX_TEST_EXPLAIN")
+    m["DEVELOPER_TOOLBOX_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

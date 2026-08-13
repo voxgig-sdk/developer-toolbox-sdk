@@ -26,8 +26,8 @@ import {
 describe('UrlToolEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DEVELOPERTOOLBOX_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DEVELOPERTOOLBOX_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DEVELOPER_TOOLBOX_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DEVELOPER_TOOLBOX_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DeveloperToolboxSDK.test()
@@ -62,7 +62,7 @@ describe('UrlToolEntity', async () => {
     const url_tool_ref01_ent = client.UrlTool()
     let url_tool_ref01_data = setup.data.new.url_tool['url_tool_ref01']
 
-    url_tool_ref01_data = await url_tool_ref01_ent.create(url_tool_ref01_data)
+    url_tool_ref01_data = (await url_tool_ref01_ent.create(url_tool_ref01_data)).data()
     assert(null != url_tool_ref01_data)
 
 

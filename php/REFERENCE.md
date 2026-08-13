@@ -103,7 +103,7 @@ $generator = $client->Generator();
 | `data` | `string` | Yes |  |
 | `password` | `string` | No |  |
 | `size` | `int` | No |  |
-| `uuid` | `array` | No |  |
+| `uuids` | `array` | No |  |
 
 ### Field Usage by Operation
 
@@ -112,7 +112,7 @@ $generator = $client->Generator();
 | `data` | - | Yes | - |
 | `password` | - | - | - |
 | `size` | - | - | - |
-| `uuid` | - | - | - |
+| `uuids` | - | - | - |
 
 ### Operations
 
@@ -182,9 +182,9 @@ $url_tool = $client->UrlTool();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | `string` | No |  |
-| `original_url` | `string` | No |  |
-| `short_url` | `string` | No |  |
+| `customAlias` | `string` | No |  |
+| `originalUrl` | `string` | No |  |
+| `shortUrl` | `string` | No |  |
 | `url` | `string` | Yes |  |
 
 ### Operations
@@ -242,22 +242,19 @@ $utility = $client->Utility();
 | `algorithm` | `string` | No |  |
 | `decoded` | `string` | No |  |
 | `encoded` | `string` | Yes |  |
-| `error` | `string` | No |  |
-| `flag` | `string` | No |  |
+| `flags` | `string` | No |  |
 | `formatted` | `string` | No |  |
 | `hash` | `string` | No |  |
 | `header` | `array` | No |  |
 | `indent` | `int` | No |  |
-| `is_match` | `bool` | No |  |
+| `isMatch` | `bool` | No |  |
 | `json` | `string` | Yes |  |
-| `match` | `array` | No |  |
-| `parsed` | `array` | No |  |
+| `matches` | `array` | No |  |
 | `pattern` | `string` | Yes |  |
 | `payload` | `array` | No |  |
 | `signature` | `string` | No |  |
 | `text` | `string` | Yes |  |
 | `token` | `string` | Yes |  |
-| `valid` | `bool` | No |  |
 
 ### Field Usage by Operation
 
@@ -266,22 +263,19 @@ $utility = $client->Utility();
 | `algorithm` | - |
 | `decoded` | - |
 | `encoded` | Yes |
-| `error` | - |
-| `flag` | - |
+| `flags` | - |
 | `formatted` | - |
 | `hash` | - |
 | `header` | - |
 | `indent` | - |
-| `is_match` | - |
+| `isMatch` | - |
 | `json` | - |
-| `match` | - |
-| `parsed` | - |
+| `matches` | - |
 | `pattern` | - |
 | `payload` | - |
 | `signature` | - |
 | `text` | - |
 | `token` | - |
-| `valid` | - |
 
 ### Operations
 

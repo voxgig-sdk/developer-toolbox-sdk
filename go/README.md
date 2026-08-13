@@ -282,7 +282,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"data"` |  |
 | `"password"` |  |
 | `"size"` |  |
-| `"uuid"` |  |
+| `"uuids"` |  |
 
 Operations: Create, List, Load.
 
@@ -292,9 +292,9 @@ API path: `/api/qrcode`
 
 | Field | Description |
 | --- | --- |
-| `"custom_alia"` |  |
-| `"original_url"` |  |
-| `"short_url"` |  |
+| `"customAlias"` |  |
+| `"originalUrl"` |  |
+| `"shortUrl"` |  |
 | `"url"` |  |
 
 Operations: Create.
@@ -308,22 +308,19 @@ API path: `/api/url/shorten`
 | `"algorithm"` |  |
 | `"decoded"` |  |
 | `"encoded"` |  |
-| `"error"` |  |
-| `"flag"` |  |
+| `"flags"` |  |
 | `"formatted"` |  |
 | `"hash"` |  |
 | `"header"` |  |
 | `"indent"` |  |
-| `"is_match"` |  |
+| `"isMatch"` |  |
 | `"json"` |  |
-| `"match"` |  |
-| `"parsed"` |  |
+| `"matches"` |  |
 | `"pattern"` |  |
 | `"payload"` |  |
 | `"signature"` |  |
 | `"text"` |  |
 | `"token"` |  |
-| `"valid"` |  |
 
 Operations: Create.
 
@@ -353,7 +350,7 @@ Create an instance: `generator := client.Generator(nil)`
 | `data` | `string` |  |
 | `password` | `string` |  |
 | `size` | `int` |  |
-| `uuid` | `[]any` |  |
+| `uuids` | `[]any` |  |
 
 #### Example: Load
 
@@ -402,9 +399,9 @@ Create an instance: `urlTool := client.UrlTool(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `custom_alia` | `string` |  |
-| `original_url` | `string` |  |
-| `short_url` | `string` |  |
+| `customAlias` | `string` |  |
+| `originalUrl` | `string` |  |
+| `shortUrl` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Create
@@ -437,22 +434,19 @@ Create an instance: `utility := client.Utility(nil)`
 | `algorithm` | `string` |  |
 | `decoded` | `string` |  |
 | `encoded` | `string` |  |
-| `error` | `string` |  |
-| `flag` | `string` |  |
+| `flags` | `string` |  |
 | `formatted` | `string` |  |
 | `hash` | `string` |  |
 | `header` | `map[string]any` |  |
 | `indent` | `int` |  |
-| `is_match` | `bool` |  |
+| `isMatch` | `bool` |  |
 | `json` | `string` |  |
-| `match` | `[]any` |  |
-| `parsed` | `map[string]any` |  |
+| `matches` | `[]any` |  |
 | `pattern` | `string` |  |
 | `payload` | `map[string]any` |  |
 | `signature` | `string` |  |
 | `text` | `string` |  |
 | `token` | `string` |  |
-| `valid` | `bool` |  |
 
 #### Example: Create
 

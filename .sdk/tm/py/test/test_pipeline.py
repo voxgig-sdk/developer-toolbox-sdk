@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import DeveloperToolboxSDK
-from core.error import DeveloperToolboxError
-from core.result import DeveloperToolboxResult
-from core.response import DeveloperToolboxResponse
-from core.spec import DeveloperToolboxSpec
-from feature.base_feature import DeveloperToolboxBaseFeature
+from projectname_sdk.core.error import DeveloperToolboxError
+from projectname_sdk.core.result import DeveloperToolboxResult
+from projectname_sdk.core.response import DeveloperToolboxResponse
+from projectname_sdk.core.spec import DeveloperToolboxSpec
+from projectname_sdk.feature.base_feature import DeveloperToolboxBaseFeature
 
 
 def _client():

@@ -105,11 +105,11 @@ function generator_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID"] = {},
-    ["DEVELOPERTOOLBOX_TEST_LIVE"] = "FALSE",
+    ["DEVELOPER_TOOLBOX_TEST_GENERATOR_ENTID"] = {},
+    ["DEVELOPER_TOOLBOX_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["DEVELOPERTOOLBOX_TEST_LIVE"] == "TRUE"
+  local live = env["DEVELOPER_TOOLBOX_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

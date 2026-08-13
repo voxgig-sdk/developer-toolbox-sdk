@@ -98,7 +98,7 @@ generator = client.Generator()
 | `data` | `str` | Yes |  |
 | `password` | `str` | No |  |
 | `size` | `int` | No |  |
-| `uuid` | `list` | No |  |
+| `uuids` | `list` | No |  |
 
 ### Field Usage by Operation
 
@@ -107,7 +107,7 @@ generator = client.Generator()
 | `data` | - | Yes | - |
 | `password` | - | - | - |
 | `size` | - | - | - |
-| `uuid` | - | - | - |
+| `uuids` | - | - | - |
 
 ### Operations
 
@@ -178,9 +178,9 @@ url_tool = client.UrlTool()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | `str` | No |  |
-| `original_url` | `str` | No |  |
-| `short_url` | `str` | No |  |
+| `customAlias` | `str` | No |  |
+| `originalUrl` | `str` | No |  |
+| `shortUrl` | `str` | No |  |
 | `url` | `str` | Yes |  |
 
 ### Operations
@@ -237,22 +237,19 @@ utility = client.Utility()
 | `algorithm` | `str` | No |  |
 | `decoded` | `str` | No |  |
 | `encoded` | `str` | Yes |  |
-| `error` | `str` | No |  |
-| `flag` | `str` | No |  |
+| `flags` | `str` | No |  |
 | `formatted` | `str` | No |  |
 | `hash` | `str` | No |  |
 | `header` | `dict` | No |  |
 | `indent` | `int` | No |  |
-| `is_match` | `bool` | No |  |
+| `isMatch` | `bool` | No |  |
 | `json` | `str` | Yes |  |
-| `match` | `list` | No |  |
-| `parsed` | `dict` | No |  |
+| `matches` | `list` | No |  |
 | `pattern` | `str` | Yes |  |
 | `payload` | `dict` | No |  |
 | `signature` | `str` | No |  |
 | `text` | `str` | Yes |  |
 | `token` | `str` | Yes |  |
-| `valid` | `bool` | No |  |
 
 ### Field Usage by Operation
 
@@ -261,22 +258,19 @@ utility = client.Utility()
 | `algorithm` | - |
 | `decoded` | - |
 | `encoded` | Yes |
-| `error` | - |
-| `flag` | - |
+| `flags` | - |
 | `formatted` | - |
 | `hash` | - |
 | `header` | - |
 | `indent` | - |
-| `is_match` | - |
+| `isMatch` | - |
 | `json` | - |
-| `match` | - |
-| `parsed` | - |
+| `matches` | - |
 | `pattern` | - |
 | `payload` | - |
 | `signature` | - |
 | `text` | - |
 | `token` | - |
-| `valid` | - |
 
 ### Operations
 

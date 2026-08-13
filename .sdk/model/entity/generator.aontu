@@ -27,7 +27,7 @@ main: kit: entity: generator: {
       type: "`$INTEGER`"
     }
     {
-      name: "uuid"
+      name: "uuids"
       req: false
       type: "`$ARRAY`"
     }
@@ -90,7 +90,7 @@ main: kit: entity: generator: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -119,7 +119,7 @@ main: kit: entity: generator: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.uuids`"
           }
         }
       ]

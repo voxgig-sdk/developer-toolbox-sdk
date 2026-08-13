@@ -6,14 +6,18 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/developer-toolbox-sdk/go/core"
+)
 
 // Generator is the typed data model for the generator entity.
 type Generator struct {
 	Data string `json:"data"`
 	Password *string `json:"password,omitempty"`
 	Size *int `json:"size,omitempty"`
-	Uuid *[]any `json:"uuid,omitempty"`
+	Uuids *[]any `json:"uuids,omitempty"`
 }
 
 // GeneratorLoadMatch is the typed request payload for Generator.LoadTyped.
@@ -21,7 +25,7 @@ type GeneratorLoadMatch struct {
 	Data *string `json:"data,omitempty"`
 	Password *string `json:"password,omitempty"`
 	Size *int `json:"size,omitempty"`
-	Uuid *[]any `json:"uuid,omitempty"`
+	Uuids *[]any `json:"uuids,omitempty"`
 }
 
 // GeneratorListMatch is the typed request payload for Generator.ListTyped.
@@ -29,7 +33,7 @@ type GeneratorListMatch struct {
 	Data *string `json:"data,omitempty"`
 	Password *string `json:"password,omitempty"`
 	Size *int `json:"size,omitempty"`
-	Uuid *[]any `json:"uuid,omitempty"`
+	Uuids *[]any `json:"uuids,omitempty"`
 }
 
 // GeneratorCreateData is the typed request payload for Generator.CreateTyped.
@@ -37,22 +41,22 @@ type GeneratorCreateData struct {
 	Data string `json:"data"`
 	Password *string `json:"password,omitempty"`
 	Size *int `json:"size,omitempty"`
-	Uuid *[]any `json:"uuid,omitempty"`
+	Uuids *[]any `json:"uuids,omitempty"`
 }
 
 // UrlTool is the typed data model for the url_tool entity.
 type UrlTool struct {
-	CustomAlia *string `json:"custom_alia,omitempty"`
-	OriginalUrl *string `json:"original_url,omitempty"`
-	ShortUrl *string `json:"short_url,omitempty"`
+	CustomAlias *string `json:"customAlias,omitempty"`
+	OriginalUrl *string `json:"originalUrl,omitempty"`
+	ShortUrl *string `json:"shortUrl,omitempty"`
 	Url string `json:"url"`
 }
 
 // UrlToolCreateData is the typed request payload for UrlTool.CreateTyped.
 type UrlToolCreateData struct {
-	CustomAlia *string `json:"custom_alia,omitempty"`
-	OriginalUrl *string `json:"original_url,omitempty"`
-	ShortUrl *string `json:"short_url,omitempty"`
+	CustomAlias *string `json:"customAlias,omitempty"`
+	OriginalUrl *string `json:"originalUrl,omitempty"`
+	ShortUrl *string `json:"shortUrl,omitempty"`
 	Url string `json:"url"`
 }
 
@@ -61,22 +65,19 @@ type Utility struct {
 	Algorithm *string `json:"algorithm,omitempty"`
 	Decoded *string `json:"decoded,omitempty"`
 	Encoded string `json:"encoded"`
-	Error *string `json:"error,omitempty"`
-	Flag *string `json:"flag,omitempty"`
+	Flags *string `json:"flags,omitempty"`
 	Formatted *string `json:"formatted,omitempty"`
 	Hash *string `json:"hash,omitempty"`
 	Header *map[string]any `json:"header,omitempty"`
 	Indent *int `json:"indent,omitempty"`
-	IsMatch *bool `json:"is_match,omitempty"`
+	IsMatch *bool `json:"isMatch,omitempty"`
 	Json string `json:"json"`
-	Match *[]any `json:"match,omitempty"`
-	Parsed *map[string]any `json:"parsed,omitempty"`
+	Matches *[]any `json:"matches,omitempty"`
 	Pattern string `json:"pattern"`
 	Payload *map[string]any `json:"payload,omitempty"`
 	Signature *string `json:"signature,omitempty"`
 	Text string `json:"text"`
 	Token string `json:"token"`
-	Valid *bool `json:"valid,omitempty"`
 }
 
 // UtilityCreateData is the typed request payload for Utility.CreateTyped.
@@ -84,22 +85,19 @@ type UtilityCreateData struct {
 	Algorithm *string `json:"algorithm,omitempty"`
 	Decoded *string `json:"decoded,omitempty"`
 	Encoded string `json:"encoded"`
-	Error *string `json:"error,omitempty"`
-	Flag *string `json:"flag,omitempty"`
+	Flags *string `json:"flags,omitempty"`
 	Formatted *string `json:"formatted,omitempty"`
 	Hash *string `json:"hash,omitempty"`
 	Header *map[string]any `json:"header,omitempty"`
 	Indent *int `json:"indent,omitempty"`
-	IsMatch *bool `json:"is_match,omitempty"`
+	IsMatch *bool `json:"isMatch,omitempty"`
 	Json string `json:"json"`
-	Match *[]any `json:"match,omitempty"`
-	Parsed *map[string]any `json:"parsed,omitempty"`
+	Matches *[]any `json:"matches,omitempty"`
 	Pattern string `json:"pattern"`
 	Payload *map[string]any `json:"payload,omitempty"`
 	Signature *string `json:"signature,omitempty"`
 	Text string `json:"text"`
 	Token string `json:"token"`
-	Valid *bool `json:"valid,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
@@ -114,12 +112,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -131,12 +143,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

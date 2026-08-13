@@ -111,11 +111,11 @@ function generator_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID" => [],
-        "DEVELOPERTOOLBOX_TEST_LIVE" => "FALSE",
+        "DEVELOPER_TOOLBOX_TEST_GENERATOR_ENTID" => [],
+        "DEVELOPER_TOOLBOX_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["DEVELOPERTOOLBOX_TEST_LIVE"] === "TRUE";
+    $live = $env["DEVELOPER_TOOLBOX_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from developertoolbox_sdk.utility.voxgig_struct import voxgig_struct as vs
 from developertoolbox_sdk import DeveloperToolboxSDK
-from core import helpers
+from developertoolbox_sdk.core import helpers
 from test import runner
 
 
@@ -95,11 +95,11 @@ def _generator_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "DEVELOPERTOOLBOX_TEST_GENERATOR_ENTID": {},
-        "DEVELOPERTOOLBOX_TEST_LIVE": "FALSE",
+        "DEVELOPER_TOOLBOX_TEST_GENERATOR_ENTID": {},
+        "DEVELOPER_TOOLBOX_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("DEVELOPERTOOLBOX_TEST_LIVE") == "TRUE"
+    live = env.get("DEVELOPER_TOOLBOX_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

@@ -256,7 +256,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `data` |  |
 | `password` |  |
 | `size` |  |
-| `uuid` |  |
+| `uuids` |  |
 
 Operations: Create, List, Load.
 
@@ -266,9 +266,9 @@ API path: `/api/qrcode`
 
 | Field | Description |
 | --- | --- |
-| `custom_alia` |  |
-| `original_url` |  |
-| `short_url` |  |
+| `customAlias` |  |
+| `originalUrl` |  |
+| `shortUrl` |  |
 | `url` |  |
 
 Operations: Create.
@@ -282,22 +282,19 @@ API path: `/api/url/shorten`
 | `algorithm` |  |
 | `decoded` |  |
 | `encoded` |  |
-| `error` |  |
-| `flag` |  |
+| `flags` |  |
 | `formatted` |  |
 | `hash` |  |
 | `header` |  |
 | `indent` |  |
-| `is_match` |  |
+| `isMatch` |  |
 | `json` |  |
-| `match` |  |
-| `parsed` |  |
+| `matches` |  |
 | `pattern` |  |
 | `payload` |  |
 | `signature` |  |
 | `text` |  |
 | `token` |  |
-| `valid` |  |
 
 Operations: Create.
 
@@ -327,7 +324,7 @@ Create an instance: `local generator = client:Generator(nil)`
 | `data` | `string` |  |
 | `password` | `string` |  |
 | `size` | `number` |  |
-| `uuid` | `table` |  |
+| `uuids` | `table` |  |
 
 #### Example: Load
 
@@ -364,9 +361,9 @@ Create an instance: `local url_tool = client:UrlTool(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `custom_alia` | `string` |  |
-| `original_url` | `string` |  |
-| `short_url` | `string` |  |
+| `customAlias` | `string` |  |
+| `originalUrl` | `string` |  |
+| `shortUrl` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Create
@@ -395,22 +392,19 @@ Create an instance: `local utility = client:Utility(nil)`
 | `algorithm` | `string` |  |
 | `decoded` | `string` |  |
 | `encoded` | `string` |  |
-| `error` | `string` |  |
-| `flag` | `string` |  |
+| `flags` | `string` |  |
 | `formatted` | `string` |  |
 | `hash` | `string` |  |
 | `header` | `table` |  |
 | `indent` | `number` |  |
-| `is_match` | `boolean` |  |
+| `isMatch` | `boolean` |  |
 | `json` | `string` |  |
-| `match` | `table` |  |
-| `parsed` | `table` |  |
+| `matches` | `table` |  |
 | `pattern` | `string` |  |
 | `payload` | `table` |  |
 | `signature` | `string` |  |
 | `text` | `string` |  |
 | `token` | `string` |  |
-| `valid` | `boolean` |  |
 
 #### Example: Create
 

@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from developertoolbox_sdk.utility.voxgig_struct import voxgig_struct as vs
 from developertoolbox_sdk import DeveloperToolboxSDK
-from core import helpers
+from developertoolbox_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -36,7 +36,7 @@ class TestUrlToolEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set DEVELOPERTOOLBOX_TEST_URL_TOOL_ENTID JSON to run live")
+                        "set DEVELOPER_TOOLBOX_TEST_URL_TOOL_ENTID JSON to run live")
         client = setup["client"]
 
         # CREATE
@@ -44,7 +44,7 @@ class TestUrlToolEntity:
         url_tool_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.url_tool"), "url_tool_ref01"))
 
-        url_tool_ref01_data = helpers.to_map(url_tool_ref01_ent.create(url_tool_ref01_data, None))
+        url_tool_ref01_data = helpers.to_map(runner.entity_data(url_tool_ref01_ent.create(url_tool_ref01_data, None)))
         assert url_tool_ref01_data is not None
 
 
@@ -78,21 +78,21 @@ def _url_tool_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "DEVELOPERTOOLBOX_TEST_URL_TOOL_ENTID")
+        "DEVELOPER_TOOLBOX_TEST_URL_TOOL_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "DEVELOPERTOOLBOX_TEST_URL_TOOL_ENTID": idmap,
-        "DEVELOPERTOOLBOX_TEST_LIVE": "FALSE",
-        "DEVELOPERTOOLBOX_TEST_EXPLAIN": "FALSE",
+        "DEVELOPER_TOOLBOX_TEST_URL_TOOL_ENTID": idmap,
+        "DEVELOPER_TOOLBOX_TEST_LIVE": "FALSE",
+        "DEVELOPER_TOOLBOX_TEST_EXPLAIN": "FALSE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("DEVELOPERTOOLBOX_TEST_URL_TOOL_ENTID"))
+        env.get("DEVELOPER_TOOLBOX_TEST_URL_TOOL_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 
-    if env.get("DEVELOPERTOOLBOX_TEST_LIVE") == "TRUE":
+    if env.get("DEVELOPER_TOOLBOX_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
             },
@@ -100,13 +100,13 @@ def _url_tool_basic_setup(extra):
         ])
         client = DeveloperToolboxSDK(helpers.to_map(merged_opts))
 
-    _live = env.get("DEVELOPERTOOLBOX_TEST_LIVE") == "TRUE"
+    _live = env.get("DEVELOPER_TOOLBOX_TEST_LIVE") == "TRUE"
     return {
         "client": client,
         "data": entity_data,
         "idmap": idmap_resolved,
         "env": env,
-        "explain": env.get("DEVELOPERTOOLBOX_TEST_EXPLAIN") == "TRUE",
+        "explain": env.get("DEVELOPER_TOOLBOX_TEST_EXPLAIN") == "TRUE",
         "live": _live,
         "synthetic_only": _live and not _idmap_overridden,
         "now": int(time.time() * 1000),

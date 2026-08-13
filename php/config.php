@@ -61,7 +61,7 @@ class DeveloperToolboxConfig
             ],
             [
               'active' => true,
-              'name' => 'uuid',
+              'name' => 'uuids',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 3,
@@ -76,6 +76,7 @@ class DeveloperToolboxConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/qrcode',
                   'parts' => [
@@ -120,6 +121,7 @@ class DeveloperToolboxConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/fake-data',
                   'parts' => [
@@ -134,7 +136,7 @@ class DeveloperToolboxConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'index$' => 0,
                 ],
@@ -153,6 +155,7 @@ class DeveloperToolboxConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/uuid',
                   'parts' => [
@@ -166,7 +169,7 @@ class DeveloperToolboxConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.uuids`',
                   ],
                   'index$' => 1,
                 ],
@@ -228,6 +231,7 @@ class DeveloperToolboxConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/password',
                   'parts' => [
@@ -261,21 +265,21 @@ class DeveloperToolboxConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'custom_alia',
+              'name' => 'customAlias',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'original_url',
+              'name' => 'originalUrl',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'short_url',
+              'name' => 'shortUrl',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 2,
@@ -297,6 +301,7 @@ class DeveloperToolboxConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/url/shorten',
                   'parts' => [
@@ -350,115 +355,94 @@ class DeveloperToolboxConfig
             ],
             [
               'active' => true,
-              'name' => 'error',
+              'name' => 'flags',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'flag',
+              'name' => 'formatted',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 4,
             ],
             [
               'active' => true,
-              'name' => 'formatted',
+              'name' => 'hash',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'hash',
-              'req' => false,
-              'type' => '`$STRING`',
-              'index$' => 6,
-            ],
-            [
-              'active' => true,
               'name' => 'header',
               'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 7,
+              'index$' => 6,
             ],
             [
               'active' => true,
               'name' => 'indent',
               'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 8,
+              'index$' => 7,
             ],
             [
               'active' => true,
-              'name' => 'is_match',
+              'name' => 'isMatch',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 9,
+              'index$' => 8,
             ],
             [
               'active' => true,
               'name' => 'json',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 10,
+              'index$' => 9,
             ],
             [
               'active' => true,
-              'name' => 'match',
+              'name' => 'matches',
               'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 11,
-            ],
-            [
-              'active' => true,
-              'name' => 'parsed',
-              'req' => false,
-              'type' => '`$OBJECT`',
-              'index$' => 12,
+              'index$' => 10,
             ],
             [
               'active' => true,
               'name' => 'pattern',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 13,
+              'index$' => 11,
             ],
             [
               'active' => true,
               'name' => 'payload',
               'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 14,
+              'index$' => 12,
             ],
             [
               'active' => true,
               'name' => 'signature',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 15,
+              'index$' => 13,
             ],
             [
               'active' => true,
               'name' => 'text',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 16,
+              'index$' => 14,
             ],
             [
               'active' => true,
               'name' => 'token',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 17,
-            ],
-            [
-              'active' => true,
-              'name' => 'valid',
-              'req' => false,
-              'type' => '`$BOOLEAN`',
-              'index$' => 18,
+              'index$' => 15,
             ],
           ],
           'name' => 'utility',
@@ -470,6 +454,7 @@ class DeveloperToolboxConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/base64/decode',
                   'parts' => [
@@ -487,6 +472,7 @@ class DeveloperToolboxConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/base64/encode',
                   'parts' => [
@@ -504,6 +490,7 @@ class DeveloperToolboxConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/hash',
                   'parts' => [
@@ -520,6 +507,7 @@ class DeveloperToolboxConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/json/format',
                   'parts' => [
@@ -537,6 +525,7 @@ class DeveloperToolboxConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/json/validate',
                   'parts' => [
@@ -547,13 +536,14 @@ class DeveloperToolboxConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.parsed`',
                   ],
                   'index$' => 4,
                 ],
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/jwt/decode',
                   'parts' => [
@@ -571,6 +561,7 @@ class DeveloperToolboxConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api/regex/test',
                   'parts' => [

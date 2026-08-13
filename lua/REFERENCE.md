@@ -101,7 +101,7 @@ local generator = client:Generator(nil)
 | `data` | `string` | Yes |  |
 | `password` | `string` | No |  |
 | `size` | `number` | No |  |
-| `uuid` | `table` | No |  |
+| `uuids` | `table` | No |  |
 
 ### Field Usage by Operation
 
@@ -110,7 +110,7 @@ local generator = client:Generator(nil)
 | `data` | - | Yes | - |
 | `password` | - | - | - |
 | `size` | - | - | - |
-| `uuid` | - | - | - |
+| `uuids` | - | - | - |
 
 ### Operations
 
@@ -180,9 +180,9 @@ local url_tool = client:UrlTool(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `custom_alia` | `string` | No |  |
-| `original_url` | `string` | No |  |
-| `short_url` | `string` | No |  |
+| `customAlias` | `string` | No |  |
+| `originalUrl` | `string` | No |  |
+| `shortUrl` | `string` | No |  |
 | `url` | `string` | Yes |  |
 
 ### Operations
@@ -240,22 +240,19 @@ local utility = client:Utility(nil)
 | `algorithm` | `string` | No |  |
 | `decoded` | `string` | No |  |
 | `encoded` | `string` | Yes |  |
-| `error` | `string` | No |  |
-| `flag` | `string` | No |  |
+| `flags` | `string` | No |  |
 | `formatted` | `string` | No |  |
 | `hash` | `string` | No |  |
 | `header` | `table` | No |  |
 | `indent` | `number` | No |  |
-| `is_match` | `boolean` | No |  |
+| `isMatch` | `boolean` | No |  |
 | `json` | `string` | Yes |  |
-| `match` | `table` | No |  |
-| `parsed` | `table` | No |  |
+| `matches` | `table` | No |  |
 | `pattern` | `string` | Yes |  |
 | `payload` | `table` | No |  |
 | `signature` | `string` | No |  |
 | `text` | `string` | Yes |  |
 | `token` | `string` | Yes |  |
-| `valid` | `boolean` | No |  |
 
 ### Field Usage by Operation
 
@@ -264,22 +261,19 @@ local utility = client:Utility(nil)
 | `algorithm` | - |
 | `decoded` | - |
 | `encoded` | Yes |
-| `error` | - |
-| `flag` | - |
+| `flags` | - |
 | `formatted` | - |
 | `hash` | - |
 | `header` | - |
 | `indent` | - |
-| `is_match` | - |
+| `isMatch` | - |
 | `json` | - |
-| `match` | - |
-| `parsed` | - |
+| `matches` | - |
 | `pattern` | - |
 | `payload` | - |
 | `signature` | - |
 | `text` | - |
 | `token` | - |
-| `valid` | - |
 
 ### Operations
 

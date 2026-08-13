@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load a generator
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -65,7 +65,7 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
+# Create — returns the ENTITY (call data_get() for the record)
 created = client.Generator().create({"data": "example_data"})
 
 ```
@@ -144,7 +144,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DeveloperToolboxSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 generator = client.Generator().list()
 # generator contains the mock response record
 ```
@@ -244,7 +245,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -269,7 +270,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `data` |  |
 | `password` |  |
 | `size` |  |
-| `uuid` |  |
+| `uuids` |  |
 
 Operations: Create, List, Load.
 
@@ -279,9 +280,9 @@ API path: `/api/qrcode`
 
 | Field | Description |
 | --- | --- |
-| `custom_alia` |  |
-| `original_url` |  |
-| `short_url` |  |
+| `customAlias` |  |
+| `originalUrl` |  |
+| `shortUrl` |  |
 | `url` |  |
 
 Operations: Create.
@@ -295,22 +296,19 @@ API path: `/api/url/shorten`
 | `algorithm` |  |
 | `decoded` |  |
 | `encoded` |  |
-| `error` |  |
-| `flag` |  |
+| `flags` |  |
 | `formatted` |  |
 | `hash` |  |
 | `header` |  |
 | `indent` |  |
-| `is_match` |  |
+| `isMatch` |  |
 | `json` |  |
-| `match` |  |
-| `parsed` |  |
+| `matches` |  |
 | `pattern` |  |
 | `payload` |  |
 | `signature` |  |
 | `text` |  |
 | `token` |  |
-| `valid` |  |
 
 Operations: Create.
 
@@ -340,7 +338,7 @@ Create an instance: `generator = client.Generator()`
 | `data` | `str` |  |
 | `password` | `str` |  |
 | `size` | `int` |  |
-| `uuid` | `list` |  |
+| `uuids` | `list` |  |
 
 #### Example: Load
 
@@ -377,9 +375,9 @@ Create an instance: `url_tool = client.UrlTool()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `custom_alia` | `str` |  |
-| `original_url` | `str` |  |
-| `short_url` | `str` |  |
+| `customAlias` | `str` |  |
+| `originalUrl` | `str` |  |
+| `shortUrl` | `str` |  |
 | `url` | `str` |  |
 
 #### Example: Create
@@ -408,22 +406,19 @@ Create an instance: `utility = client.Utility()`
 | `algorithm` | `str` |  |
 | `decoded` | `str` |  |
 | `encoded` | `str` |  |
-| `error` | `str` |  |
-| `flag` | `str` |  |
+| `flags` | `str` |  |
 | `formatted` | `str` |  |
 | `hash` | `str` |  |
 | `header` | `dict` |  |
 | `indent` | `int` |  |
-| `is_match` | `bool` |  |
+| `isMatch` | `bool` |  |
 | `json` | `str` |  |
-| `match` | `list` |  |
-| `parsed` | `dict` |  |
+| `matches` | `list` |  |
 | `pattern` | `str` |  |
 | `payload` | `dict` |  |
 | `signature` | `str` |  |
 | `text` | `str` |  |
 | `token` | `str` |  |
-| `valid` | `bool` |  |
 
 #### Example: Create
 
