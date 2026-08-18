@@ -28,7 +28,7 @@ class DeveloperToolboxSDK
     utility = DeveloperToolboxUtility.new
     @_utility = utility
 
-    config = DeveloperToolboxConfig.make_config
+    config = DeveloperToolboxConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

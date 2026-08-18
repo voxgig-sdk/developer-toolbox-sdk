@@ -40,7 +40,7 @@ class DeveloperToolboxSDK
         $utility = new DeveloperToolboxUtility();
         $this->_utility = $utility;
 
-        $config = DeveloperToolboxConfig::make_config();
+        $config = DeveloperToolboxConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
