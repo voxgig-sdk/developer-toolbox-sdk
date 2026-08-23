@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'DeveloperToolbox',
+        slug: "developer-toolbox",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -68,6 +79,7 @@ class Config {
             }
           },
           "req": true,
+          "short": "Text or URL to encode in QR code",
           "type": "`$STRING`"
         },
         {
@@ -76,6 +88,7 @@ class Config {
         },
         {
           "name": "size",
+          "short": "Size of QR code in pixels",
           "type": "`$INTEGER`"
         },
         {
@@ -254,6 +267,7 @@ class Config {
       "fields": [
         {
           "name": "customAlias",
+          "short": "Custom alias for shortened URL",
           "type": "`$STRING`"
         },
         {
@@ -267,6 +281,7 @@ class Config {
         {
           "name": "url",
           "req": true,
+          "short": "URL to shorten",
           "type": "`$STRING`"
         }
       ],
@@ -303,6 +318,7 @@ class Config {
       "fields": [
         {
           "name": "algorithm",
+          "short": "Hashing algorithm to use",
           "type": "`$STRING`"
         },
         {
@@ -317,10 +333,12 @@ class Config {
             }
           },
           "req": true,
+          "short": "Base64 encoded text to decode",
           "type": "`$STRING`"
         },
         {
           "name": "flags",
+          "short": "Regex flags (g, i, m, s, u, y)",
           "type": "`$STRING`"
         },
         {
@@ -337,6 +355,7 @@ class Config {
         },
         {
           "name": "indent",
+          "short": "Number of spaces for indentation",
           "type": "`$INTEGER`"
         },
         {
@@ -346,6 +365,7 @@ class Config {
         {
           "name": "json",
           "req": true,
+          "short": "JSON string to format",
           "type": "`$STRING`"
         },
         {
@@ -355,6 +375,7 @@ class Config {
         {
           "name": "pattern",
           "req": true,
+          "short": "Regular expression pattern",
           "type": "`$STRING`"
         },
         {
@@ -368,11 +389,13 @@ class Config {
         {
           "name": "text",
           "req": true,
+          "short": "Text to encode",
           "type": "`$STRING`"
         },
         {
           "name": "token",
           "req": true,
+          "short": "JWT token to decode",
           "type": "`$STRING`"
         }
       ],

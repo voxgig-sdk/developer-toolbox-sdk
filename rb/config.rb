@@ -19,6 +19,9 @@ module DeveloperToolboxConfig
     {
       "main" => {
         "name" => "DeveloperToolbox",
+        "slug" => "developer-toolbox",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -49,6 +52,7 @@ module DeveloperToolboxConfig
                 },
               },
               "req" => true,
+              "short" => "Text or URL to encode in QR code",
               "type" => "`$STRING`",
             },
             {
@@ -57,6 +61,7 @@ module DeveloperToolboxConfig
             },
             {
               "name" => "size",
+              "short" => "Size of QR code in pixels",
               "type" => "`$INTEGER`",
             },
             {
@@ -235,6 +240,7 @@ module DeveloperToolboxConfig
           "fields" => [
             {
               "name" => "customAlias",
+              "short" => "Custom alias for shortened URL",
               "type" => "`$STRING`",
             },
             {
@@ -248,6 +254,7 @@ module DeveloperToolboxConfig
             {
               "name" => "url",
               "req" => true,
+              "short" => "URL to shorten",
               "type" => "`$STRING`",
             },
           ],
@@ -284,6 +291,7 @@ module DeveloperToolboxConfig
           "fields" => [
             {
               "name" => "algorithm",
+              "short" => "Hashing algorithm to use",
               "type" => "`$STRING`",
             },
             {
@@ -298,10 +306,12 @@ module DeveloperToolboxConfig
                 },
               },
               "req" => true,
+              "short" => "Base64 encoded text to decode",
               "type" => "`$STRING`",
             },
             {
               "name" => "flags",
+              "short" => "Regex flags (g, i, m, s, u, y)",
               "type" => "`$STRING`",
             },
             {
@@ -318,6 +328,7 @@ module DeveloperToolboxConfig
             },
             {
               "name" => "indent",
+              "short" => "Number of spaces for indentation",
               "type" => "`$INTEGER`",
             },
             {
@@ -327,6 +338,7 @@ module DeveloperToolboxConfig
             {
               "name" => "json",
               "req" => true,
+              "short" => "JSON string to format",
               "type" => "`$STRING`",
             },
             {
@@ -336,6 +348,7 @@ module DeveloperToolboxConfig
             {
               "name" => "pattern",
               "req" => true,
+              "short" => "Regular expression pattern",
               "type" => "`$STRING`",
             },
             {
@@ -349,11 +362,13 @@ module DeveloperToolboxConfig
             {
               "name" => "text",
               "req" => true,
+              "short" => "Text to encode",
               "type" => "`$STRING`",
             },
             {
               "name" => "token",
               "req" => true,
+              "short" => "JWT token to decode",
               "type" => "`$STRING`",
             },
           ],

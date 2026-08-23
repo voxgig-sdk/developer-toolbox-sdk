@@ -253,9 +253,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `data` | Text or URL to encode in QR code |
 | `password` |  |
-| `size` |  |
+| `size` | Size of QR code in pixels |
 | `uuids` |  |
 
 Operations: Create, List, Load.
@@ -266,10 +266,10 @@ API path: `/api/qrcode`
 
 | Field | Description |
 | --- | --- |
-| `customAlias` |  |
+| `customAlias` | Custom alias for shortened URL |
 | `originalUrl` |  |
 | `shortUrl` |  |
-| `url` |  |
+| `url` | URL to shorten |
 
 Operations: Create.
 
@@ -279,22 +279,22 @@ API path: `/api/url/shorten`
 
 | Field | Description |
 | --- | --- |
-| `algorithm` |  |
+| `algorithm` | Hashing algorithm to use |
 | `decoded` |  |
-| `encoded` |  |
-| `flags` |  |
+| `encoded` | Base64 encoded text to decode |
+| `flags` | Regex flags (g, i, m, s, u, y) |
 | `formatted` |  |
 | `hash` |  |
 | `header` |  |
-| `indent` |  |
+| `indent` | Number of spaces for indentation |
 | `isMatch` |  |
-| `json` |  |
+| `json` | JSON string to format |
 | `matches` |  |
-| `pattern` |  |
+| `pattern` | Regular expression pattern |
 | `payload` |  |
 | `signature` |  |
-| `text` |  |
-| `token` |  |
+| `text` | Text to encode |
+| `token` | JWT token to decode |
 
 Operations: Create.
 
@@ -321,9 +321,9 @@ Create an instance: `local generator = client:Generator(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `string` |  |
+| `data` | `string` | Text or URL to encode in QR code |
 | `password` | `string` |  |
-| `size` | `number` |  |
+| `size` | `number` | Size of QR code in pixels |
 | `uuids` | `table` |  |
 
 #### Example: Load
@@ -361,10 +361,10 @@ Create an instance: `local url_tool = client:UrlTool(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `customAlias` | `string` |  |
+| `customAlias` | `string` | Custom alias for shortened URL |
 | `originalUrl` | `string` |  |
 | `shortUrl` | `string` |  |
-| `url` | `string` |  |
+| `url` | `string` | URL to shorten |
 
 #### Example: Create
 
@@ -389,22 +389,22 @@ Create an instance: `local utility = client:Utility(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `algorithm` | `string` |  |
+| `algorithm` | `string` | Hashing algorithm to use |
 | `decoded` | `string` |  |
-| `encoded` | `string` |  |
-| `flags` | `string` |  |
+| `encoded` | `string` | Base64 encoded text to decode |
+| `flags` | `string` | Regex flags (g, i, m, s, u, y) |
 | `formatted` | `string` |  |
 | `hash` | `string` |  |
 | `header` | `table` |  |
-| `indent` | `number` |  |
+| `indent` | `number` | Number of spaces for indentation |
 | `isMatch` | `boolean` |  |
-| `json` | `string` |  |
+| `json` | `string` | JSON string to format |
 | `matches` | `table` |  |
-| `pattern` | `string` |  |
+| `pattern` | `string` | Regular expression pattern |
 | `payload` | `table` |  |
 | `signature` | `string` |  |
-| `text` | `string` |  |
-| `token` | `string` |  |
+| `text` | `string` | Text to encode |
+| `token` | `string` | JWT token to decode |
 
 #### Example: Create
 

@@ -267,9 +267,9 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `data` | Text or URL to encode in QR code |
 | `password` |  |
-| `size` |  |
+| `size` | Size of QR code in pixels |
 | `uuids` |  |
 
 Operations: Create, List, Load.
@@ -280,10 +280,10 @@ API path: `/api/qrcode`
 
 | Field | Description |
 | --- | --- |
-| `customAlias` |  |
+| `customAlias` | Custom alias for shortened URL |
 | `originalUrl` |  |
 | `shortUrl` |  |
-| `url` |  |
+| `url` | URL to shorten |
 
 Operations: Create.
 
@@ -293,22 +293,22 @@ API path: `/api/url/shorten`
 
 | Field | Description |
 | --- | --- |
-| `algorithm` |  |
+| `algorithm` | Hashing algorithm to use |
 | `decoded` |  |
-| `encoded` |  |
-| `flags` |  |
+| `encoded` | Base64 encoded text to decode |
+| `flags` | Regex flags (g, i, m, s, u, y) |
 | `formatted` |  |
 | `hash` |  |
 | `header` |  |
-| `indent` |  |
+| `indent` | Number of spaces for indentation |
 | `isMatch` |  |
-| `json` |  |
+| `json` | JSON string to format |
 | `matches` |  |
-| `pattern` |  |
+| `pattern` | Regular expression pattern |
 | `payload` |  |
 | `signature` |  |
-| `text` |  |
-| `token` |  |
+| `text` | Text to encode |
+| `token` | JWT token to decode |
 
 Operations: Create.
 
@@ -335,9 +335,9 @@ Create an instance: `generator = client.Generator()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `str` |  |
+| `data` | `str` | Text or URL to encode in QR code |
 | `password` | `str` |  |
-| `size` | `int` |  |
+| `size` | `int` | Size of QR code in pixels |
 | `uuids` | `list` |  |
 
 #### Example: Load
@@ -375,10 +375,10 @@ Create an instance: `url_tool = client.UrlTool()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `customAlias` | `str` |  |
+| `customAlias` | `str` | Custom alias for shortened URL |
 | `originalUrl` | `str` |  |
 | `shortUrl` | `str` |  |
-| `url` | `str` |  |
+| `url` | `str` | URL to shorten |
 
 #### Example: Create
 
@@ -403,22 +403,22 @@ Create an instance: `utility = client.Utility()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `algorithm` | `str` |  |
+| `algorithm` | `str` | Hashing algorithm to use |
 | `decoded` | `str` |  |
-| `encoded` | `str` |  |
-| `flags` | `str` |  |
+| `encoded` | `str` | Base64 encoded text to decode |
+| `flags` | `str` | Regex flags (g, i, m, s, u, y) |
 | `formatted` | `str` |  |
 | `hash` | `str` |  |
 | `header` | `dict` |  |
-| `indent` | `int` |  |
+| `indent` | `int` | Number of spaces for indentation |
 | `isMatch` | `bool` |  |
-| `json` | `str` |  |
+| `json` | `str` | JSON string to format |
 | `matches` | `list` |  |
-| `pattern` | `str` |  |
+| `pattern` | `str` | Regular expression pattern |
 | `payload` | `dict` |  |
 | `signature` | `str` |  |
-| `text` | `str` |  |
-| `token` | `str` |  |
+| `text` | `str` | Text to encode |
+| `token` | `str` | JWT token to decode |
 
 #### Example: Create
 

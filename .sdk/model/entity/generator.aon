@@ -14,6 +14,7 @@ main: kit: entity: generator: {
         }
       }
       req: true
+      short: "Text or URL to encode in QR code"
       type: "`$STRING`"
     }
     {
@@ -24,6 +25,7 @@ main: kit: entity: generator: {
     {
       name: "size"
       req: false
+      short: "Size of QR code in pixels"
       type: "`$INTEGER`"
     }
     {

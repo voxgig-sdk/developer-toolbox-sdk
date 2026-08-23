@@ -101,9 +101,9 @@ generator = client.Generator
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `String` | Yes |  |
+| `data` | `String` | Yes | Text or URL to encode in QR code |
 | `password` | `String` | No |  |
-| `size` | `Integer` | No |  |
+| `size` | `Integer` | No | Size of QR code in pixels |
 | `uuids` | `Array` | No |  |
 
 ### Field Usage by Operation
@@ -183,10 +183,10 @@ url_tool = client.UrlTool
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `customAlias` | `String` | No |  |
+| `customAlias` | `String` | No | Custom alias for shortened URL |
 | `originalUrl` | `String` | No |  |
 | `shortUrl` | `String` | No |  |
-| `url` | `String` | Yes |  |
+| `url` | `String` | Yes | URL to shorten |
 
 ### Operations
 
@@ -240,22 +240,22 @@ utility = client.Utility
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `algorithm` | `String` | No |  |
+| `algorithm` | `String` | No | Hashing algorithm to use |
 | `decoded` | `String` | No |  |
-| `encoded` | `String` | Yes |  |
-| `flags` | `String` | No |  |
+| `encoded` | `String` | Yes | Base64 encoded text to decode |
+| `flags` | `String` | No | Regex flags (g, i, m, s, u, y) |
 | `formatted` | `String` | No |  |
 | `hash` | `String` | No |  |
 | `header` | `Hash` | No |  |
-| `indent` | `Integer` | No |  |
+| `indent` | `Integer` | No | Number of spaces for indentation |
 | `isMatch` | `Boolean` | No |  |
-| `json` | `String` | Yes |  |
+| `json` | `String` | Yes | JSON string to format |
 | `matches` | `Array` | No |  |
-| `pattern` | `String` | Yes |  |
+| `pattern` | `String` | Yes | Regular expression pattern |
 | `payload` | `Hash` | No |  |
 | `signature` | `String` | No |  |
-| `text` | `String` | Yes |  |
-| `token` | `String` | Yes |  |
+| `text` | `String` | Yes | Text to encode |
+| `token` | `String` | Yes | JWT token to decode |
 
 ### Field Usage by Operation
 

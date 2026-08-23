@@ -271,9 +271,9 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
+| `data` | Text or URL to encode in QR code |
 | `password` |  |
-| `size` |  |
+| `size` | Size of QR code in pixels |
 | `uuids` |  |
 
 Operations: Create, List, Load.
@@ -284,10 +284,10 @@ API path: `/api/qrcode`
 
 | Field | Description |
 | --- | --- |
-| `customAlias` |  |
+| `customAlias` | Custom alias for shortened URL |
 | `originalUrl` |  |
 | `shortUrl` |  |
-| `url` |  |
+| `url` | URL to shorten |
 
 Operations: Create.
 
@@ -297,22 +297,22 @@ API path: `/api/url/shorten`
 
 | Field | Description |
 | --- | --- |
-| `algorithm` |  |
+| `algorithm` | Hashing algorithm to use |
 | `decoded` |  |
-| `encoded` |  |
-| `flags` |  |
+| `encoded` | Base64 encoded text to decode |
+| `flags` | Regex flags (g, i, m, s, u, y) |
 | `formatted` |  |
 | `hash` |  |
 | `header` |  |
-| `indent` |  |
+| `indent` | Number of spaces for indentation |
 | `isMatch` |  |
-| `json` |  |
+| `json` | JSON string to format |
 | `matches` |  |
-| `pattern` |  |
+| `pattern` | Regular expression pattern |
 | `payload` |  |
 | `signature` |  |
-| `text` |  |
-| `token` |  |
+| `text` | Text to encode |
+| `token` | JWT token to decode |
 
 Operations: Create.
 
@@ -339,9 +339,9 @@ Create an instance: `$generator = $client->Generator();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `string` |  |
+| `data` | `string` | Text or URL to encode in QR code |
 | `password` | `string` |  |
-| `size` | `int` |  |
+| `size` | `int` | Size of QR code in pixels |
 | `uuids` | `array` |  |
 
 #### Example: Load
@@ -381,10 +381,10 @@ Create an instance: `$url_tool = $client->UrlTool();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `customAlias` | `string` |  |
+| `customAlias` | `string` | Custom alias for shortened URL |
 | `originalUrl` | `string` |  |
 | `shortUrl` | `string` |  |
-| `url` | `string` |  |
+| `url` | `string` | URL to shorten |
 
 #### Example: Create
 
@@ -409,22 +409,22 @@ Create an instance: `$utility = $client->Utility();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `algorithm` | `string` |  |
+| `algorithm` | `string` | Hashing algorithm to use |
 | `decoded` | `string` |  |
-| `encoded` | `string` |  |
-| `flags` | `string` |  |
+| `encoded` | `string` | Base64 encoded text to decode |
+| `flags` | `string` | Regex flags (g, i, m, s, u, y) |
 | `formatted` | `string` |  |
 | `hash` | `string` |  |
 | `header` | `array` |  |
-| `indent` | `int` |  |
+| `indent` | `int` | Number of spaces for indentation |
 | `isMatch` | `bool` |  |
-| `json` | `string` |  |
+| `json` | `string` | JSON string to format |
 | `matches` | `array` |  |
-| `pattern` | `string` |  |
+| `pattern` | `string` | Regular expression pattern |
 | `payload` | `array` |  |
 | `signature` | `string` |  |
-| `text` | `string` |  |
-| `token` | `string` |  |
+| `text` | `string` | Text to encode |
+| `token` | `string` | JWT token to decode |
 
 #### Example: Create
 

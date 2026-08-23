@@ -8,6 +8,7 @@ main: kit: entity: utility: {
     {
       name: "algorithm"
       req: false
+      short: "Hashing algorithm to use"
       type: "`$STRING`"
     }
     {
@@ -24,11 +25,13 @@ main: kit: entity: utility: {
         }
       }
       req: true
+      short: "Base64 encoded text to decode"
       type: "`$STRING`"
     }
     {
       name: "flags"
       req: false
+      short: "Regex flags (g, i, m, s, u, y)"
       type: "`$STRING`"
     }
     {
@@ -49,6 +52,7 @@ main: kit: entity: utility: {
     {
       name: "indent"
       req: false
+      short: "Number of spaces for indentation"
       type: "`$INTEGER`"
     }
     {
@@ -59,6 +63,7 @@ main: kit: entity: utility: {
     {
       name: "json"
       req: true
+      short: "JSON string to format"
       type: "`$STRING`"
     }
     {
@@ -69,6 +74,7 @@ main: kit: entity: utility: {
     {
       name: "pattern"
       req: true
+      short: "Regular expression pattern"
       type: "`$STRING`"
     }
     {
@@ -84,11 +90,13 @@ main: kit: entity: utility: {
     {
       name: "text"
       req: true
+      short: "Text to encode"
       type: "`$STRING`"
     }
     {
       name: "token"
       req: true
+      short: "JWT token to decode"
       type: "`$STRING`"
     }
   ]

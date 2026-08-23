@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "DeveloperToolbox",
+			"slug": "developer-toolbox",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -41,6 +44,7 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"req": true,
+						"short": "Text or URL to encode in QR code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -49,6 +53,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "size",
+						"short": "Size of QR code in pixels",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -227,6 +232,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "customAlias",
+						"short": "Custom alias for shortened URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -240,6 +246,7 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "url",
 						"req": true,
+						"short": "URL to shorten",
 						"type": "`$STRING`",
 					},
 				},
@@ -276,6 +283,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "algorithm",
+						"short": "Hashing algorithm to use",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -290,10 +298,12 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"req": true,
+						"short": "Base64 encoded text to decode",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "flags",
+						"short": "Regex flags (g, i, m, s, u, y)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -310,6 +320,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "indent",
+						"short": "Number of spaces for indentation",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -319,6 +330,7 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "json",
 						"req": true,
+						"short": "JSON string to format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -328,6 +340,7 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "pattern",
 						"req": true,
+						"short": "Regular expression pattern",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -341,11 +354,13 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "text",
 						"req": true,
+						"short": "Text to encode",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "token",
 						"req": true,
+						"short": "JWT token to decode",
 						"type": "`$STRING`",
 					},
 				},

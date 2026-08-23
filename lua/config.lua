@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "DeveloperToolbox",
+      slug = "developer-toolbox",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -37,6 +40,7 @@ local function make_config()
               },
             },
             ["req"] = true,
+            ["short"] = "Text or URL to encode in QR code",
             ["type"] = "`$STRING`",
           },
           {
@@ -45,6 +49,7 @@ local function make_config()
           },
           {
             ["name"] = "size",
+            ["short"] = "Size of QR code in pixels",
             ["type"] = "`$INTEGER`",
           },
           {
@@ -223,6 +228,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "customAlias",
+            ["short"] = "Custom alias for shortened URL",
             ["type"] = "`$STRING`",
           },
           {
@@ -236,6 +242,7 @@ local function make_config()
           {
             ["name"] = "url",
             ["req"] = true,
+            ["short"] = "URL to shorten",
             ["type"] = "`$STRING`",
           },
         },
@@ -272,6 +279,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "algorithm",
+            ["short"] = "Hashing algorithm to use",
             ["type"] = "`$STRING`",
           },
           {
@@ -286,10 +294,12 @@ local function make_config()
               },
             },
             ["req"] = true,
+            ["short"] = "Base64 encoded text to decode",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "flags",
+            ["short"] = "Regex flags (g, i, m, s, u, y)",
             ["type"] = "`$STRING`",
           },
           {
@@ -306,6 +316,7 @@ local function make_config()
           },
           {
             ["name"] = "indent",
+            ["short"] = "Number of spaces for indentation",
             ["type"] = "`$INTEGER`",
           },
           {
@@ -315,6 +326,7 @@ local function make_config()
           {
             ["name"] = "json",
             ["req"] = true,
+            ["short"] = "JSON string to format",
             ["type"] = "`$STRING`",
           },
           {
@@ -324,6 +336,7 @@ local function make_config()
           {
             ["name"] = "pattern",
             ["req"] = true,
+            ["short"] = "Regular expression pattern",
             ["type"] = "`$STRING`",
           },
           {
@@ -337,11 +350,13 @@ local function make_config()
           {
             ["name"] = "text",
             ["req"] = true,
+            ["short"] = "Text to encode",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "token",
             ["req"] = true,
+            ["short"] = "JWT token to decode",
             ["type"] = "`$STRING`",
           },
         },

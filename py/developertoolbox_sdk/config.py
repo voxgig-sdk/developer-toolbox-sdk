@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "DeveloperToolbox",
+            "slug": "developer-toolbox",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -58,6 +61,7 @@ def make_config():
               },
             },
             "req": True,
+            "short": "Text or URL to encode in QR code",
             "type": "`$STRING`",
           },
           {
@@ -66,6 +70,7 @@ def make_config():
           },
           {
             "name": "size",
+            "short": "Size of QR code in pixels",
             "type": "`$INTEGER`",
           },
           {
@@ -244,6 +249,7 @@ def make_config():
         "fields": [
           {
             "name": "customAlias",
+            "short": "Custom alias for shortened URL",
             "type": "`$STRING`",
           },
           {
@@ -257,6 +263,7 @@ def make_config():
           {
             "name": "url",
             "req": True,
+            "short": "URL to shorten",
             "type": "`$STRING`",
           },
         ],
@@ -293,6 +300,7 @@ def make_config():
         "fields": [
           {
             "name": "algorithm",
+            "short": "Hashing algorithm to use",
             "type": "`$STRING`",
           },
           {
@@ -307,10 +315,12 @@ def make_config():
               },
             },
             "req": True,
+            "short": "Base64 encoded text to decode",
             "type": "`$STRING`",
           },
           {
             "name": "flags",
+            "short": "Regex flags (g, i, m, s, u, y)",
             "type": "`$STRING`",
           },
           {
@@ -327,6 +337,7 @@ def make_config():
           },
           {
             "name": "indent",
+            "short": "Number of spaces for indentation",
             "type": "`$INTEGER`",
           },
           {
@@ -336,6 +347,7 @@ def make_config():
           {
             "name": "json",
             "req": True,
+            "short": "JSON string to format",
             "type": "`$STRING`",
           },
           {
@@ -345,6 +357,7 @@ def make_config():
           {
             "name": "pattern",
             "req": True,
+            "short": "Regular expression pattern",
             "type": "`$STRING`",
           },
           {
@@ -358,11 +371,13 @@ def make_config():
           {
             "name": "text",
             "req": True,
+            "short": "Text to encode",
             "type": "`$STRING`",
           },
           {
             "name": "token",
             "req": True,
+            "short": "JWT token to decode",
             "type": "`$STRING`",
           },
         ],

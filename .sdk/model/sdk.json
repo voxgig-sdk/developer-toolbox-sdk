@@ -42,6 +42,7 @@
                 }
               },
               "req": true,
+              "short": "Text or URL to encode in QR code",
               "type": "`$STRING`"
             },
             {
@@ -54,6 +55,7 @@
               "active": true,
               "name": "size",
               "req": false,
+              "short": "Size of QR code in pixels",
               "type": "`$INTEGER`"
             },
             {
@@ -260,6 +262,7 @@
               "active": true,
               "name": "customAlias",
               "req": false,
+              "short": "Custom alias for shortened URL",
               "type": "`$STRING`"
             },
             {
@@ -278,6 +281,7 @@
               "active": true,
               "name": "url",
               "req": true,
+              "short": "URL to shorten",
               "type": "`$STRING`"
             }
           ],
@@ -321,6 +325,7 @@
               "active": true,
               "name": "algorithm",
               "req": false,
+              "short": "Hashing algorithm to use",
               "type": "`$STRING`"
             },
             {
@@ -339,12 +344,14 @@
                 }
               },
               "req": true,
+              "short": "Base64 encoded text to decode",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "flags",
               "req": false,
+              "short": "Regex flags (g, i, m, s, u, y)",
               "type": "`$STRING`"
             },
             {
@@ -369,6 +376,7 @@
               "active": true,
               "name": "indent",
               "req": false,
+              "short": "Number of spaces for indentation",
               "type": "`$INTEGER`"
             },
             {
@@ -381,6 +389,7 @@
               "active": true,
               "name": "json",
               "req": true,
+              "short": "JSON string to format",
               "type": "`$STRING`"
             },
             {
@@ -393,6 +402,7 @@
               "active": true,
               "name": "pattern",
               "req": true,
+              "short": "Regular expression pattern",
               "type": "`$STRING`"
             },
             {
@@ -411,12 +421,14 @@
               "active": true,
               "name": "text",
               "req": true,
+              "short": "Text to encode",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "token",
               "req": true,
+              "short": "JWT token to decode",
               "type": "`$STRING`"
             }
           ],

@@ -8,6 +8,7 @@ main: kit: entity: url_tool: {
     {
       name: "customAlias"
       req: false
+      short: "Custom alias for shortened URL"
       type: "`$STRING`"
     }
     {
@@ -23,6 +24,7 @@ main: kit: entity: url_tool: {
     {
       name: "url"
       req: true
+      short: "URL to shorten"
       type: "`$STRING`"
     }
   ]
