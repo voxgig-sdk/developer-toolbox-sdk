@@ -28,6 +28,7 @@ module DeveloperToolboxConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
