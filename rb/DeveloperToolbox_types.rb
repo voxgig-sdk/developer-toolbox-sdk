@@ -31,43 +31,39 @@ Generator = Struct.new(
 
 # Request payload for Generator#load.
 #
-# @!attribute [rw] data
-#   @return [String, nil]
-#
-# @!attribute [rw] password
-#   @return [String, nil]
-#
-# @!attribute [rw] size
+# @!attribute [rw] length
 #   @return [Integer, nil]
 #
-# @!attribute [rw] uuids
-#   @return [Array, nil]
+# @!attribute [rw] lowercase
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] number
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] symbol
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] uppercase
+#   @return [Boolean, nil]
 GeneratorLoadMatch = Struct.new(
-  :data,
-  :password,
-  :size,
-  :uuids,
+  :length,
+  :lowercase,
+  :number,
+  :symbol,
+  :uppercase,
   keyword_init: true
 )
 
 # Request payload for Generator#list.
 #
-# @!attribute [rw] data
-#   @return [String, nil]
-#
-# @!attribute [rw] password
-#   @return [String, nil]
-#
-# @!attribute [rw] size
+# @!attribute [rw] count
 #   @return [Integer, nil]
 #
-# @!attribute [rw] uuids
-#   @return [Array, nil]
+# @!attribute [rw] type
+#   @return [String, nil]
 GeneratorListMatch = Struct.new(
-  :data,
-  :password,
-  :size,
-  :uuids,
+  :count,
+  :type,
   keyword_init: true
 )
 

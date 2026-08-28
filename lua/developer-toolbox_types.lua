@@ -13,16 +13,15 @@
 ---@field uuids? table
 
 ---@class GeneratorLoadMatch
----@field data? string
----@field password? string
----@field size? number
----@field uuids? table
+---@field length? number
+---@field lowercase? boolean
+---@field number? boolean
+---@field symbol? boolean
+---@field uppercase? boolean
 
 ---@class GeneratorListMatch
----@field data? string
----@field password? string
----@field size? number
----@field uuids? table
+---@field count? number
+---@field type? string
 
 ---@class GeneratorCreateData
 ---@field data string

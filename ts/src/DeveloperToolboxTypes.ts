@@ -13,17 +13,16 @@ export interface Generator {
 }
 
 export interface GeneratorLoadMatch {
-  data?: string
-  password?: string
-  size?: number
-  uuids?: any[]
+  length?: number
+  lowercase?: boolean
+  number?: boolean
+  symbol?: boolean
+  uppercase?: boolean
 }
 
 export interface GeneratorListMatch {
-  data?: string
-  password?: string
-  size?: number
-  uuids?: any[]
+  count?: number
+  type?: string
 }
 
 export interface GeneratorCreateData {

@@ -24,19 +24,18 @@ class Generator
 /** Request payload for Generator#load. */
 class GeneratorLoadMatch
 {
-    public ?string $data = null;
-    public ?string $password = null;
-    public ?int $size = null;
-    public ?array $uuids = null;
+    public ?int $length = null;
+    public ?bool $lowercase = null;
+    public ?bool $number = null;
+    public ?bool $symbol = null;
+    public ?bool $uppercase = null;
 }
 
 /** Request payload for Generator#list. */
 class GeneratorListMatch
 {
-    public ?string $data = null;
-    public ?string $password = null;
-    public ?int $size = null;
-    public ?array $uuids = null;
+    public ?int $count = null;
+    public ?string $type = null;
 }
 
 /** Request payload for Generator#create. */

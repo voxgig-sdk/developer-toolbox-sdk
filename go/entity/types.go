@@ -22,18 +22,17 @@ type Generator struct {
 
 // GeneratorLoadMatch is the typed request payload for Generator.LoadTyped.
 type GeneratorLoadMatch struct {
-	Data *string `json:"data,omitempty"`
-	Password *string `json:"password,omitempty"`
-	Size *int `json:"size,omitempty"`
-	Uuids *[]any `json:"uuids,omitempty"`
+	Length *int `json:"length,omitempty"`
+	Lowercase *bool `json:"lowercase,omitempty"`
+	Number *bool `json:"number,omitempty"`
+	Symbol *bool `json:"symbol,omitempty"`
+	Uppercase *bool `json:"uppercase,omitempty"`
 }
 
 // GeneratorListMatch is the typed request payload for Generator.ListTyped.
 type GeneratorListMatch struct {
-	Data *string `json:"data,omitempty"`
-	Password *string `json:"password,omitempty"`
-	Size *int `json:"size,omitempty"`
-	Uuids *[]any `json:"uuids,omitempty"`
+	Count *int `json:"count,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // GeneratorCreateData is the typed request payload for Generator.CreateTyped.

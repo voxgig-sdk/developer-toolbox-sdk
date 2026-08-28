@@ -27,17 +27,16 @@ class Generator(GeneratorRequired, total=False):
 
 
 class GeneratorLoadMatch(TypedDict, total=False):
-    data: str
-    password: str
-    size: int
-    uuids: list
+    length: int
+    lowercase: bool
+    number: bool
+    symbol: bool
+    uppercase: bool
 
 
 class GeneratorListMatch(TypedDict, total=False):
-    data: str
-    password: str
-    size: int
-    uuids: list
+    count: int
+    type: str
 
 
 class GeneratorCreateDataRequired(TypedDict):
