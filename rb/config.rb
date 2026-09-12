@@ -81,15 +81,23 @@ module DeveloperToolboxConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/qrcode",
-                  "parts" => [
-                    "api",
-                    "qrcode",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "qrcode",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "qrcode",
+                  ],
                 },
               ],
             },
@@ -119,9 +127,13 @@ module DeveloperToolboxConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/fake-data",
-                  "parts" => [
-                    "api",
-                    "fake-data",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "fake-data",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -133,6 +145,10 @@ module DeveloperToolboxConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "api",
+                    "fake-data",
+                  ],
                 },
                 {
                   "args" => {
@@ -149,9 +165,13 @@ module DeveloperToolboxConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/uuid",
-                  "parts" => [
-                    "api",
-                    "uuid",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "uuid",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -162,6 +182,10 @@ module DeveloperToolboxConfig
                     "req" => "`reqdata`",
                     "res" => "`body.uuids`",
                   },
+                  "parts" => [
+                    "api",
+                    "uuid",
+                  ],
                 },
               ],
             },
@@ -212,9 +236,13 @@ module DeveloperToolboxConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/password",
-                  "parts" => [
-                    "api",
-                    "password",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "password",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -229,6 +257,10 @@ module DeveloperToolboxConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "password",
+                  ],
                 },
               ],
             },
@@ -245,14 +277,17 @@ module DeveloperToolboxConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "originalUrl",
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "shortUrl",
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "url",
               "req" => true,
               "short" => "URL to shorten",
@@ -270,16 +305,27 @@ module DeveloperToolboxConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/url/shorten",
-                  "parts" => [
-                    "api",
-                    "url",
-                    "shorten",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "url",
+                    },
+                    {
+                      "lit" => "shorten",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "url",
+                    "shorten",
+                  ],
                 },
               ],
             },
@@ -384,111 +430,185 @@ module DeveloperToolboxConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/base64/decode",
-                  "parts" => [
-                    "api",
-                    "base64",
-                    "decode",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "base64",
+                    },
+                    {
+                      "lit" => "decode",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "base64",
+                    "decode",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/base64/encode",
-                  "parts" => [
-                    "api",
-                    "base64",
-                    "encode",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "base64",
+                    },
+                    {
+                      "lit" => "encode",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "base64",
+                    "encode",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/hash",
-                  "parts" => [
-                    "api",
-                    "hash",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "hash",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "hash",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/json/format",
-                  "parts" => [
-                    "api",
-                    "json",
-                    "format",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "json",
+                    },
+                    {
+                      "lit" => "format",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "json",
+                    "format",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/json/validate",
-                  "parts" => [
-                    "api",
-                    "json",
-                    "validate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "json",
+                    },
+                    {
+                      "lit" => "validate",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.parsed`",
                   },
+                  "parts" => [
+                    "api",
+                    "json",
+                    "validate",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/jwt/decode",
-                  "parts" => [
-                    "api",
-                    "jwt",
-                    "decode",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "jwt",
+                    },
+                    {
+                      "lit" => "decode",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "jwt",
+                    "decode",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/regex/test",
-                  "parts" => [
-                    "api",
-                    "regex",
-                    "test",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "regex",
+                    },
+                    {
+                      "lit" => "test",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "regex",
+                    "test",
+                  ],
                 },
               ],
             },

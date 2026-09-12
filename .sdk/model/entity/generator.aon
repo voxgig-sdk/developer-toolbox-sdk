@@ -43,9 +43,13 @@ main: kit: entity: generator: {
         {
           method: "POST"
           orig: "/api/qrcode"
-          parts: [
-            "api"
-            "qrcode"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "qrcode"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -80,9 +84,13 @@ main: kit: entity: generator: {
           }
           method: "GET"
           orig: "/api/fake-data"
-          parts: [
-            "api"
-            "fake-data"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "fake-data"
+            }
           ]
           select: {
             exist: [
@@ -110,9 +118,13 @@ main: kit: entity: generator: {
           }
           method: "GET"
           orig: "/api/uuid"
-          parts: [
-            "api"
-            "uuid"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "uuid"
+            }
           ]
           select: {
             exist: [
@@ -176,9 +188,13 @@ main: kit: entity: generator: {
           }
           method: "GET"
           orig: "/api/password"
-          parts: [
-            "api"
-            "password"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "password"
+            }
           ]
           select: {
             exist: [

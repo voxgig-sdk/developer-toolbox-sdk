@@ -109,10 +109,16 @@ main: kit: entity: utility: {
         {
           method: "POST"
           orig: "/api/base64/decode"
-          parts: [
-            "api"
-            "base64"
-            "decode"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "base64"
+            }
+            {
+              lit: "decode"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -122,10 +128,16 @@ main: kit: entity: utility: {
         {
           method: "POST"
           orig: "/api/base64/encode"
-          parts: [
-            "api"
-            "base64"
-            "encode"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "base64"
+            }
+            {
+              lit: "encode"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -135,9 +147,13 @@ main: kit: entity: utility: {
         {
           method: "POST"
           orig: "/api/hash"
-          parts: [
-            "api"
-            "hash"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "hash"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -147,10 +163,16 @@ main: kit: entity: utility: {
         {
           method: "POST"
           orig: "/api/json/format"
-          parts: [
-            "api"
-            "json"
-            "format"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "json"
+            }
+            {
+              lit: "format"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -160,10 +182,16 @@ main: kit: entity: utility: {
         {
           method: "POST"
           orig: "/api/json/validate"
-          parts: [
-            "api"
-            "json"
-            "validate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "json"
+            }
+            {
+              lit: "validate"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -173,10 +201,16 @@ main: kit: entity: utility: {
         {
           method: "POST"
           orig: "/api/jwt/decode"
-          parts: [
-            "api"
-            "jwt"
-            "decode"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "jwt"
+            }
+            {
+              lit: "decode"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -186,10 +220,16 @@ main: kit: entity: utility: {
         {
           method: "POST"
           orig: "/api/regex/test"
-          parts: [
-            "api"
-            "regex"
-            "test"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "regex"
+            }
+            {
+              lit: "test"
+            }
           ]
           transform: {
             req: "`reqdata`"

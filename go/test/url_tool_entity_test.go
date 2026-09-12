@@ -52,7 +52,7 @@ func TestUrlToolEntity(t *testing.T) {
 		// CREATE
 		urlToolRef01Ent := client.UrlTool(nil)
 		urlToolRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "url_tool"}, setup.data), "url_tool_ref01"))
+			vs.GetPath(setup.data, []any{"new", "url_tool"}), "url_tool_ref01"))
 
 		urlToolRef01DataResult, err := urlToolRef01Ent.Create(urlToolRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func url_toolBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"url_tool01", "url_tool02", "url_tool03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -118,10 +118,22 @@ func url_toolBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["DEVELOPER_TOOLBOX_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewDeveloperToolboxSDK(core.ToMapAny(mergedOpts))
 	}

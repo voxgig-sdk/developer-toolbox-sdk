@@ -12,16 +12,19 @@ main: kit: entity: url_tool: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "originalUrl"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "shortUrl"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "url"
       req: true
       short: "URL to shorten"
@@ -37,10 +40,16 @@ main: kit: entity: url_tool: {
         {
           method: "POST"
           orig: "/api/url/shorten"
-          parts: [
-            "api"
-            "url"
-            "shorten"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "url"
+            }
+            {
+              lit: "shorten"
+            }
           ]
           transform: {
             req: "`reqdata`"
