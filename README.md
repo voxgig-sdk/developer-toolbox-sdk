@@ -105,7 +105,7 @@ local results, err = client:Generator():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases) |
+| TypeScript | `@voxgig-sdk/developer-toolbox-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases) |
 | Python | `voxgig-sdk-developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases) |
 | PHP | `voxgig-sdk/developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/developer-toolbox-sdk/go` | `go get github.com/voxgig-sdk/developer-toolbox-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Generator():list()
 ### TypeScript
 
 ```ts
-import { DeveloperToolboxSDK } from '@voxgig-sdk/developer-toolbox'
+import { DeveloperToolboxSDK } from '@voxgig-sdk/developer-toolbox-sdk'
 
 const client = new DeveloperToolboxSDK()
 

@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DeveloperToolboxSDK } from '@voxgig-sdk/developer-toolbox'
+import { DeveloperToolboxSDK } from '@voxgig-sdk/developer-toolbox-sdk'
 
 const client = new DeveloperToolboxSDK()
 ```
@@ -563,7 +563,7 @@ developer-toolbox/
 Import the SDK from the package root:
 
 ```ts
-import { DeveloperToolboxSDK } from '@voxgig-sdk/developer-toolbox'
+import { DeveloperToolboxSDK } from '@voxgig-sdk/developer-toolbox-sdk'
 ```
 
 ### Entity state
