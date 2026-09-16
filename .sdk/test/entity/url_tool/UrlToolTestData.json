@@ -33,5 +33,66 @@
         "url": "sa3"
       }
     }
+  },
+  "requests": {
+    "POST /api/url/shorten": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "shortenURL",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "customAlias": {
+                    "description": "Custom alias for shortened URL",
+                    "type": "string"
+                  },
+                  "url": {
+                    "description": "URL to shorten",
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "url"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "originalUrl": {
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "shortUrl": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully shortened URL"
+          },
+          "400": {
+            "description": "Invalid URL or alias already taken"
+          }
+        },
+        "securitySchemes": {},
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

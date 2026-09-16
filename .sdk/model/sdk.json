@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "generator": {
           "active": true,
@@ -74,6 +138,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/qrcode",
+                    "json": "{\"operationId\":\"generateQRCode\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"Text or URL to encode in QR code\",\"type\":\"string\"},\"size\":{\"default\":200,\"description\":\"Size of QR code in pixels\",\"maximum\":1000,\"minimum\":100,\"type\":\"integer\"}},\"required\":[\"data\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully generated QR code\"},\"400\":{\"description\":\"Invalid request parameters\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/qrcode",
@@ -121,6 +191,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /api/fake-data",
+                    "json": "{\"operationId\":\"generateFakeData\",\"parameters\":[{\"description\":\"Type of fake data to generate\",\"in\":\"query\",\"name\":\"type\",\"required\":false,\"schema\":{\"default\":\"user\",\"enum\":[\"name\",\"email\",\"address\",\"phone\",\"company\",\"user\"],\"type\":\"string\"}},{\"description\":\"Number of records to generate\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"default\":1,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated fake data\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/fake-data",
@@ -157,6 +233,12 @@
                         "type": "`$INTEGER`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /api/uuid",
+                    "json": "{\"operationId\":\"generateUUID\",\"parameters\":[{\"description\":\"Number of UUIDs to generate\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"default\":1,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"uuids\":{\"items\":{\"format\":\"uuid\",\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated UUID(s)\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -236,6 +318,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /api/password",
+                    "json": "{\"operationId\":\"generatePassword\",\"parameters\":[{\"description\":\"Length of password\",\"in\":\"query\",\"name\":\"length\",\"required\":false,\"schema\":{\"default\":16,\"maximum\":128,\"minimum\":8,\"type\":\"integer\"}},{\"description\":\"Include uppercase letters\",\"in\":\"query\",\"name\":\"uppercase\",\"required\":false,\"schema\":{\"default\":true,\"type\":\"boolean\"}},{\"description\":\"Include lowercase letters\",\"in\":\"query\",\"name\":\"lowercase\",\"required\":false,\"schema\":{\"default\":true,\"type\":\"boolean\"}},{\"description\":\"Include numbers\",\"in\":\"query\",\"name\":\"numbers\",\"required\":false,\"schema\":{\"default\":true,\"type\":\"boolean\"}},{\"description\":\"Include special symbols\",\"in\":\"query\",\"name\":\"symbols\",\"required\":false,\"schema\":{\"default\":true,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"password\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated password\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/password",
@@ -313,6 +401,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/url/shorten",
+                    "json": "{\"operationId\":\"shortenURL\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"customAlias\":{\"description\":\"Custom alias for shortened URL\",\"type\":\"string\"},\"url\":{\"description\":\"URL to shorten\",\"format\":\"uri\",\"type\":\"string\"}},\"required\":[\"url\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"originalUrl\":{\"format\":\"uri\",\"type\":\"string\"},\"shortUrl\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully shortened URL\"},\"400\":{\"description\":\"Invalid URL or alias already taken\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/url/shorten",
@@ -466,6 +560,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/base64/decode",
+                    "json": "{\"operationId\":\"base64Decode\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"encoded\":{\"description\":\"Base64 encoded text to decode\",\"type\":\"string\"}},\"required\":[\"encoded\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"decoded\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully decoded from Base64\"},\"400\":{\"description\":\"Invalid Base64 string\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/base64/decode",
@@ -489,6 +589,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/base64/encode",
+                    "json": "{\"operationId\":\"base64Encode\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"text\":{\"description\":\"Text to encode\",\"type\":\"string\"}},\"required\":[\"text\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"encoded\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully encoded to Base64\"},\"400\":{\"description\":\"Invalid request parameters\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/base64/encode",
@@ -512,6 +618,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/hash",
+                    "json": "{\"operationId\":\"hashText\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"default\":\"sha256\",\"description\":\"Hashing algorithm to use\",\"enum\":[\"md5\",\"sha1\",\"sha256\",\"sha512\"],\"type\":\"string\"},\"text\":{\"description\":\"Text to hash\",\"type\":\"string\"}},\"required\":[\"text\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"type\":\"string\"},\"hash\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated hash\"},\"400\":{\"description\":\"Invalid request parameters\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/hash",
@@ -532,6 +644,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/json/format",
+                    "json": "{\"operationId\":\"formatJSON\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"indent\":{\"default\":2,\"description\":\"Number of spaces for indentation\",\"maximum\":8,\"minimum\":1,\"type\":\"integer\"},\"json\":{\"description\":\"JSON string to format\",\"type\":\"string\"}},\"required\":[\"json\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"formatted\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully formatted JSON\"},\"400\":{\"description\":\"Invalid JSON string\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/json/format",
@@ -555,6 +673,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/json/validate",
+                    "json": "{\"operationId\":\"validateJSON\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"json\":{\"description\":\"JSON string to validate\",\"type\":\"string\"}},\"required\":[\"json\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"type\":\"string\"},\"parsed\":{\"type\":\"object\"},\"valid\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"JSON validation result\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/json/validate",
@@ -578,6 +702,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/jwt/decode",
+                    "json": "{\"operationId\":\"decodeJWT\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"token\":{\"description\":\"JWT token to decode\",\"type\":\"string\"}},\"required\":[\"token\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"header\":{\"type\":\"object\"},\"payload\":{\"type\":\"object\"},\"signature\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully decoded JWT\"},\"400\":{\"description\":\"Invalid JWT token\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/jwt/decode",
@@ -601,6 +731,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /api/regex/test",
+                    "json": "{\"operationId\":\"testRegex\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"flags\":{\"default\":\"\",\"description\":\"Regex flags (g, i, m, s, u, y)\",\"type\":\"string\"},\"pattern\":{\"description\":\"Regular expression pattern\",\"type\":\"string\"},\"text\":{\"description\":\"Text to test against pattern\",\"type\":\"string\"}},\"required\":[\"pattern\",\"text\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"isMatch\":{\"type\":\"boolean\"},\"matches\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successfully tested regex\"},\"400\":{\"description\":\"Invalid regex pattern\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/regex/test",
@@ -630,13 +766,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -726,6 +1072,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -849,6 +1291,48 @@
         "website": "https://conway-toolbox-production.up.railway.app"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -1403,6 +1887,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1444,7 +1929,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

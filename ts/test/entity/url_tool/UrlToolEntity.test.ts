@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { DeveloperToolboxSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('UrlToolEntity', async () => {
 
     const live = 'TRUE' === process.env.DEVELOPER_TOOLBOX_TEST_LIVE
     for (const op of ['create']) {
-      if (maybeSkipControl(t, 'entityOp', 'url_tool.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'url_tool.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set DEVELOPER_TOOLBOX_TEST_URL_TOOL_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"customAlias","req":false,"short":"Custom alias for shortened URL","type":"`$STRING`","index$":0},{"active":true,"format":"uri","name":"originalUrl","req":false,"type":"`$STRING`","index$":1},{"active":true,"format":"uri","name":"shortUrl","req":false,"type":"`$STRING`","index$":2},{"active":true,"format":"uri","name":"url","req":true,"short":"URL to shorten","type":"`$STRING`","index$":3}],"name":"url_tool","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{},"contract":{"id":"POST /api/url/shorten","json":"{\"operationId\":\"shortenURL\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"customAlias\":{\"description\":\"Custom alias for shortened URL\",\"type\":\"string\"},\"url\":{\"description\":\"URL to shorten\",\"format\":\"uri\",\"type\":\"string\"}},\"required\":[\"url\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"originalUrl\":{\"format\":\"uri\",\"type\":\"string\"},\"shortUrl\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully shortened URL\"},\"400\":{\"description\":\"Invalid URL or alias already taken\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/url/shorten","segments":[{"lit":"api"},{"lit":"url"},{"lit":"shorten"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"url_tool","name__orig":"url_tool","Name":"UrlTool","name_":"url_tool","name-":"url-tool","NAME":"URL_TOOL","index$":1}, {"active":true,"entity":"url_tool","key$":"BasicUrlToolFlow","kind":"basic","name":"BasicUrlToolFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"url_tool_ref01"},"match":{},"op":"create","spec":[],"valid":[],"index$":0}]}, 'UrlTool')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['DEVELOPER_TOOLBOX_TEST_URL_TOOL_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'DEVELOPER_TOOLBOX_TEST_URL_TOOL_ENTID': idmap,
     'DEVELOPER_TOOLBOX_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.DEVELOPER_TOOLBOX_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['DEVELOPER_TOOLBOX_TEST_URL_TOOL_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new DeveloperToolboxSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.DEVELOPER_TOOLBOX_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

@@ -41,6 +41,12 @@ main: kit: entity: generator: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /api/qrcode"
+            json: "{\"operationId\":\"generateQRCode\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"Text or URL to encode in QR code\",\"type\":\"string\"},\"size\":{\"default\":200,\"description\":\"Size of QR code in pixels\",\"maximum\":1000,\"minimum\":100,\"type\":\"integer\"}},\"required\":[\"data\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully generated QR code\"},\"400\":{\"description\":\"Invalid request parameters\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/qrcode"
           segments: [
@@ -82,6 +88,12 @@ main: kit: entity: generator: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/fake-data"
+            json: "{\"operationId\":\"generateFakeData\",\"parameters\":[{\"description\":\"Type of fake data to generate\",\"in\":\"query\",\"name\":\"type\",\"required\":false,\"schema\":{\"default\":\"user\",\"enum\":[\"name\",\"email\",\"address\",\"phone\",\"company\",\"user\"],\"type\":\"string\"}},{\"description\":\"Number of records to generate\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"default\":1,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated fake data\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/fake-data"
           segments: [
@@ -115,6 +127,12 @@ main: kit: entity: generator: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /api/uuid"
+            json: "{\"operationId\":\"generateUUID\",\"parameters\":[{\"description\":\"Number of UUIDs to generate\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"default\":1,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"uuids\":{\"items\":{\"format\":\"uuid\",\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated UUID(s)\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/api/uuid"
@@ -185,6 +203,12 @@ main: kit: entity: generator: {
                 type: "`$BOOLEAN`"
               }
             ]
+          }
+          contract: {
+            id: "GET /api/password"
+            json: "{\"operationId\":\"generatePassword\",\"parameters\":[{\"description\":\"Length of password\",\"in\":\"query\",\"name\":\"length\",\"required\":false,\"schema\":{\"default\":16,\"maximum\":128,\"minimum\":8,\"type\":\"integer\"}},{\"description\":\"Include uppercase letters\",\"in\":\"query\",\"name\":\"uppercase\",\"required\":false,\"schema\":{\"default\":true,\"type\":\"boolean\"}},{\"description\":\"Include lowercase letters\",\"in\":\"query\",\"name\":\"lowercase\",\"required\":false,\"schema\":{\"default\":true,\"type\":\"boolean\"}},{\"description\":\"Include numbers\",\"in\":\"query\",\"name\":\"numbers\",\"required\":false,\"schema\":{\"default\":true,\"type\":\"boolean\"}},{\"description\":\"Include special symbols\",\"in\":\"query\",\"name\":\"symbols\",\"required\":false,\"schema\":{\"default\":true,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"password\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated password\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/api/password"

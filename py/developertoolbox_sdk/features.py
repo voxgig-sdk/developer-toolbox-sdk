@@ -1,12 +1,18 @@
 # DeveloperToolbox SDK feature factory
 
 from developertoolbox_sdk.feature.base_feature import DeveloperToolboxBaseFeature
+from developertoolbox_sdk.feature.ratelimit_feature import DeveloperToolboxRatelimitFeature
+from developertoolbox_sdk.feature.retry_feature import DeveloperToolboxRetryFeature
 from developertoolbox_sdk.feature.test_feature import DeveloperToolboxTestFeature
+from developertoolbox_sdk.feature.timeout_feature import DeveloperToolboxTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: DeveloperToolboxBaseFeature(),
+    "ratelimit": lambda: DeveloperToolboxRatelimitFeature(),
+    "retry": lambda: DeveloperToolboxRetryFeature(),
     "test": lambda: DeveloperToolboxTestFeature(),
+    "timeout": lambda: DeveloperToolboxTimeoutFeature(),
 }
 
 

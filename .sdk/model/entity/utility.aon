@@ -107,6 +107,12 @@ main: kit: entity: utility: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /api/base64/decode"
+            json: "{\"operationId\":\"base64Decode\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"encoded\":{\"description\":\"Base64 encoded text to decode\",\"type\":\"string\"}},\"required\":[\"encoded\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"decoded\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully decoded from Base64\"},\"400\":{\"description\":\"Invalid Base64 string\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/base64/decode"
           segments: [
@@ -126,6 +132,12 @@ main: kit: entity: utility: {
           }
         }
         {
+          contract: {
+            id: "POST /api/base64/encode"
+            json: "{\"operationId\":\"base64Encode\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"text\":{\"description\":\"Text to encode\",\"type\":\"string\"}},\"required\":[\"text\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"encoded\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully encoded to Base64\"},\"400\":{\"description\":\"Invalid request parameters\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/base64/encode"
           segments: [
@@ -145,6 +157,12 @@ main: kit: entity: utility: {
           }
         }
         {
+          contract: {
+            id: "POST /api/hash"
+            json: "{\"operationId\":\"hashText\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"default\":\"sha256\",\"description\":\"Hashing algorithm to use\",\"enum\":[\"md5\",\"sha1\",\"sha256\",\"sha512\"],\"type\":\"string\"},\"text\":{\"description\":\"Text to hash\",\"type\":\"string\"}},\"required\":[\"text\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"type\":\"string\"},\"hash\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated hash\"},\"400\":{\"description\":\"Invalid request parameters\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/hash"
           segments: [
@@ -161,6 +179,12 @@ main: kit: entity: utility: {
           }
         }
         {
+          contract: {
+            id: "POST /api/json/format"
+            json: "{\"operationId\":\"formatJSON\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"indent\":{\"default\":2,\"description\":\"Number of spaces for indentation\",\"maximum\":8,\"minimum\":1,\"type\":\"integer\"},\"json\":{\"description\":\"JSON string to format\",\"type\":\"string\"}},\"required\":[\"json\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"formatted\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully formatted JSON\"},\"400\":{\"description\":\"Invalid JSON string\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/json/format"
           segments: [
@@ -180,6 +204,12 @@ main: kit: entity: utility: {
           }
         }
         {
+          contract: {
+            id: "POST /api/json/validate"
+            json: "{\"operationId\":\"validateJSON\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"json\":{\"description\":\"JSON string to validate\",\"type\":\"string\"}},\"required\":[\"json\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"type\":\"string\"},\"parsed\":{\"type\":\"object\"},\"valid\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"JSON validation result\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/json/validate"
           segments: [
@@ -199,6 +229,12 @@ main: kit: entity: utility: {
           }
         }
         {
+          contract: {
+            id: "POST /api/jwt/decode"
+            json: "{\"operationId\":\"decodeJWT\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"token\":{\"description\":\"JWT token to decode\",\"type\":\"string\"}},\"required\":[\"token\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"header\":{\"type\":\"object\"},\"payload\":{\"type\":\"object\"},\"signature\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully decoded JWT\"},\"400\":{\"description\":\"Invalid JWT token\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/jwt/decode"
           segments: [
@@ -218,6 +254,12 @@ main: kit: entity: utility: {
           }
         }
         {
+          contract: {
+            id: "POST /api/regex/test"
+            json: "{\"operationId\":\"testRegex\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"flags\":{\"default\":\"\",\"description\":\"Regex flags (g, i, m, s, u, y)\",\"type\":\"string\"},\"pattern\":{\"description\":\"Regular expression pattern\",\"type\":\"string\"},\"text\":{\"description\":\"Text to test against pattern\",\"type\":\"string\"}},\"required\":[\"pattern\",\"text\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"isMatch\":{\"type\":\"boolean\"},\"matches\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successfully tested regex\"},\"400\":{\"description\":\"Invalid regex pattern\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/api/regex/test"
           segments: [

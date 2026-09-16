@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { DeveloperToolboxSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('UtilityEntity', async () => {
 
     const live = 'TRUE' === process.env.DEVELOPER_TOOLBOX_TEST_LIVE
     for (const op of ['create']) {
-      if (maybeSkipControl(t, 'entityOp', 'utility.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'utility.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set DEVELOPER_TOOLBOX_TEST_UTILITY_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"algorithm","req":false,"short":"Hashing algorithm to use","type":"`$STRING`","index$":0},{"active":true,"name":"decoded","req":false,"type":"`$STRING`","index$":1},{"active":true,"name":"encoded","op":{"create":{"req":false,"type":"`$STRING`"}},"req":true,"short":"Base64 encoded text to decode","type":"`$STRING`","index$":2},{"active":true,"name":"flags","req":false,"short":"Regex flags (g, i, m, s, u, y)","type":"`$STRING`","index$":3},{"active":true,"name":"formatted","req":false,"type":"`$STRING`","index$":4},{"active":true,"name":"hash","req":false,"type":"`$STRING`","index$":5},{"active":true,"name":"header","req":false,"type":"`$OBJECT`","index$":6},{"active":true,"name":"indent","req":false,"short":"Number of spaces for indentation","type":"`$INTEGER`","index$":7},{"active":true,"name":"isMatch","req":false,"type":"`$BOOLEAN`","index$":8},{"active":true,"name":"json","req":true,"short":"JSON string to format","type":"`$STRING`","index$":9},{"active":true,"name":"matches","req":false,"type":"`$ARRAY`","index$":10},{"active":true,"name":"pattern","req":true,"short":"Regular expression pattern","type":"`$STRING`","index$":11},{"active":true,"name":"payload","req":false,"type":"`$OBJECT`","index$":12},{"active":true,"name":"signature","req":false,"type":"`$STRING`","index$":13},{"active":true,"name":"text","req":true,"short":"Text to encode","type":"`$STRING`","index$":14},{"active":true,"name":"token","req":true,"short":"JWT token to decode","type":"`$STRING`","index$":15}],"name":"utility","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{},"contract":{"id":"POST /api/base64/decode","json":"{\"operationId\":\"base64Decode\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"encoded\":{\"description\":\"Base64 encoded text to decode\",\"type\":\"string\"}},\"required\":[\"encoded\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"decoded\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully decoded from Base64\"},\"400\":{\"description\":\"Invalid Base64 string\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/base64/decode","segments":[{"lit":"api"},{"lit":"base64"},{"lit":"decode"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0},{"active":true,"args":{},"contract":{"id":"POST /api/base64/encode","json":"{\"operationId\":\"base64Encode\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"text\":{\"description\":\"Text to encode\",\"type\":\"string\"}},\"required\":[\"text\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"encoded\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully encoded to Base64\"},\"400\":{\"description\":\"Invalid request parameters\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/base64/encode","segments":[{"lit":"api"},{"lit":"base64"},{"lit":"encode"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":1},{"active":true,"args":{},"contract":{"id":"POST /api/hash","json":"{\"operationId\":\"hashText\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"default\":\"sha256\",\"description\":\"Hashing algorithm to use\",\"enum\":[\"md5\",\"sha1\",\"sha256\",\"sha512\"],\"type\":\"string\"},\"text\":{\"description\":\"Text to hash\",\"type\":\"string\"}},\"required\":[\"text\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"algorithm\":{\"type\":\"string\"},\"hash\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully generated hash\"},\"400\":{\"description\":\"Invalid request parameters\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/hash","segments":[{"lit":"api"},{"lit":"hash"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0},{"active":true,"args":{},"contract":{"id":"POST /api/json/format","json":"{\"operationId\":\"formatJSON\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"indent\":{\"default\":2,\"description\":\"Number of spaces for indentation\",\"maximum\":8,\"minimum\":1,\"type\":\"integer\"},\"json\":{\"description\":\"JSON string to format\",\"type\":\"string\"}},\"required\":[\"json\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"formatted\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully formatted JSON\"},\"400\":{\"description\":\"Invalid JSON string\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/json/format","segments":[{"lit":"api"},{"lit":"json"},{"lit":"format"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":3},{"active":true,"args":{},"contract":{"id":"POST /api/json/validate","json":"{\"operationId\":\"validateJSON\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"json\":{\"description\":\"JSON string to validate\",\"type\":\"string\"}},\"required\":[\"json\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"type\":\"string\"},\"parsed\":{\"type\":\"object\"},\"valid\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"JSON validation result\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/json/validate","segments":[{"lit":"api"},{"lit":"json"},{"lit":"validate"}],"select":{},"transform":{"req":"`reqdata`","res":"`body.parsed`"},"index$":4},{"active":true,"args":{},"contract":{"id":"POST /api/jwt/decode","json":"{\"operationId\":\"decodeJWT\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"token\":{\"description\":\"JWT token to decode\",\"type\":\"string\"}},\"required\":[\"token\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"header\":{\"type\":\"object\"},\"payload\":{\"type\":\"object\"},\"signature\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully decoded JWT\"},\"400\":{\"description\":\"Invalid JWT token\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/jwt/decode","segments":[{"lit":"api"},{"lit":"jwt"},{"lit":"decode"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":5},{"active":true,"args":{},"contract":{"id":"POST /api/regex/test","json":"{\"operationId\":\"testRegex\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"flags\":{\"default\":\"\",\"description\":\"Regex flags (g, i, m, s, u, y)\",\"type\":\"string\"},\"pattern\":{\"description\":\"Regular expression pattern\",\"type\":\"string\"},\"text\":{\"description\":\"Text to test against pattern\",\"type\":\"string\"}},\"required\":[\"pattern\",\"text\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"isMatch\":{\"type\":\"boolean\"},\"matches\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successfully tested regex\"},\"400\":{\"description\":\"Invalid regex pattern\"}},\"securitySchemes\":{},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/api/regex/test","segments":[{"lit":"api"},{"lit":"regex"},{"lit":"test"}],"select":{},"transform":{"req":"`reqdata`","res":"`body`"},"index$":6}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"utility","name__orig":"utility","Name":"Utility","name_":"utility","name-":"utility","NAME":"UTILITY","index$":2}, {"active":true,"entity":"utility","key$":"BasicUtilityFlow","kind":"basic","name":"BasicUtilityFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"utility_ref01"},"match":{},"op":"create","spec":[],"valid":[],"index$":0}]}, 'Utility')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['DEVELOPER_TOOLBOX_TEST_UTILITY_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'DEVELOPER_TOOLBOX_TEST_UTILITY_ENTID': idmap,
     'DEVELOPER_TOOLBOX_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.DEVELOPER_TOOLBOX_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['DEVELOPER_TOOLBOX_TEST_UTILITY_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new DeveloperToolboxSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.DEVELOPER_TOOLBOX_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

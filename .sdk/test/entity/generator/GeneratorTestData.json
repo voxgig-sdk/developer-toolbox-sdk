@@ -4,21 +4,21 @@
       "GENERATOR00": {
         "data": "s28",
         "password": "s29",
-        "size": "s2a",
+        "size": 42,
         "uuids": [],
         "id": "GENERATOR00"
       },
       "GENERATOR01": {
         "data": "s50",
         "password": "s51",
-        "size": "s52",
+        "size": 82,
         "uuids": [],
         "id": "GENERATOR01"
       },
       "GENERATOR02": {
         "data": "s78",
         "password": "s79",
-        "size": "s7a",
+        "size": 122,
         "uuids": [],
         "id": "GENERATOR02"
       }
@@ -29,8 +29,247 @@
       "generator_ref01": {
         "data": "sa0",
         "password": "sa1",
-        "size": "sa2",
+        "size": 162,
         "uuids": []
+      }
+    }
+  },
+  "requests": {
+    "POST /api/qrcode": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "generateQRCode",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "data": {
+                    "description": "Text or URL to encode in QR code",
+                    "type": "string"
+                  },
+                  "size": {
+                    "default": 200,
+                    "description": "Size of QR code in pixels",
+                    "maximum": 1000,
+                    "minimum": 100,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "data"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "image/png": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successfully generated QR code"
+          },
+          "400": {
+            "description": "Invalid request parameters"
+          }
+        },
+        "securitySchemes": {},
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/fake-data": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "generateFakeData",
+        "parameters": [
+          {
+            "description": "Type of fake data to generate",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "default": "user",
+              "enum": [
+                "name",
+                "email",
+                "address",
+                "phone",
+                "company",
+                "user"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of records to generate",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully generated fake data"
+          }
+        },
+        "securitySchemes": {},
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/uuid": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "generateUUID",
+        "parameters": [
+          {
+            "description": "Number of UUIDs to generate",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "uuids": {
+                      "items": {
+                        "format": "uuid",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully generated UUID(s)"
+          }
+        },
+        "securitySchemes": {},
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/password": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "generatePassword",
+        "parameters": [
+          {
+            "description": "Length of password",
+            "in": "query",
+            "name": "length",
+            "required": false,
+            "schema": {
+              "default": 16,
+              "maximum": 128,
+              "minimum": 8,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Include uppercase letters",
+            "in": "query",
+            "name": "uppercase",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Include lowercase letters",
+            "in": "query",
+            "name": "lowercase",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Include numbers",
+            "in": "query",
+            "name": "numbers",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Include special symbols",
+            "in": "query",
+            "name": "symbols",
+            "required": false,
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "password": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully generated password"
+          }
+        },
+        "securitySchemes": {},
+        "securitySource": "unspecified"
       }
     }
   }

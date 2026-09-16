@@ -4,7 +4,10 @@ declare(strict_types=1);
 // DeveloperToolbox SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class DeveloperToolboxFeatures
@@ -14,8 +17,14 @@ class DeveloperToolboxFeatures
         switch ($name) {
             case "base":
                 return new DeveloperToolboxBaseFeature();
+            case "ratelimit":
+                return new DeveloperToolboxRatelimitFeature();
+            case "retry":
+                return new DeveloperToolboxRetryFeature();
             case "test":
                 return new DeveloperToolboxTestFeature();
+            case "timeout":
+                return new DeveloperToolboxTimeoutFeature();
             default:
                 return new DeveloperToolboxBaseFeature();
         }
@@ -31,7 +40,10 @@ class DeveloperToolboxFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
