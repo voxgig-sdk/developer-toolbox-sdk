@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      generator: {
-      },
-
-      url_tool: {
-      },
-
-      utility: {
-      },
-
+        generator: {
+        },
+  
+        url_tool: {
+        },
+  
+        utility: {
+        },
+  
     }
   }
 

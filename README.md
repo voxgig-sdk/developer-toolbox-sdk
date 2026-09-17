@@ -105,12 +105,12 @@ local results, err = client:Generator():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/developer-toolbox-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases) |
-| Python | `voxgig-sdk-developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases) |
-| PHP | `voxgig-sdk/developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases) |
+| TypeScript | `@voxgig-sdk/developer-toolbox-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/tags) |
+| Python | `voxgig-sdk-developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/tags) |
+| PHP | `voxgig-sdk/developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/developer-toolbox-sdk/go` | `go get github.com/voxgig-sdk/developer-toolbox-sdk/go@latest` |
-| Ruby | `voxgig-sdk-developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases) |
-| Lua | `voxgig-sdk-developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/releases) |
+| Ruby | `voxgig-sdk-developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/tags) |
+| Lua | `voxgig-sdk-developer-toolbox` | publish pending — [install from git tag](https://github.com/voxgig-sdk/developer-toolbox-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/developer-toolbox-sdk/go-cli` | `go install github.com/voxgig-sdk/developer-toolbox-sdk/go-cli/cmd/developer-toolbox@latest` |
 | Go MCP server | `github.com/voxgig-sdk/developer-toolbox-sdk/go-mcp` | `go get github.com/voxgig-sdk/developer-toolbox-sdk/go-mcp@latest` |
 
